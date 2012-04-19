@@ -36,10 +36,15 @@ export DIR=/Users/yvans/Home/Analysis/BRCA_analysis_01.12.2012/Sample_Diag-HaloB
 export WORKINGDIR=/Users/yvans/Home/Analysis/BRCA_analysis_01.12.2012/Sample_Diag-HaloBRCA1A-test-2/CutadaptB_Analysis/
 
 # Are the reads from the default location or not? Should I passe dit by absolute path??
-export READS1=
-export READS2=
+export READS1=/Users/yvans/Home/Analysis/BRCA_analysis_01.12.2012/Sample_Diag-HaloBRCA1A-test-2/passed_filter/Diag-HaloBRCA1A-test-2_CGATGT_L004_R1_001.pf.CutadaptB.fastq
+export READS2=/Users/yvans/Home/Analysis/BRCA_analysis_01.12.2012/Sample_Diag-HaloBRCA1A-test-2/passed_filter/Diag-HaloBRCA1A-test-2_CGATGT_L004_R2_001.pf.CutadaptB.fastq
 
-# RG line for the GATK consistency like that "@RG\tID:\tPL:ILLUMINA\tSM:"
+#
+## RG line for the GATK consistency like that "@RG\tID:\tPL:ILLUMINA\tSM:"
+## ID = Read group identier. Each @RG line must have a unique ID. The value of ID is used in the RG tags of alignment records. Must be unique among all read groups in header section. Read group IDs may be modied when merging SAM files in order to handle collisions.
+## PL = Platform/technology used to produce the reads. Valid values: CAPILLARY, LS454, ILLUMINA, SOLID, HELICOS, IONTORRENT and PACBIO.
+## SM = Sample. Use pool name where a pool is being sequenced.
+#
 export RG="@RG\tID:sample2CutAdaptB\tPL:ILLUMINA\tSM:sample2"
 
 echo -e "`date`
@@ -129,8 +134,7 @@ elif [ ! -e $DB.fai ] ; then
 else
 	echo -e "at `date`
 	\t starting bam building" >> $LOG ;
-	#$SAMTOOLS view -bt $DB.fai aln.sam > aln.bam 2> aln.bam.log ;
-	ava -Xmx2g -jar $PICARD/SortSam.jar \
+	java -Xmx2g -jar $PICARD/SortSam.jar \
 	I=aln.sam \
 	O=aln.posiSrt.bam \
 	SO=coordinate \
@@ -142,52 +146,6 @@ fi
 #
 rm -rf aln1.sai aln2.sai aln.sam
 
-
-## Sort it
-## First by name
-#
-# if [[ ! -e aln.bam || ! -s aln.bam ]] ; then
-# 	echo "the aln.bam file is missing or empty" >> $LOG ;
-# 	exit
-# else
-# 	echo -e "at `date`
-# 	\tstarted name sorting" >> $LOG ;
-# 	$SAMTOOLS sort -n aln.bam aln.nameSrt
-# fi
-# #then fix the mate pairs
-# if [[ ! -e aln.nameSrt.bam || ! -s aln.nameSrt.bam ]] ; then
-# 	echo "the aln.nameSrt.bam file is missing or empty" >> $LOG ;
-# 	exit
-# else
-# 	echo -e "at `date`
-# 	\tstarted fixing the mate pairs" >> $LOG ;
-# 	$SAMTOOLS fixmate aln.nameSrt.bam aln.fixedMate.bam
-# fi
-# #followed by sorting by position
-# if [[ ! -e aln.fixedMate.bam || ! -s aln.fixedMate.bam ]] ; then
-# 	echo "the aln.fixedMate.bamfile is missing or empty" >> $LOG ;
-# 	exit
-# else
-# 	echo -e "at `date`
-# 	\tstarted sorting the mate pairs position" >> $LOG ;
-# 	$SAMTOOLS sort aln.fixedMate.bam aln.posiSrt
-# fi
-# # and finally reindexing the last bam file
-# if [[ ! -e aln.posiSrt.bam || ! -s aln.posiSrt.bam ]] ; then
-# 	echo "the aln.posiSrt file is missing or empty" >> $LOG ;
-# 	exit
-# else
-# 	echo -e "at `date`
-# 	\tstarted indexing the posiSrt.bam" >> $LOG ;
-# 	$SAMTOOLS index aln.posiSrt.bam
-# 	echo -e "at `date`
-# 	\tfinished indexing the posiSrt.bam" >> $LOG ;
-# fi
-
-#
-## cleaning steps
-#
-rm -rf aln.bam aln.bam aln.nameSrt.bam aln.fixedMate.bam
 
 #
 ## Calculate mapped reads
