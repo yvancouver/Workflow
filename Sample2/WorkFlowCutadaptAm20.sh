@@ -33,11 +33,11 @@ export OMNI=/Users/yvans//Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2
 # should the working directory name have datestamp?
 
 export DIR=/Users/yvans/Home/Analysis/BRCA_analysis_01.12.2012/Sample_Diag-HaloBRCA1A-test-2
-export WORKINGDIR=/Users/yvans/Home/Analysis/BRCA_analysis_01.12.2012/Sample_Diag-HaloBRCA1A-test-2/CutadaptB_Analysis/
+export WORKINGDIR=/Users/yvans/Home/Analysis/BRCA_analysis_01.12.2012/Sample_Diag-HaloBRCA1A-test-2/CutadaptAm20_Analysis/
 
 # Are the reads from the default location or not? Should I passe dit by absolute path??
-export READS1=/Users/yvans/Home/Analysis/BRCA_analysis_01.12.2012/Sample_Diag-HaloBRCA1A-test-2/passed_filter/Diag-HaloBRCA1A-test-2_CGATGT_L004_R1_001.pf.CutadaptB.fastq
-export READS2=/Users/yvans/Home/Analysis/BRCA_analysis_01.12.2012/Sample_Diag-HaloBRCA1A-test-2/passed_filter/Diag-HaloBRCA1A-test-2_CGATGT_L004_R2_001.pf.CutadaptB.fastq
+export READS1=/Users/yvans/Home/Analysis/BRCA_analysis_01.12.2012/Sample_Diag-HaloBRCA1A-test-2/passed_filter/CutATest2_paired_r1.fq
+export READS2=/Users/yvans/Home/Analysis/BRCA_analysis_01.12.2012/Sample_Diag-HaloBRCA1A-test-2/passed_filter/CutATest2_paired_r2.fq
 
 #
 ## RG line for the GATK consistency like that "@RG\tID:\tPL:ILLUMINA\tSM:"
@@ -45,7 +45,7 @@ export READS2=/Users/yvans/Home/Analysis/BRCA_analysis_01.12.2012/Sample_Diag-Ha
 ## PL = Platform/technology used to produce the reads. Valid values: CAPILLARY, LS454, ILLUMINA, SOLID, HELICOS, IONTORRENT and PACBIO.
 ## SM = Sample. Use pool name where a pool is being sequenced.
 #
-export RG="@RG\tID:sample2CutAdaptB\tPL:ILLUMINA\tSM:sample2"
+export RG="@RG\tID:sample2CutAdaptAm20\tPL:ILLUMINA\tSM:sample2"
 
 echo -e "`date`
 Files and binaries for this analysis
@@ -138,10 +138,12 @@ else
 	I=aln.sam \
 	O=aln.posiSrt.bam \
 	SO=coordinate \
-	VALIDATION_STRINGENCY=SILENT
+	VALIDATION_STRINGENCY=SILENT \
+	2>SortSam.txt
 
 	java -Xmx4g -jar $PICARD/BuildBamIndex.jar \
-	INPUT=aln.posiSrt.bam
+	INPUT=aln.posiSrt.bam \
+	2>BuildBamIndex.txt
 fi
 
 #
@@ -568,7 +570,7 @@ fi
 ############################ variant evaluation by GATK ################################
 echo -e "at `date`
 	\tproducing output.eval.gatkreport" >> $LOG ;
-java -Xmx4g -jar GenomeAnalysisTK.jar \
+java -Xmx2g -jar GenomeAnalysisTK.jar \
 -R $DB \
 -T VariantEval 
 -o output.eval.gatkreport \

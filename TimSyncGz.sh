@@ -1,11 +1,10 @@
 #!/bin/bash
 
-# expects 3 args: fastq of read1, fastq of read 2, and prefix for output files
+# expects 3 args: fastq.gz of read1, fastq.gz of read 2, and prefix for output files
 
 
 # Only uses the first part (up to the first space) of a sequence name and assumes this is identical for read 1 and read 2 from the same fragment
 # Will not carry through to the output the second part of an Illumina header >> decided to do it this way as it is unclear whether this will always be present + it affects the names of reads if it is not parsed out of the header.
-# Expects non-compressed files >> compressed files could be made an option
 # outputs 4 files
 declare fastq1=$1
 declare fastq2=$2
@@ -13,7 +12,7 @@ declare prefix=$3
 
 # call with file name
 function countFastqRecords(){
-declare lines=`wc -l $1 | grep -o "[ 0-9 ]*" | tr -d " "`
+declare lines=`gunzip -c $1 | wc -l | grep -o "[ 0-9 ]*" | tr -d " "`
 echo $((${lines}/4))
 }
 
@@ -32,7 +31,7 @@ countFastqRecordsToScreen $fastq2
 # Create a tab separated fastq format with the second column as the read: 1 or 2
 # FS is space to only get first part of name
 function tabularFq(){
-cat $1 | awk -v read=$2 'BEGIN{FS=" "; OFS="\t";};{printf $1"\t"; if((NR+3)%4==0){printf read"\t"}; if((NR%4)==0){print ""}};END{}'
+gunzip -c $1 | awk -v read=$2 'BEGIN{FS=" "; OFS="\t";};{printf $1"\t"; if((NR+3)%4==0){printf read"\t"}; if((NR%4)==0){print ""}};END{}'
 }
 
 # declare temporary files
@@ -54,7 +53,7 @@ cat ${tempFastq1} ${tempFastq2} | sort -k1,2 | awk -v pairedPrefix=${pairedPrefi
 # transform back from tabular to fastq
 # need to drop the read info in the second column
 function tabToFastq(){
-cat $1 | awk 'BEGIN{OFS="\t"; FS="\t";};{print $1; print $3; print $4; print $5};END{}'
+gunzip -c $1 | awk 'BEGIN{OFS="\t"; FS="\t";};{print $1; print $3; print $4; print $5};END{}'
 
 }
 
