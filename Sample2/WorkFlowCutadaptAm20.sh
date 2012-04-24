@@ -570,9 +570,9 @@ fi
 ############################ variant evaluation by GATK ################################
 echo -e "at `date`
 	\tproducing output.eval.gatkreport" >> $LOG ;
-java -Xmx2g -jar GenomeAnalysisTK.jar \
+java -Xmx2g -jar $GATK/GenomeAnalysisTK.jar \
 -R $DB \
--T VariantEval 
+-T VariantEval \
 -o output.eval.gatkreport \
 --eval:set1 snp.filter.vcf \
 --dbsnp $DBSNP
@@ -580,8 +580,8 @@ java -Xmx2g -jar GenomeAnalysisTK.jar \
 ############################ variant annotation by annovar ################################
 echo -e "at `date`
 	\tstarting annovar" >> $LOG ;
-perl ./convert2annovar.pl snp.filter.vcf -format vcf4 -includeinfo > snps.filter.avinput
-./summarize_annovar.pl snps.filter.avinput -buildver hg19 -verdbsnp 132 /Users/yvans/Home/bin/annovar_2011Sep11/humandb -outfile sumSNP
+perl /Users/yvans/Home/bin/annovar_2011Sep11//convert2annovar.pl snp.filter.vcf -format vcf4 -includeinfo > snps.filter.avinput
+perl /Users/yvans/Home/bin/annovar_2011Sep11/summarize_annovar.pl snps.filter.avinput -buildver hg19 -verdbsnp 132 /Users/yvans/Home/bin/annovar_2011Sep11/humandb -outfile sumSNP
 
 echo -e "at `date`
 	\tfinished annovar" >> $LOG ;

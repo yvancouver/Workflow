@@ -30,17 +30,22 @@ countFastqRecordsToScreen $fastq2
 # Inputs are file name and read number
 # Create a tab separated fastq format with the second column as the read: 1 or 2
 # FS is space to only get first part of name
+# This SHOULD NOT be gunziped! 
 function tabularFq(){
 gunzip -c $1 | awk -v read=$2 'BEGIN{FS=" "; OFS="\t";};{printf $1"\t"; if((NR+3)%4==0){printf read"\t"}; if((NR%4)==0){print ""}};END{}'
 }
 
 # declare temporary files
 declare tempFastq1=${fastq1}_temp_R1.txt
+echo $tempFastq1
 declare tempFastq2=${fastq2}_temp_R2.txt
+echo $tempFastq2
 
 # tabularise and write to temporary files for read 1 and 2
 tabularFq $fastq1 1 > $tempFastq1
+ls -l $tempFastq1
 tabularFq $fastq2 2 > $tempFastq2
+ls -l $tempFastq2
 
 # Set up the output file names here 
 declare pairedPrefix=${prefix}_paired_
@@ -48,12 +53,13 @@ declare singlePrefix=${prefix}_single_
 
 
 # classify into 4 files: paired read1, paired read 2, single read 1 and single read2
+echo CAT1
 cat ${tempFastq1} ${tempFastq2} | sort -k1,2 | awk -v pairedPrefix=${pairedPrefix} -v singlePrefix=${singlePrefix} 'BEGIN{OFS="\t"; FS="\t"; prevName=0; prevLine=0; prevRead=0; currentName=0; currentLine=0; currentRead=0};{currentName=$1; currentLine=$0; currentRead=$2; if(prevName!=0){if(prevName==currentName){file=pairedPrefix"r"prevRead".txt"; print prevLine > file; file=pairedPrefix"r"currentRead".txt";print currentLine > file; currentName=0}else{file=singlePrefix"r"prevRead".txt"; print prevLine > file}}; prevName=currentName; prevLine=currentLine; prevRead=currentRead};END{}'
-
+echo CAT2
 # transform back from tabular to fastq
 # need to drop the read info in the second column
 function tabToFastq(){
-gunzip -c $1 | awk 'BEGIN{OFS="\t"; FS="\t";};{print $1; print $3; print $4; print $5};END{}'
+cat $1 | awk 'BEGIN{OFS="\t"; FS="\t";};{print $1; print $3; print $4; print $5};END{}'
 
 }
 
@@ -62,12 +68,19 @@ tabToFastq ${pairedPrefix}r2.txt >  ${pairedPrefix}r2.fq
 tabToFastq ${singlePrefix}r1.txt >  ${singlePrefix}r1.fq
 tabToFastq ${singlePrefix}r2.txt >  ${singlePrefix}r2.fq
 
+exit 0
+
+gunzip ${pairedPrefix}r1.fq > ${pairedPrefix}r1.fq.gz
+gunzip ${pairedPrefix}r2.fq > ${pairedPrefix}r2.fq.gz
+gunzip ${singlePrefix}r1.fq > ${singlePrefix}r1.fq.gz
+gunzip ${singlePrefix}r2.fq > ${singlePrefix}r2.fq.gz
+
 echo
 echo "Output files number of fq records"
-countFastqRecordsToScreen ${pairedPrefix}r1.fq
-countFastqRecordsToScreen ${pairedPrefix}r2.fq
-countFastqRecordsToScreen ${singlePrefix}r1.fq
-countFastqRecordsToScreen ${singlePrefix}r2.fq
+countFastqRecordsToScreen ${pairedPrefix}r1.fq.gz
+countFastqRecordsToScreen ${pairedPrefix}r2.fq.gz
+countFastqRecordsToScreen ${singlePrefix}r1.fq.gz
+countFastqRecordsToScreen ${singlePrefix}r2.fq.gz
 echo
 echo "Paired output files should have same number of reads and sum of single and paired in output files should match corresponding input file"
 echo
