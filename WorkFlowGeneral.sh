@@ -462,8 +462,10 @@ if [ ! -s indel.raw.vcf.pass.out ] ; then
 	echo "WARNING indel.raw.vcf.pass.out is empty " >>$LOG;
 fi
 # -How many variants are reported in dbSNP
-grep  "^#" *.vcf | grep –cP "\trs" > variantsDBSNPs.out
-if [ ! -s variantsDBSNPs.out ] ; then
+grep -E '^[0-9]{2}[[:space:]][0-9]*[[:space:]]rs snps.raw.vcf > variantsSnpDBSNPs.out
+grep -E '^[0-9]{2}[[:space:]][0-9]*[[:space:]]rs indel.raw.vcf > variantsIndelDBSNPs.out
+
+if [ ! -s variantsSnpDBSNPs.out || ! -s variantsIndelDBSNPs.out ] ; then
 	echo "WARNING variantsDBSNPs.out is empty " >>$LOG;
 fi
 
@@ -567,16 +569,17 @@ echo -e "at `date`
 	\tproducing output.eval.gatkreport" >> $LOG ;
 java -Xmx2g -jar GenomeAnalysisTK.jar \
 -R $DB \
--T VariantEval 
+-T VariantEval \
 -o output.eval.gatkreport \
 --eval:set1 snp.filter.vcf \
---dbsnp $DBSNP
+--dbsnp $DBSNP \
+2>errVarinantEval > variantEval.txt
 
 ############################ variant annotation by annovar ################################
 echo -e "at `date`
 	\tstarting annovar" >> $LOG ;
-perl ./convert2annovar.pl snp.filter.vcf -format vcf4 -includeinfo > snps.filter.avinput
-./summarize_annovar.pl snps.filter.avinput -buildver hg19 -verdbsnp 132 /Users/yvans/Home/bin/annovar_2011Sep11/humandb -outfile sumSNP
+perl /Users/yvans/Home/bin/annovar_2011Sep11/convert2annovar.pl snp.filter.vcf -format vcf4 -includeinfo > snps.filter.avinput
+perl /Users/yvans/Home/bin/annovar_2011Sep11/summarize_annovar.pl snps.filter.avinput -buildver hg19 -verdbsnp 132 /Users/yvans/Home/bin/annovar_2011Sep11/humandb -outfile sumSNP
 
 echo -e "at `date`
 	\tfinished annovar" >> $LOG ;
