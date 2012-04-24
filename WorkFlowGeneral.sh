@@ -462,7 +462,7 @@ if [ ! -s indel.raw.vcf.pass.out ] ; then
 	echo "WARNING indel.raw.vcf.pass.out is empty " >>$LOG;
 fi
 # -How many variants are reported in dbSNP
-grep –vP "^#" *.vcf | grep –cP "\trs" > variantsDBSNPs.out
+grep  "^#" *.vcf | grep –cP "\trs" > variantsDBSNPs.out
 if [ ! -s variantsDBSNPs.out ] ; then
 	echo "WARNING variantsDBSNPs.out is empty " >>$LOG;
 fi
