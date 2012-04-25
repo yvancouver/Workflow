@@ -234,7 +234,7 @@ fi
 #
 echo -e "at `date`
 	\tproducing aln.posiSrt.realigned.bam" >> $LOG ;
-java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar  \
+java -Xmx8g -jar $GATK/GenomeAnalysisTK.jar  \
 -T IndelRealigner \
 -maxReads 1000000 \
 -I ../010_alignment/aln.posiSrt.bam \
