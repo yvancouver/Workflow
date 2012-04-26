@@ -13,31 +13,11 @@
 import re
 import sys
 import os
-import argparse
-import textwrap
 
 from subprocess import Popen, PIPE, STDOUT
 import shlex
 #for arg in sys.argv:
 #    print arg , " is a ", type(arg)
-
-parser = argparse.ArgumentParser(prog='ScutadaptBatch',
-                        formatter_class=argparse.RawDescriptionHelpFormatter,
-                        description=textwrap.dedent('''\
-                            cutadaptBatch is use to clipped a gunziped fastq file with, for now, some Illumina adapters
-                            This was made in order to clean some Halo produced data.
-                            Author: Yvan Strahm (yvan.strahm@gmail.com)
-                            License: GPL 3.0 (http://www.gnu.org/licenses/gpl-3.0.txt)
-                            '''))
-parser.add_argument('-m', help='match region length', required=True)
-parser.add_argument('-d', help='fastq.gz containing dir', required=True)
-parser.add_argument('-r1', help='Read1 adapter',required=False)
-parser.add_argument('-r2', help='Read2 adapter',required=False)
-values = parser.parse_args()
-print values.m
-print values.d
-
-sys.exit("on s'arretes ici pour l'instant")
 
 r1_adapter = "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
 r2_adapter = "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT"
