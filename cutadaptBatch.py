@@ -18,8 +18,6 @@ import textwrap
 
 from subprocess import Popen, PIPE, STDOUT
 import shlex
-#for arg in sys.argv:
-#    print arg , " is a ", type(arg)
 
 parser = argparse.ArgumentParser(prog='ScutadaptBatch',
                         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -46,15 +44,8 @@ m = sys.argv[2]
 
 
 def cutadaptMe(file,adapter,m):
-    #from subprocess import Popen, PIPE, STDOUT
-    print file
-    print adapter
-    print m
     cmd = "cutadapt -m "+ m + " -a "+ adapter +" -o "+ file[:-8]+"clipped_m"+m+".fastq.gz" + "  "+file
-    print "CMD\t", cmd
     args = shlex.split(cmd)
-    print "ARGS\t",args
-    print "\n\n"
     job = Popen(args, stdout=PIPE, stdin=PIPE, stderr=STDOUT)
     output = job.communicate()
     results=file[:-8]+".report"
@@ -62,16 +53,14 @@ def cutadaptMe(file,adapter,m):
     result_handle.write(output[0])
 
 for dirname, dirnames, filenames in os.walk(root, topdown=True):
-for file in filenames:
-            if (re.search("R1_001.fastq.gz", file)):
-                #print dirname,dir,file
-                adapter = r1_adapter
-                fileToBeClipped=str(os.path.join(dirname,file))
-                print "FILETOBECLIPPED1 ",fileToBeClipped
-                cutadaptMe(fileToBeClipped,adapter,m)
-            elif (re.search("R2_001.fastq.gz", file)):
-                #print dirname,dir,file
-                adapter  = r2_adapter
-                fileToBeClipped=str(os.path.join(dirname,file))
-                print "FILETOBECLIPPED2 ",fileToBeClipped
-                cutadaptMe(fileToBeClipped,adapter,m)
+    for file in filenames:
+        if (re.search("R1_001.fastq.gz", file)):
+            adapter = r1_adapter
+            fileToBeClipped=str(os.path.join(dirname,file))
+            print "FILETOBECLIPPED1 ",fileToBeClipped
+            cutadaptMe(fileToBeClipped,adapter,m)
+        elif (re.search("R2_001.fastq.gz", file)):
+            adapter  = r2_adapter
+            fileToBeClipped=str(os.path.join(dirname,file))
+            print "FILETOBECLIPPED2 ",fileToBeClipped
+            cutadaptMe(fileToBeClipped,adapter,m)

@@ -33,7 +33,7 @@ for dirname, dirnames, filenames in os.walk(root, topdown=True):
     for file in filenames:
         if (re.search("R1_001.fastq.gz", file)):
             adapter = r1_adapter
-                fileToBeClipped=str(os.path.join(dirname,file))
+            fileToBeClipped=str(os.path.join(dirname,file))
             print "FILETOBECLIPPED1 ",fileToBeClipped
             cutadaptMe(fileToBeClipped,adapter,m)
         elif (re.search("R2_001.fastq.gz", file)):
