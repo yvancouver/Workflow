@@ -6,9 +6,6 @@
 ## the script should traverse a directory found the read and call adapt with the correct option
 ## cutadapt -m 20 -a adapter -o fastq.clipped.gz original.fastq.gz
 ## args should be ['cutadapt', '-m', '20', '-a', 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC', '-o', '/Users/yvans/Home/Analysis/Cardio_analysis_01.17.2012/Project_Diag-Cardiomyopathy-2011-12-09/Sample_KA-001/KA-001_ATCACG_L001_R1_001.clipped_m20.fastq.gz', '/Users/yvans/Home/Analysis/Cardio_analysis_01.17.2012/Project_Diag-Cardiomyopathy-2011-12-09/Sample_KA-001/KA-001_ATCACG_L001_R1_001.fastq.gz']
-## have a look here http://argparse.googlecode.com/svn/trunk/doc/argparse-vs-optparse.html
-##                  http://docs.python.org/library/argparse.html#module-argparse
-#
 
 import re
 import sys
@@ -39,7 +36,7 @@ def cutadaptMe(file,adapter,m):
     output = job.communicate()
     results=file[:-8]+".report"
     result_handle=open(results,"w+")
-    result_handle.write(output)
+    result_handle.write(output[0])
 
 for dirname, dirnames, filenames in os.walk(root, topdown=True):
     for dir in dirnames:
