@@ -59,14 +59,10 @@ def cutadaptMe(file,adapter,m):
     output = job.communicate()
     results=file[:-8]+".report"
     result_handle=open(results,"w+")
-    result_handle.write(output)
+    result_handle.write(output[0])
 
 for dirname, dirnames, filenames in os.walk(root, topdown=True):
-    for dir in dirnames:
-        #print "DIRNAME\t",dirname
-        #print "DIR\t",dir
-        #print "FILENAMES\t",filenames
-        for file in filenames:
+for file in filenames:
             if (re.search("R1_001.fastq.gz", file)):
                 #print dirname,dir,file
                 adapter = r1_adapter
