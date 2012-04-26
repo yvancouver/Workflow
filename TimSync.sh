@@ -79,4 +79,8 @@ date
 rm -f $tempFastq1 $tempFastq2
 
 # Remove the tabular files of the classified reads
+<<<<<<< HEAD
 rm -f ${pairedPrefix}r1.txt ${pairedPrefix}r2.txt ${singlePrefix}r1.txt ${singlePrefix}r2.txt
+=======
+rm -f ${pairedPrefix}r1.txt ${pairedPrefix}r2.txt ${singlePrefix}r1.txt ${singlePrefix}r2.txt
+>>>>>>> q
