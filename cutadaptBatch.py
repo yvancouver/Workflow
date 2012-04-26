@@ -19,21 +19,28 @@ import textwrap
 from subprocess import Popen, PIPE, STDOUT
 import shlex
 
-parser = argparse.ArgumentParser(prog='ScutadaptBatch',
-                        formatter_class=argparse.RawDescriptionHelpFormatter,
-                        description=textwrap.dedent('''\
-                            cutadaptBatch is use to clipped a gunziped fastq file with, for now, some Illumina adapters
-                            This was made in order to clean some Halo produced data.
-                            Author: Yvan Strahm (yvan.strahm@gmail.com)
-                            License: GPL 3.0 (http://www.gnu.org/licenses/gpl-3.0.txt)
-                            '''))
-parser.add_argument('-m', help='match region length', required=True)
-parser.add_argument('-d', help='fastq.gz containing dir', required=True)
+parser = argparse.ArgumentParser(prog='cutadaptBatch',
+                                 formatter_class=argparse.RawDescriptionHelpFormatter,
+                                 description=textwrap.dedent('''\
+                                                            cutadaptBatch is use to clip a gunziped fastq file with, for now, some Illumina adapters
+                                                            This was made in order to clean some Halo produced data.
+                                                            Author: Yvan Strahm (yvan.strahm@gmail.com)
+                                                            License: GPL 3.0 (http://www.gnu.org/licenses/gpl-3.0.txt)
+                                                            '''
+                                                            ),
+                                 epilog="If any questions contact me good, luck!"
+                                 )
+parser.add_argument('-m', help='match region length, I use genreally 20', required=True, nargs='?', default=20, type=int)
+parser.add_argument('-d', help='fastq.gz containing dir', required=True, nargs='?')
 parser.add_argument('-r1', help='Read1 adapter',required=False)
 parser.add_argument('-r2', help='Read2 adapter',required=False)
 values = parser.parse_args()
 print values.m
 print values.d
+
+def testArgs(values):
+    pass
+testArgs(values)
 
 sys.exit("on s'arretes ici pour l'instant")
 
