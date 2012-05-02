@@ -31,7 +31,6 @@ def cutadaptMe(file,adapter,m):
 
 for dirname, dirnames, filenames in os.walk(root, topdown=True):
     for file in filenames:
-<<<<<<< HEAD
         if (re.search("R1_001.fastq.gz", file)):
             adapter = r1_adapter
             fileToBeClipped=str(os.path.join(dirname,file))
@@ -42,15 +41,4 @@ for dirname, dirnames, filenames in os.walk(root, topdown=True):
             fileToBeClipped=str(os.path.join(dirname,file))
             print "FILETOBECLIPPED2 ",fileToBeClipped
             cutadaptMe(fileToBeClipped,adapter,m)
-=======
-		if (re.search("R1_001.fastq.gz", file)):
-			adapter = r1_adapter
-			fileToBeClipped=str(os.path.join(dirname,file))
-			print "FILETOBECLIPPED1 ",fileToBeClipped
-			cutadaptMe(fileToBeClipped,adapter,m)
-		elif (re.search("R2_001.fastq.gz", file)):
-			adapter  = r2_adapter
-			fileToBeClipped=str(os.path.join(dirname,file))
-			print "FILETOBECLIPPED2 ",fileToBeClipped
-			cutadaptMe(fileToBeClipped,adapter,m)
->>>>>>> remove debug info from cutadapt_OLD
+
