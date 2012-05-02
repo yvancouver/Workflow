@@ -25,7 +25,7 @@ def cutadaptMe(file,adapter,m):
     args = shlex.split(cmd)
     job = Popen(args, stdout=PIPE, stdin=PIPE, stderr=STDOUT)
     output = job.communicate()
-    results=file[:-8]+".report"
+    results=file[:-8]+"report"
     result_handle=open(results,"w+")
     result_handle.write(output[0])
 

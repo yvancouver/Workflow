@@ -32,7 +32,15 @@ countFastqRecordsToScreen $fastq2
 # Create a tab separated fastq format with the second column as the read: 1 or 2
 # FS is space to only get first part of name
 function tabularFq(){
-cat $1 | awk -v read=$2 'BEGIN{FS=" "; OFS="\t";};{printf $1"\t"; if((NR+3)%4==0){printf read"\t"}; if((NR%4)==0){print ""}};END{}'
+cat $1 | awk -v read=$2 '
+BEGIN{FS=" "; OFS="\t";};
+{
+printf "%s", $1 "\t";
+if((NR+3)%4==0){printf "%s", read "\t"};
+if((NR%4)==0){print ""}
+};
+END{}
+'	
 }
 
 # declare temporary files
@@ -46,7 +54,6 @@ tabularFq $fastq2 2 > $tempFastq2
 # Set up the output file names here 
 declare pairedPrefix=${prefix}_paired_
 declare singlePrefix=${prefix}_single_
-
 
 # classify into 4 files: paired read1, paired read 2, single read 1 and single read2
 cat ${tempFastq1} ${tempFastq2} | sort -k1,2 | awk -v pairedPrefix=${pairedPrefix} -v singlePrefix=${singlePrefix} 'BEGIN{OFS="\t"; FS="\t"; prevName=0; prevLine=0; prevRead=0; currentName=0; currentLine=0; currentRead=0};{currentName=$1; currentLine=$0; currentRead=$2; if(prevName!=0){if(prevName==currentName){file=pairedPrefix"r"prevRead".txt"; print prevLine > file; file=pairedPrefix"r"currentRead".txt";print currentLine > file; currentName=0}else{file=singlePrefix"r"prevRead".txt"; print prevLine > file}}; prevName=currentName; prevLine=currentLine; prevRead=currentRead};END{}'
@@ -80,4 +87,3 @@ rm -f $tempFastq1 $tempFastq2
 
 # Remove the tabular files of the classified reads
 rm -f ${pairedPrefix}r1.txt ${pairedPrefix}r2.txt ${singlePrefix}r1.txt ${singlePrefix}r2.txt
-
