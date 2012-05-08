@@ -5,6 +5,10 @@
 
 # Declare files and binaries
 
+export LOG="$PWD/$0_`date '+%F_%T'`.log"
+echo `date` > timeUsed.txt
+echo $LOG
+
 # BWA
 # Version: 0.5.9-r16
 export BWA=/Users/yvans/Home/bin/bwa-0.5.9/bwa
@@ -42,12 +46,6 @@ export READS2=
 ## SM = Sample. Use pool name where a pool is being sequenced.
 #
 export RG=
-
-# LOG
-export LOG="$PWD/$0_`date '+%F_%T'`.log"
-export TimeUsed=timeUsed.txt
-echo `date` > $TimeUsed
-echo $LOG
 
 echo -e "`date`
 Files and binaries for this analysis
@@ -586,4 +584,4 @@ perl /Users/yvans/Home/bin/annovar_2011Sep11/summarize_annovar.pl snps.filter.av
 echo -e "at `date`
 	\tfinished annovar" >> $LOG ;
 
-echo `date` >> $TimeUsed
+echo `date` >> timeUsed.txt
