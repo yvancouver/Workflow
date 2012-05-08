@@ -5,6 +5,10 @@
 
 # Declare files and binaries
 
+export LOG="$PWD/$0_`date '+%F_%T'`.log"
+echo `date` > timeUsed.txt
+echo $LOG
+
 # BWA
 # Version: 0.5.9-r16
 export BWA=/Users/yvans/Home/bin/bwa-0.5.9/bwa
@@ -28,12 +32,12 @@ export OMNI=/Users/yvans//Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2
 # WORKINGDIR is where this particular project will be done
 # should the working directory name have datestamp?
 
-export DIR=
-export WORKINGDIR=
+export DIR=/Users/yvans/Home/Analysis/BRCA_analysis_07.05.2012/Sample_Diag-HaloBRCA1A-test-10/
+export WORKINGDIR=/Users/yvans/Home/Analysis/BRCA_analysis_07.05.2012/Sample_Diag-HaloBRCA1A-test-10/Analysis_All
 
 # Are the reads from the default location or not? Should I passe dit by absolute path??
-export READS1=
-export READS2=
+export READS1=/Users/yvans/Home/Analysis/BRCA_analysis_07.05.2012/Sample_Diag-HaloBRCA1A-test-10/Diag-HaloBRCA1A-test-10_TAGCTT_L004_R1_001.pf.fastq.gz
+export READS2=/Users/yvans/Home/Analysis/BRCA_analysis_07.05.2012/Sample_Diag-HaloBRCA1A-test-10/Diag-HaloBRCA1A-test-10_TAGCTT_L004_R2_001.pf.fastq.gz
 
 #
 ## RG line for the GATK consistency like that "@RG\tID:\tPL:ILLUMINA\tSM:"
@@ -41,13 +45,7 @@ export READS2=
 ## PL = Platform/technology used to produce the reads. Valid values: CAPILLARY, LS454, ILLUMINA, SOLID, HELICOS, IONTORRENT and PACBIO.
 ## SM = Sample. Use pool name where a pool is being sequenced.
 #
-export RG=
-
-# LOG
-export LOG="$PWD/$0_`date '+%F_%T'`.log"
-export TimeUsed=timeUsed.txt
-echo `date` > $TimeUsed
-echo $LOG
+export RG="@RG\tID:Sample10_ALL\tPL:ILLUMINA\tSM:Sample10_ALL"
 
 echo -e "`date`
 Files and binaries for this analysis
@@ -586,4 +584,4 @@ perl /Users/yvans/Home/bin/annovar_2011Sep11/summarize_annovar.pl snps.filter.av
 echo -e "at `date`
 	\tfinished annovar" >> $LOG ;
 
-echo `date` >> $TimeUsed
+echo `date` >> timeUsed.txt
