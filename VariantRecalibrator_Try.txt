@@ -1,0 +1,74 @@
+java -Xmx4g -jar /Users/yvans/Home/bin/GenomeAnalysisTK-1.4-37-g0b29d54/GenomeAnalysisTK.jar \
+-T VariantRecalibrator \
+-R /Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/bwa_v5.10/human_g1k_v37_decoy.fasta \
+-input ../snps.raw.vcf \
+-resource:hapmap,known=false,training=true,truth=true,prior=15.0 /Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/hapmap_3.3.b37.sites.vcf \
+-resource:omni,known=false,training=true,truth=false,prior=12.0 /Users/yvans//Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/1000G_omni2.5.b37.sites.vcf \
+-resource:dbsnp,known=true,training=false,truth=false,prior=8.0 /Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/dbsnp_132.b37.vcf \
+-resource:dbsnp,known=true,training=true,truth=false,prior=8.0 /Users/yvans/Home/Dropbox/travail/BRCA12/BED_GFF_INTERVALS/BRCA1_1000Genomes.vcf \
+-resource:dbsnp,known=true,training=true,truth=false,prior=8.0 /Users/yvans/Home/Dropbox/travail/BRCA12/BED_GFF_INTERVALS/BRCA1_1000Genomes.vcf \
+-an QD -an HaplotypeScore -an MQRankSum -an ReadPosRankSum -an FS -an MQ \
+-recalFile output2.recal \
+-tranchesFile output2.tranches \
+-rscriptFile output2.plots.R \
+--maxGaussians 4 \
+--target_titv 3.2
+
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 1.4-37-g0b29d54): 
+##### ERROR The invalid arguments or inputs must be corrected before the GATK can proceed
+##### ERROR Please do not post this error to the GATK forum
+##### ERROR
+##### ERROR See the documentation (rerun with -h) for this tool to view allowable command-line arguments.
+##### ERROR Visit our wiki for extensive documentation http://www.broadinstitute.org/gsa/wiki
+##### ERROR Visit our forum to view answers to commonly asked questions http://getsatisfaction.com/gsa
+##### ERROR
+##### ERROR MESSAGE: Bad input: Error during negative model training. Minimum number of variants to use in training is larger than the whole call set. One can attempt to lower the --minNumBadVariants arugment but this is unsafe.
+##### ERROR ------------------------------------------------------------------------------------------
+pcus572:RecaliTest yvans$ 
+
+
+java -Xmx4g -jar /Users/yvans/Home/bin/GenomeAnalysisTK-1.4-37-g0b29d54/GenomeAnalysisTK.jar \
+-T VariantRecalibrator \
+-R /Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/bwa_v5.10/human_g1k_v37_decoy.fasta \
+-input ../snps.raw.vcf \
+-input  /Users/yvans/Home/Dropbox/travail/BRCA12/BED_GFF_INTERVALS/BRCA1_1000Genomes.vcf \
+-input  /Users/yvans/Home/Dropbox/travail/BRCA12/BED_GFF_INTERVALS/BRCA2_1000Genomes.vcf \
+-resource:hapmap,known=false,training=true,truth=true,prior=15.0 /Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/hapmap_3.3.b37.sites.vcf \
+-resource:omni,known=false,training=true,truth=false,prior=12.0 /Users/yvans//Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/1000G_omni2.5.b37.sites.vcf \
+-resource:dbsnp,known=true,training=false,truth=false,prior=8.0 /Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/dbsnp_132.b37.vcf \
+-an QD -an HaplotypeScore -an MQRankSum -an ReadPosRankSum -an FS -an MQ \
+-recalFile output2.recal \
+-tranchesFile output2.tranches \
+-rscriptFile output2.plots.R \
+--maxGaussians 4 \
+--target_titv 3.2
+
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 1.4-37-g0b29d54): 
+##### ERROR The invalid arguments or inputs must be corrected before the GATK can proceed
+##### ERROR Please do not post this error to the GATK forum
+##### ERROR
+##### ERROR See the documentation (rerun with -h) for this tool to view allowable command-line arguments.
+##### ERROR Visit our wiki for extensive documentation http://www.broadinstitute.org/gsa/wiki
+##### ERROR Visit our forum to view answers to commonly asked questions http://getsatisfaction.com/gsa
+##### ERROR
+##### ERROR MESSAGE: Bad input: Error during negative model training. Minimum number of variants to use in training is larger than the whole call set. One can attempt to lower the --minNumBadVariants arugment but this is unsafe.
+##### ERROR ------------------------------------------------------------------------------------------
+
+
+java -Xmx4g -jar /Users/yvans/Home/bin/GenomeAnalysisTK-1.4-37-g0b29d54/GenomeAnalysisTK.jar \
+-T VariantRecalibrator \
+-R /Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/bwa_v5.10/human_g1k_v37_decoy.fasta \
+-mode INDEL \
+-input ../snps.raw.vcf \
+-resource:hapmap,known=false,training=true,truth=true,prior=15.0 /Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/hapmap_3.3.b37.sites.vcf \
+-resource:omni,known=false,training=true,truth=false,prior=12.0 /Users/yvans//Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/1000G_omni2.5.b37.sites.vcf \
+-resource:dbsnp,known=true,training=false,truth=false,prior=8.0 /Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/dbsnp_132.b37.vcf \
+-an QD -an HaplotypeScore -an MQRankSum -an ReadPosRankSum -an FS -an MQ \
+-recalFile output2.recal \
+-tranchesFile output2.tranches \
+-rscriptFile output2.plots.R \
+--maxGaussians 4 \
+--target_titv 3.2
+

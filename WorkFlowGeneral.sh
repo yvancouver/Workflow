@@ -136,12 +136,20 @@ elif [ ! -e $DB.fai ] ; then
 else
 	echo -e "at `date`
 	\t starting bam building" >> $LOG ;
-	java -Xmx2g -jar $PICARD/SortSam.jar \
+	java -Xmx4g -jar $PICARD/SortSam.jar \
 	I=aln.sam \
 	O=aln.posiSrt.bam \
 	SO=coordinate \
 	VALIDATION_STRINGENCY=SILENT
+	2>errSortSam
+	echo -e "at `date`
+	\t starting bam indexing" >> $LOG ;
+	java -Xmx4g -jar $PICARD/BuildBamIndex.jar \
+	INPUT=aln.posiSrt.bam \
+	VALIDATION_STRINGENCY=SILENT \
+	2>errBuildBamIndex
 fi
+
 
 #
 ## cleaning steps
@@ -201,6 +209,16 @@ if [ ! -e insertSizeMetrics.txt ] ; then
 	exit
 fi
 
+#Get a duplicates overview
+echo -e "at `date`
+\t starting duplicates overview" >> $LOG ;
+java -Xmx4g -jar $PICARD/MarkDuplicates.jar \
+INPUT=aln.posiSrt.bam \
+OUTPUT=aln.posiSrt.dup.bam \
+METRICS_FILE=duplicates_metrics.txt
+REMOVE_DUPLICATES=false \
+2>errMarkDuplicates
+
 ## Realign the reads 
 # Create targets
 # If everything went ok then the errRealignerTargetCreator should be empty (zero byte)
@@ -252,24 +270,25 @@ fi
 ## realigning
 # Normally errFixMate contains INFO on the realignent and if something wet wrong the word exeption should appear
 # Should I stop the analysis if the test failed?
-echo -e "at `date`
-	\tproducing aln.posiSrt.fixedMate.bam" >> $LOG ;
-java -Xmx4g -jar $PICARD/FixMateInformation.jar \
-INPUT=aln.posiSrt.realigned.bam \
-OUTPUT=aln.posiSrt.fixedMate.bam \
-SO=coordinate \
-VALIDATION_STRINGENCY=SILENT \
-CREATE_INDEX=true \
-2>errFixMate
-
-
-# I don't know how to catch an error produced by PICARD
-# Try
-if grep -E "ERROR|Exception" errFixMate > /dev/null ; then 
-	echo "FixMateInformation reported an error have a look at ErrFixMate"; 
-	exit
-fi;
-
+# Not needed anymore with GATK 1.4
+# echo -e "at `date`
+# 	\tproducing aln.posiSrt.fixedMate.bam" >> $LOG ;
+# java -Xmx4g -jar $PICARD/FixMateInformation.jar \
+# INPUT=aln.posiSrt.realigned.bam \
+# OUTPUT=aln.posiSrt.fixedMate.bam \
+# SO=coordinate \
+# VALIDATION_STRINGENCY=SILENT \
+# CREATE_INDEX=true \
+# 2>errFixMate
+# 
+# 
+# # I don't know how to catch an error produced by PICARD
+# # Try
+# if grep -E "ERROR|Exception" errFixMate > /dev/null ; then 
+# 	echo "FixMateInformation reported an error have a look at ErrFixMate"; 
+# 	exit
+# fi;
+# 
 ##### Base quality score recalibration
 
 ## count covariates before recalibration
@@ -280,7 +299,7 @@ java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
 -l INFO \
 -R $DB \
 -knownSites $DBSNP \
--I aln.posiSrt.fixedMate.bam \
+-I aln.posiSrt.realigned.bam \
 -T CountCovariates \
 -cov ReadGroupCovariate \
 -cov QualityScoreCovariate \
@@ -301,7 +320,7 @@ echo -e "at `date`
 java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
 -l INFO \
 -R $DB \
--I aln.posiSrt.fixedMate.bam \
+-I aln.posiSrt.realigned.bam \
 -T TableRecalibration \
 --out aln.posiSrt.baseQreCali.bam \
 -recalFile table.recal_data.pre.csv \
@@ -376,8 +395,8 @@ fi
 # Getting a simple coverage stat on coverage
 echo -e "at `date`
 	\tproducing  coverage data" >> $LOG ;
-coverageBed -d -abam aln.posiSrt.baseQreCali.bam -b ~/Home/Dropbox/travail/BRCA12/BRCA.hg19.end.ampregion.bed >coverageEachBase.bed
-coverageBed -hist -abam aln.posiSrt.baseQreCali.bam -b ~/Home/Dropbox/travail/BRCA12/BRCA.hg19.end.ampregion.bed >coverageEachBase.hist.bed
+coverageBed -d -abam aln.posiSrt.baseQreCali.bam -b /Users/yvans/Home/Dropbox/travail/BRCA12/BED_GFF_INTERVALS/BRCA.hg19.end.ampregion.bed >coverageEachBase.bed
+coverageBed -hist -abam aln.posiSrt.baseQreCali.bam -b /Users/yvans/Home/Dropbox/travail/BRCA12/BED_GFF_INTERVALS/BRCA.hg19.end.ampregion.bed >coverageEachBase.hist.bed
 
 # Using picard
 echo -e "at `date`
@@ -385,8 +404,8 @@ echo -e "at `date`
 java -jar $PICARD/CalculateHsMetrics.jar \
 INPUT=aln.posiSrt.baseQreCali.bam \
 OUTPUT=hsMetrics.txt \
-BAIT_INTERVALS=/Users/yvans/Home/Dropbox/travail/BRCA12/BRCA.hg19.end.ampregion.intervals  \
-TARGET_INTERVALS=/Users/yvans/Home/Dropbox/travail/BRCA12/BRCA.hg19.end.ampregion.intervals  \
+BAIT_INTERVALS=/Users/yvans/Home/Dropbox/travail/BRCA12/BED_GFF_INTERVALS/BRCA.hg19.end.ampregion.interval_list  \
+TARGET_INTERVALS=/Users/yvans/Home/Dropbox/travail/BRCA12/BED_GFF_INTERVALS/BRCA.hg19.end.ampregion.interval_list  \
 2> errCalculateHsMetrics > CalculateHsMetrics.txt
 
 if grep -E "ERROR|Exception" errCalculateHsMetrics > /dev/null ; then 
@@ -402,20 +421,25 @@ cd $WORKINGDIR/020_realignment
 
 #Part2
 ################################ Variant Calling ################################
-
+## Use Halo options
+##		-T UnifiedGenotyper -A AlleleBalance -stand_call_conf 50.0  -stand_emit_conf 10.0 -dcov 1000 -glm SNP
+##		-T UnifiedGenotyper -A AlleleBalance -stand_call_conf 50.0  -stand_emit_conf 10.0 -dcov 1000 -glm INDEL
+#
 ## snp
 echo -e "at `date`
 	\tproducing snps.raw.vcf" >> $LOG ;
 java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
 -R $DB \
 -T UnifiedGenotyper \
+-glm SNP \
+-A AlleleBalance \
 -I ../010_alignment/aln.posiSrt.baseQreCali.bam \
 --dbsnp $DBSNP \
 -o snps.raw.vcf \
--stand_call_conf 30 \
--stand_emit_conf 4 \
--baq CALCULATE_AS_NECESSARY \
--L /Users/yvans/Home/Dropbox/travail/BRCA12/BRCA.hg19.end.ampregion.intervals \
+-stand_call_conf 50 \
+-stand_emit_conf 10 \
+-dcov 1000 \
+-L /Users/yvans/Home/Dropbox/travail/BRCA12/BED_GFF_INTERVALS/BRCA.hg19.end.ampregion.interval_list \
 2>errSnpCalling > snpCallingInfo.txt
 
 if [ -s errSnpCalling ] ; then 
@@ -430,10 +454,14 @@ java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
 -R $DB \
 -T UnifiedGenotyper \
 -glm INDEL \
+-A AlleleBalance \
 -I ../010_alignment/aln.posiSrt.baseQreCali.bam \
---dbsnp ~/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/dbsnp_132.b37.vcf \
+--dbsnp $DBSNP \
 -o indel.raw.vcf \
--L /Users/yvans/Home/Dropbox/travail/BRCA12/BRCA.hg19.end.ampregion.intervals \
+-stand_call_conf 50 \
+-stand_emit_conf 10 \
+-dcov 1000 \
+-L /Users/yvans/Home/Dropbox/travail/BRCA12/BED_GFF_INTERVALS/BRCA.hg19.end.ampregion.interval_list \
 2>errIndelCalling > indelCallingInfo.txt
 
 if [ -s errIndelCalling ] ; then 
@@ -509,11 +537,9 @@ java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
 --variant indel.raw.vcf \
 --filterExpression "QD < 2.0" \
 --filterExpression "ReadPosRankSum < -20.0" \
---filterExpression "InbreedingCoeff < -0.8" \
 --filterExpression "FS > 200.0" \
 --filterName "QDFilter" \
 --filterName "ReadPosRankSumFilter" \
---filterName "InbreedingCoeffFilter" \
 --filterName "FSFilter" \
 2>errIndelFilter > indelFilterInfo.txt
 
@@ -569,19 +595,27 @@ fi
 ############################ variant evaluation by GATK ################################
 echo -e "at `date`
 	\tproducing output.eval.gatkreport" >> $LOG ;
-java -Xmx2g -jar GenomeAnalysisTK.jar \
+java -Xmx2g -jar $GATK/GenomeAnalysisTK.jar \
 -R $DB \
 -T VariantEval \
 -o output.eval.gatkreport \
---eval:set1 snp.filter.vcf \
+--eval:set1 snps.filter.vcf \
 --dbsnp $DBSNP \
 2>errVarinantEval > variantEval.txt
+
+if [ -s errVarinantEval ] then ;
+	echo "VariantEval produced some errors please have a look at the errVarinantEval and variantEval.txt" >>$LOG;
+	exit
+fi
 
 ############################ variant annotation by annovar ################################
 echo -e "at `date`
 	\tstarting annovar" >> $LOG ;
-perl /Users/yvans/Home/bin/annovar_2011Sep11/convert2annovar.pl snp.filter.vcf -format vcf4 -includeinfo > snps.filter.avinput
+perl /Users/yvans/Home/bin/annovar_2011Sep11/convert2annovar.pl snps.filter.vcf -format vcf4 -includeinfo > snps.filter.avinput
 perl /Users/yvans/Home/bin/annovar_2011Sep11/summarize_annovar.pl snps.filter.avinput -buildver hg19 -verdbsnp 132 /Users/yvans/Home/bin/annovar_2011Sep11/humandb -outfile sumSNP
+
+perl /Users/yvans/Home/bin/annovar_2011Sep11/convert2annovar.pl indel.filter.vcf -format vcf4 -includeinfo > indel.filter.avinput
+perl /Users/yvans/Home/bin/annovar_2011Sep11/annotate_variation.pl indel.filter.avinput -buildver hg19 /Users/yvans/Home/bin/annovar_2011Sep11/humandb
 
 echo -e "at `date`
 	\tfinished annovar" >> $LOG ;

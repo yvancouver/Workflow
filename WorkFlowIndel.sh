@@ -28,25 +28,25 @@ export OMNI=/Users/yvans//Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2
 # WORKINGDIR is where this particular project will be done
 # should the working directory name have datestamp?
 
-export DIR=/Users/yvans/Home/Analysis/BRCA_analysis_07.05.2012/Sample_Diag-HaloBRCA1A-test-8/
-export WORKINGDIR=/Users/yvans/Home/Analysis/BRCA_analysis_07.05.2012/Sample_Diag-HaloBRCA1A-test-8/Analysis_All/
+export DIR=
+export WORKINGDIR=
 
 # Are the reads from the default location or not? Should I passe dit by absolute path??
-export READS1=/Users/yvans/Home/Analysis/BRCA_analysis_07.05.2012/Sample_Diag-HaloBRCA1A-test-8/Diag-HaloBRCA1A-test-8_ACTTGA_L004_R1_001.pf.fastq.gz
-export READS2=/Users/yvans/Home/Analysis/BRCA_analysis_07.05.2012/Sample_Diag-HaloBRCA1A-test-8/Diag-HaloBRCA1A-test-8_ACTTGA_L004_R2_001.pf.fastq.gz
+export READS1=
+export READS2=
 
 #
 ## RG line for the GATK consistency like that "@RG\tID:\tPL:ILLUMINA\tSM:"
-## ID = Read group identier. Each @RG line must have a unique ID. The value of ID is used in the RG tags of alignment records. 
-##		Must be unique among all read groups in header section. Read group IDs may be modied when merging SAM files in order to handle collisions.
+## ID = Read group identier. Each @RG line must have a unique ID. The value of ID is used in the RG tags of alignment records. Must be unique among all read groups in header section. Read group IDs may be modied when merging SAM files in order to handle collisions.
 ## PL = Platform/technology used to produce the reads. Valid values: CAPILLARY, LS454, ILLUMINA, SOLID, HELICOS, IONTORRENT and PACBIO.
 ## SM = Sample. Use pool name where a pool is being sequenced.
 #
-export RG="@RG\tID:Sample8_ALL\tPL:ILLUMINA\tSM:Sample8_ALL"
+export RG=
 
-
+# LOG
 export LOG="$PWD/$0_`date '+%F_%T'`.log"
-echo `date` > timeUsedAll.txt
+export TimeUsed=timeUsed.txt
+echo `date` > $TimeUsed
 echo $LOG
 
 echo -e "`date`
@@ -78,193 +78,194 @@ if [ ! -d $WORKINGDIR ] ; then
 else
 	cd  $WORKINGDIR/010_alignment ;
 fi
-# 
-# 
-# # Align Reads 1 against ref. genome
-#  echo -e "at `date`
-#  \taligning first bwa">>$LOG
-#  $BWA aln -t 3 $DB $READS1 > aln1.sai 2> aln1.log
-#  if [ ! -s aln1.sai ] ; then
-#  	echo "first index build failed check path and files" >>$LOG
-#  	exit
-#  fi
-#  
-#  # Align Reads 2
-#  echo -e "at `date`
-#  \taligning second bwa">>$LOG
-#  $BWA aln -t 3 $DB $READS2 > aln2.sai 2>aln2.log
-#  if [ ! -s aln2.sai ] ; then
-#  	echo "second index build failed check path and files" >>$LOG
-#  	exit
-#  fi
-#  echo -e "at `date`
-#  	\tfinished bwa aln">>$LOG
-#  	
-#  #
-#  ## Create sam and bam files
-#  ## Need to add read group with the -r option otherwise my version of GATK will complain
-#  
-#  #test if all the files are present
-#  echo -e "at `date`
-#  \t starting sampe job" >> $LOG
-#  if [[ ! -e aln1.sai || ! -e aln2.sai ]] ; then
-#  	echo " .sai files do not exist" >> $LOG ;
-#  	exit
-#  elif [ ! -e $DB ] ; then
-#  	echo " DB $DB does not exist" >> $LOG ;
-#  	exit
-#  else 
-#  	$BWA sampe -r $RG $DB aln1.sai aln2.sai $READS1 $READS2 >aln.sam 2> sampe.log;
-#  	echo -e "at `date`
-#  	\tfinished sampe job" >> $LOG
-#  fi
-# 
-# 
-# #
-# ## For now I am using samtools but should I use picard to be more carefull?????
-# ## But what picard commands? It is also recommended by the GATK to use Picard 
-# ## SortSam.jar SORT_ORDER=coordinate VALIDATION_STRINGENCY=SILENT INPUT=file.sam OUTPUT=file.bam??
-# 
-# ## Creating a bam file
-# #
-# if [[ ! -e aln.sam || ! -s aln.sam ]] ;then 
-# 	echo "aln.sam do not exist or is empty have a look in sampe.log" >> $LOG ;
-# 	exit
-# elif [ ! -e $DB.fai ] ; then
-# 	echo "$DB.fai could not be found" >> $LOG ;
-# 	exit
-# else
-# 	echo -e "at `date`
-# 	\t starting bam building" >> $LOG ;
-# 	java -Xmx4g -jar $PICARD/SortSam.jar \
-# 	I=aln.sam \
-# 	O=aln.posiSrt.bam \
-# 	SO=coordinate \
-# 	VALIDATION_STRINGENCY=SILENT
-# 	2>errSortSam
-# 	echo -e "at `date`
-# 	\t starting bam indexing" >> $LOG ;
-# 	java -Xmx4g -jar $PICARD/BuildBamIndex.jar \
-# 	INPUT=aln.posiSrt.bam \
-# 	VALIDATION_STRINGENCY=SILENT \
-# 	2>errBuildBamIndex
-# fi
-# 
-# #
-# ## cleaning steps
-# #
-# rm -rf aln1.sai aln2.sai aln.sam
-# 
+
+
+# Align Reads 1 against ref. genome
+ echo -e "at `date`
+ \taligning first bwa">>$LOG
+ $BWA aln -t 3 -o 50 $DB $READS1 > aln1.sai 2> aln1.log
+ if [ ! -s aln1.sai ] ; then
+ 	echo "first index build failed check path and files" >>$LOG
+ 	exit
+ fi
+ 
+ # Align Reads 2
+ echo -e "at `date`
+ \taligning second bwa">>$LOG
+ $BWA aln -t 3 -o 50 $DB $READS2 > aln2.sai 2>aln2.log
+ if [ ! -s aln2.sai ] ; then
+ 	echo "second index build failed check path and files" >>$LOG
+ 	exit
+ fi
+ echo -e "at `date`
+ 	\tfinished bwa aln">>$LOG
+ 	
+ #
+ ## Create sam and bam files
+ ## Need to add read group with the -r option otherwise my version of GATK will complain
+ 
+ #test if all the files are present
+ echo -e "at `date`
+ \t starting sampe job" >> $LOG
+ if [[ ! -e aln1.sai || ! -e aln2.sai ]] ; then
+ 	echo " .sai files do not exist" >> $LOG ;
+ 	exit
+ elif [ ! -e $DB ] ; then
+ 	echo " DB $DB does not exist" >> $LOG ;
+ 	exit
+ else 
+ 	$BWA sampe -r $RG $DB aln1.sai aln2.sai $READS1 $READS2 >aln.sam 2> sampe.log;
+ 	echo -e "at `date`
+ 	\tfinished sampe job" >> $LOG
+ fi
+
+
+#
+## For now I am using samtools but should I use picard to be more carefull?????
+## But what picard commands? It is also recommended by the GATK to use Picard 
+## SortSam.jar SORT_ORDER=coordinate VALIDATION_STRINGENCY=SILENT INPUT=file.sam OUTPUT=file.bam??
+
+## Creating a bam file
+#
+if [[ ! -e aln.sam || ! -s aln.sam ]] ;then 
+	echo "aln.sam do not exist or is empty have a look in sampe.log" >> $LOG ;
+	exit
+elif [ ! -e $DB.fai ] ; then
+	echo "$DB.fai could not be found" >> $LOG ;
+	exit
+else
+	echo -e "at `date`
+	\t starting bam building" >> $LOG ;
+	java -Xmx4g -jar $PICARD/SortSam.jar \
+	I=aln.sam \
+	O=aln.posiSrt.bam \
+	SO=coordinate \
+	VALIDATION_STRINGENCY=SILENT
+	2>errSortSam
+	echo -e "at `date`
+	\t starting bam indexing" >> $LOG ;
+	java -Xmx4g -jar $PICARD/BuildBamIndex.jar \
+	INPUT=aln.posiSrt.bam \
+	VALIDATION_STRINGENCY=SILENT \
+	2>errBuildBamIndex
+fi
+
+
+#
+## cleaning steps
+#
+rm -rf aln1.sai aln2.sai aln.sam
+
 
 #
 ## Calculate mapped reads
 #
-# if [[ ! -e aln.posiSrt.bam || ! -s aln.posiSrt.bam ]] ; then
-# 	echo "the aln.posiSrt.bam file is missing or empty" >> $LOG ;
-# 	exit
-# else
-# 	echo -e "at `date`
-# 	\tproducing flagstats" >> $LOG ;
-# 	$SAMTOOLS flagstat aln.posiSrt.bam > flagstats.txt
-# fi
-# 
-# #
-# ## Check is mapping worked
-# #
-# echo -e "at `date`
-# 	\tproducing mapped.txt" >> $LOG ;
-# 
-# $SAMTOOLS view -X aln.posiSrt.bam | awk 'BEGIN{unmapped=0; unique=0; ambiguous=0; FS="\t"};\
-# ($1 !~ /^@/) \
-# {if($2 !~ /.*u.*/){if($5==0){ambiguous=ambiguous+1}else{unique=unique+1}}else{unmapped=unmapped+1}};\
-# END{total=ambiguous + unique + unmapped; \
-# print "Unmapped: " unmapped; \
-# print "Mapping uniquely: " unique; \
-# print "Mapping ambiguously: "  ambiguous; \
-# print "Total: "  total;}'> mapped.txt
-# 
-# if [[ ! -s mapped.txt || ! -e mapped.txt ]] ; then 
-# 	echo "Something wrong happened with mapped.txt, Have a look " >> $LOG;
-# 	exit
-# fi
-# 	
-# #Create a pdf of insert size
-# 
-# if [ ! -e aln.posiSrt.bam ] ; then
-# 	echo "No more aln.posiSrt.bam check your files" >> $LOG ;
-# 	exit 
-# else
-# 	echo -e "at `date`
-# 	\tproducing CollectInsertSizeMetrics.log" >> $LOG ;
-# 	java -jar $PICARD/CollectInsertSizeMetrics.jar \
-# 	INPUT=aln.posiSrt.bam \
-# 	OUTPUT=insertSizeMetrics.txt \
-# 	HISTOGRAM_FILE=insertSizeHistogram.pdf \
-# 	2>CollectInsertSizeMetrics.txt
-# fi
-# 
-# if [ ! -e insertSizeMetrics.txt ] ; then
-# 	echo "Check CollectInsertSizeMetrics.txt, something went wrong with CollectInsertSizeMetrics" >> $LOG;
-# 	exit
-# fi
-# 
-# #Get a duplicates overview
-# echo -e "at `date`
-# \t starting duplictaes overview" >> $LOG ;
-# java -Xmx4g -jar $PICARD/MarkDuplicates.jar \
-# INPUT=aln.posiSrt.bam \
-# OUTPUT=aln.posiSrt.dup.bam \
-# METRICS_FILE=duplicates_metrics.txt
-# REMOVE_DUPLICATES=false \
-# 2>errMarkDuplicates
-# 
-# ## Realign the reads 
-# # Create targets
-# # If everything went ok then the errRealignerTargetCreator should be empty (zero byte)
-# 
-# echo -e "at `date`
-# 	\tproducing aln.posiSrt.intervals" >> $LOG ;
-# java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
-# -T RealignerTargetCreator \
-# -R $DB \
-# -o aln.posiSrt.intervals \
-# -I aln.posiSrt.bam \
-# --known $DBSNP \
-# 2>errRealignerTargetCreator > realignerTargetCreatorInfo.txt
-# 
-# #
-# ## Test if the error file is not empty
-# ## -s == NOT empty
-# ## ! -s == empty
-# #
-# 
-# if [ -s errRealignerTargetCreator ] ; then
-# 	echo "RealignerTargetCreator produced some errors please have a look at the errRealignerTargetCreator and realignerTargetCreatorInfo.txt" >>$LOG;
-# 	exit
-# fi
-# 
-# #
-# ## realign the reads
-# ## need to use the maxreads here because of the number of reads
-# ## If everything went ok then the errIndelRealigner should be empty (zero byte)
-# #
-# echo -e "at `date`
-# 	\tproducing aln.posiSrt.realigned.bam" >> $LOG ;
-# java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar  \
-# -T IndelRealigner \
-# -maxReads 1000000 \
-# -I ../010_alignment/aln.posiSrt.bam \
-# -R $DB \
-# -targetIntervals aln.posiSrt.intervals \
-# -o aln.posiSrt.realigned.bam \
-# -compress 0 \
-# 2>errIndelRealigner > indelRealignerInfo.txt
-# 
-# # Test if the error file is empty
-# if [ -s errIndelRealigner ] ; then
-# 	echo "IndelRealigner produced some errors please have a look at the errIndelRealigner and indelRealignerInfo.txt" >>$LOG;
-# 	exit
-# fi
+if [[ ! -e aln.posiSrt.bam || ! -s aln.posiSrt.bam ]] ; then
+	echo "the aln.posiSrt.bam file is missing or empty" >> $LOG ;
+	exit
+else
+	echo -e "at `date`
+	\tproducing flagstats" >> $LOG ;
+	$SAMTOOLS flagstat aln.posiSrt.bam > flagstats.txt
+fi
+
+#
+## Check is mapping worked
+#
+echo -e "at `date`
+	\tproducing mapped.txt" >> $LOG ;
+
+$SAMTOOLS view -X aln.posiSrt.bam | awk 'BEGIN{unmapped=0; unique=0; ambiguous=0; FS="\t"};\
+($1 !~ /^@/) \
+{if($2 !~ /.*u.*/){if($5==0){ambiguous=ambiguous+1}else{unique=unique+1}}else{unmapped=unmapped+1}};\
+END{total=ambiguous + unique + unmapped; \
+print "Unmapped: " unmapped; \
+print "Mapping uniquely: " unique; \
+print "Mapping ambiguously: "  ambiguous; \
+print "Total: "  total;}'> mapped.txt
+
+if [[ ! -s mapped.txt || ! -e mapped.txt ]] ; then 
+	echo "Something wrong happened with mapped.txt, Have a look " >> $LOG;
+	exit
+fi
+	
+#Create a pdf of insert size
+
+if [ ! -e aln.posiSrt.bam ] ; then
+	echo "No more aln.posiSrt.bam check your files" >> $LOG ;
+	exit 
+else
+	echo -e "at `date`
+	\tproducing CollectInsertSizeMetrics.log" >> $LOG ;
+	java -jar $PICARD/CollectInsertSizeMetrics.jar \
+	INPUT=aln.posiSrt.bam \
+	OUTPUT=insertSizeMetrics.txt \
+	HISTOGRAM_FILE=insertSizeHistogram.pdf \
+	2>CollectInsertSizeMetrics.txt
+fi
+
+if [ ! -e insertSizeMetrics.txt ] ; then
+	echo "Check CollectInsertSizeMetrics.txt, something went wrong with CollectInsertSizeMetrics" >> $LOG;
+	exit
+fi
+
+#Get a duplicates overview
+echo -e "at `date`
+\t starting duplicates overview" >> $LOG ;
+java -Xmx4g -jar $PICARD/MarkDuplicates.jar \
+INPUT=aln.posiSrt.bam \
+OUTPUT=aln.posiSrt.dup.bam \
+METRICS_FILE=duplicates_metrics.txt
+REMOVE_DUPLICATES=false \
+2>errMarkDuplicates
+
+## Realign the reads 
+# Create targets
+# If everything went ok then the errRealignerTargetCreator should be empty (zero byte)
+
+echo -e "at `date`
+	\tproducing aln.posiSrt.intervals" >> $LOG ;
+java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
+-T RealignerTargetCreator \
+-R $DB \
+-o aln.posiSrt.intervals \
+-I aln.posiSrt.bam \
+--known $DBSNP \
+2>errRealignerTargetCreator > realignerTargetCreatorInfo.txt
+
+#
+## Test if the error file is not empty
+## -s == NOT empty
+## ! -s == empty
+#
+
+if [ -s errRealignerTargetCreator ] ; then
+	echo "RealignerTargetCreator produced some errors please have a look at the errRealignerTargetCreator and realignerTargetCreatorInfo.txt" >>$LOG;
+	exit
+fi
+
+#
+## realign the reads
+## need to use the maxreads here because of the number of reads
+## If everything went ok then the errIndelRealigner should be empty (zero byte)
+#
+echo -e "at `date`
+	\tproducing aln.posiSrt.realigned.bam" >> $LOG ;
+java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar  \
+-T IndelRealigner \
+-maxReads 1000000 \
+-I ../010_alignment/aln.posiSrt.bam \
+-R $DB \
+-targetIntervals aln.posiSrt.intervals \
+-o aln.posiSrt.realigned.bam \
+-compress 0 \
+2>errIndelRealigner > indelRealignerInfo.txt
+
+# Test if the error file is empty
+if [ -s errIndelRealigner ] ; then
+	echo "IndelRealigner produced some errors please have a look at the errIndelRealigner and indelRealignerInfo.txt" >>$LOG;
+	exit
+fi
 
 ## realigning
 # Normally errFixMate contains INFO on the realignent and if something wet wrong the word exeption should appear
@@ -292,102 +293,103 @@ fi
 
 ## count covariates before recalibration
 # errCountCovariatesPre should be empty or containing ERROR
-# echo -e "at `date`
-# 	\tproducing table.recal_data.pre.csv" >> $LOG ;
-# java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
-# -l INFO \
-# -R $DB \
-# -knownSites $DBSNP \
-# -I aln.posiSrt.realigned.bam \
-# -T CountCovariates \
-# -cov ReadGroupCovariate \
-# -cov QualityScoreCovariate \
-# -cov DinucCovariate \
-# -cov CycleCovariate \
-# -recalFile table.recal_data.pre.csv \
-# -nt 3 \
-# 2>errCountCovariatesPre > countCovariatesPreInfo.txt
-# 
-# if [ -s errCountCovariatesPre ] ; then 
-# 	echo "CountCovariates PRE produced some errors please have a look at the errCountCovariatesPre and countCovariatesPreInfo.txt" >>$LOG;
-# 	exit
-# fi
-# 
-# ## recalibration
-# echo -e "at `date`
-# 	\tproducing aln.posiSrt.baseQreCali.bam" >> $LOG ;
-# java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
-# -l INFO \
-# -R $DB \
-# -I aln.posiSrt.realigned.bam \
-# -T TableRecalibration \
-# --out aln.posiSrt.baseQreCali.bam \
-# -recalFile table.recal_data.pre.csv \
-# -OQ \
-# -pQ 5 \
-# 2>errTableRecalibration > tableRecalibrationInfo.txt
-# 
-# if [ -s errTableRecalibration ] ; then 
-# 	echo "TableRecalibration produced some errors please have a look at the errTableRecalibration and tableRecalibrationInfo.txt" >>$LOG;
-# 	exit
-# fi
-# 
-# echo -e "\tHow will samtools name this index"
-# $SAMTOOLS index aln.posiSrt.baseQreCali.bam
-# 
-# 
-# ## count covariates after recalibration
-# echo -e "at `date`
-# 	\tproducing aln.posiSrt.baseQreCali.bam" >> $LOG ;
-# java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
-# -l INFO \
-# -R $DB \
-# -knownSites $DBSNP \
-# -I aln.posiSrt.baseQreCali.bam \
-# -T CountCovariates \
-# -cov ReadGroupCovariate \
-# -cov QualityScoreCovariate \
-# -cov DinucCovariate \
-# -cov CycleCovariate \
-# -recalFile table.recal_data.post.csv \
-# -nt 3 \
-# 2>errCountCovariatesPost > countCovariatesPostInfo.txt
-# 
-# if [ -s errCountCovariatesPost ] ; then 
-# 	echo "CountCovariates Post produced some errors please have a look at the errCountCovariatesPost and countCovariatesPostInfo.txt" >>$LOG;
-# 	exit
-# fi
-# 
-# ## check the improvement
-# mkdir pre_recal
-# mkdir post_recal
-# 
-# echo -e "at `date`
-# 	\tproducing plotPreInfo.txt" >> $LOG ;
-# java -Xmx4g -jar $GATK/AnalyzeCovariates.jar \
-# -recalFile table.recal_data.pre.csv \
-# -outputDir pre_recal/   \
-# -ignoreQ 5 \
-# 2>errPlotpre > plotPreInfo.txt
-# 
-# if [ -s errPlotpre ] ; then 
-# 	echo "AnalyzeCovariates produced some errors please have a look at the errPlotpre and plotPreInfo.txt" >>$LOG;
-# 	exit
-# fi
-# 
-# echo -e "at `date`
-# 	\tproducing  plotPostInfo.txt" >> $LOG ;
-# java -Xmx4g -jar $GATK/AnalyzeCovariates.jar \
-# -recalFile table.recal_data.post.csv \
-# -outputDir post_recal/ \
-# -ignoreQ 5 \
-# 2>errPlotpost > plotPostInfo.txt
-# 
-# if [ -s errPlotpost ] ; then 
-# 	echo "AnalyzeCovariates produced some errors please have a look at the errPlotpost and plotPostInfo.txt" >>$LOG;
-# 	exit
-# fi
+echo -e "at `date`
+	\tproducing table.recal_data.pre.csv" >> $LOG ;
+java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
+-l INFO \
+-R $DB \
+-knownSites $DBSNP \
+-I aln.posiSrt.realigned.bam \
+-T CountCovariates \
+-cov ReadGroupCovariate \
+-cov QualityScoreCovariate \
+-cov DinucCovariate \
+-cov CycleCovariate \
+-recalFile table.recal_data.pre.csv \
+-nt 3 \
+2>errCountCovariatesPre > countCovariatesPreInfo.txt
 
+if [ -s errCountCovariatesPre ] ; then 
+	echo "CountCovariates PRE produced some errors please have a look at the errCountCovariatesPre and countCovariatesPreInfo.txt" >>$LOG;
+	exit
+fi
+
+## recalibration
+echo -e "at `date`
+	\tproducing aln.posiSrt.baseQreCali.bam" >> $LOG ;
+java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
+-l INFO \
+-R $DB \
+-I aln.posiSrt.realigned.bam \
+-T TableRecalibration \
+--out aln.posiSrt.baseQreCali.bam \
+-recalFile table.recal_data.pre.csv \
+-OQ \
+-pQ 5 \
+2>errTableRecalibration > tableRecalibrationInfo.txt
+
+if [ -s errTableRecalibration ] ; then 
+	echo "TableRecalibration produced some errors please have a look at the errTableRecalibration and tableRecalibrationInfo.txt" >>$LOG;
+	exit
+fi
+
+echo -e "\tHow will samtools name this index"
+$SAMTOOLS index aln.posiSrt.baseQreCali.bam
+
+
+## count covariates after recalibration
+echo -e "at `date`
+	\tproducing aln.posiSrt.baseQreCali.bam" >> $LOG ;
+java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
+-l INFO \
+-R $DB \
+-knownSites $DBSNP \
+-I aln.posiSrt.baseQreCali.bam \
+-T CountCovariates \
+-cov ReadGroupCovariate \
+-cov QualityScoreCovariate \
+-cov DinucCovariate \
+-cov CycleCovariate \
+-recalFile table.recal_data.post.csv \
+-nt 3 \
+2>errCountCovariatesPost > countCovariatesPostInfo.txt
+
+if [ -s errCountCovariatesPost ] ; then 
+	echo "CountCovariates Post produced some errors please have a look at the errCountCovariatesPost and countCovariatesPostInfo.txt" >>$LOG;
+	exit
+fi
+
+## check the improvement
+mkdir pre_recal
+mkdir post_recal
+
+echo -e "at `date`
+	\tproducing plotPreInfo.txt" >> $LOG ;
+java -Xmx4g -jar $GATK/AnalyzeCovariates.jar \
+-recalFile table.recal_data.pre.csv \
+-outputDir pre_recal/   \
+-ignoreQ 5 \
+2>errPlotpre > plotPreInfo.txt
+
+if [ -s errPlotpre ] ; then 
+	echo "AnalyzeCovariates produced some errors please have a look at the errPlotpre and plotPreInfo.txt" >>$LOG;
+	exit
+fi
+
+echo -e "at `date`
+	\tproducing  plotPostInfo.txt" >> $LOG ;
+java -Xmx4g -jar $GATK/AnalyzeCovariates.jar \
+-recalFile table.recal_data.post.csv \
+-outputDir post_recal/ \
+-ignoreQ 5 \
+2>errPlotpost > plotPostInfo.txt
+
+if [ -s errPlotpost ] ; then 
+	echo "AnalyzeCovariates produced some errors please have a look at the errPlotpost and plotPostInfo.txt" >>$LOG;
+	exit
+fi
+
+#This need to be fixed??? Which bed file should I used?? See With Jungbai If he is willing to share.
 ################################ checking coverage ################################
 
 # Getting a simple coverage stat on coverage
@@ -410,13 +412,19 @@ if grep -E "ERROR|Exception" errCalculateHsMetrics > /dev/null ; then
 	echo "FixMateInformation reported an error have a look at errCalculateHsMetrics and CalculateHsMetrics.txt"; 
 	exit
 fi;
+# Again you will want to get this into a readable format
+
+paste <(cat hsMetrics.txt | tail -n 4 | head -n 1 | tr "\t" "\n") <(cat hsMetrics.txt | tail -n 3 | head -n 1 | tr "\t" "\n")>hsMetricsReformated.txt
 
 mkdir $WORKINGDIR/020_realignment
 cd $WORKINGDIR/020_realignment
 
 #Part2
 ################################ Variant Calling ################################
-
+## Use Halo options
+##		-T UnifiedGenotyper -A AlleleBalance -stand_call_conf 50.0  -stand_emit_conf 10.0 -dcov 1000 -glm SNP
+##		-T UnifiedGenotyper -A AlleleBalance -stand_call_conf 50.0  -stand_emit_conf 10.0 -dcov 1000 -glm INDEL
+#
 ## snp
 echo -e "at `date`
 	\tproducing snps.raw.vcf" >> $LOG ;
@@ -455,6 +463,7 @@ java -Xmx4g -jar $GATK/GenomeAnalysisTK.jar \
 -dcov 1000 \
 -L /Users/yvans/Home/Dropbox/travail/BRCA12/BED_GFF_INTERVALS/BRCA.hg19.end.ampregion.interval_list \
 2>errIndelCalling > indelCallingInfo.txt
+
 if [ -s errIndelCalling ] ; then 
 	echo "UnifiedGenotyper INDEL produced some errors please have a look at the errIndelCalling and indelCallingInfo.txt" >>$LOG;
 	exit
@@ -603,4 +612,4 @@ perl /Users/yvans/Home/bin/annovar_2011Sep11/summarize_annovar.pl snps.filter.av
 echo -e "at `date`
 	\tfinished annovar" >> $LOG ;
 
-echo `date` >> timeUsedAll.txt
+echo `date` >> $TimeUsed
