@@ -13,7 +13,17 @@
 ##                  http://docs.python.org/library/argparse.html#module-argparse
 #
 
+<<<<<<< HEAD
 # Import system package
+=======
+
+#r1_adapter = "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
+#r2_adapter = "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT"
+#root = sys.argv[1]
+#m = sys.argv[2]
+
+
+>>>>>>> test my eclipse installation works
 import re
 import sys
 import os
@@ -39,6 +49,7 @@ parser = argparse.ArgumentParser(prog='cutadaptBatch',
                                                             ),
                                  epilog="If any questions contact me good, luck!"
                                  )
+<<<<<<< HEAD
 parser.add_argument('-m', help='match region length, I use generally 32 [Default 32]', required=False, nargs='?', default=32, type=int, action="store")
 parser.add_argument('-d', help='fastq.gz containing dir [Required]', required=True, nargs='?')
 parser.add_argument('-r1', help='Read1 adapter [Default = AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC', default="AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC")
@@ -61,6 +72,22 @@ r1_adapter = "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
 r2_adapter = "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT"
 
 sys.exit("on s'arretes ici pour l'instant")
+=======
+parser.add_argument('-m', help='match region length, I use generally 20', required=True, nargs='?', default=20, type=int)
+parser.add_argument('-d', help='fastq.gz containing dir', required=True, nargs='?')
+parser.add_argument('-r1', help='Read1 adapter',required=False)
+parser.add_argument('-r2', help='Read2 adapter',required=False)
+values = parser.parse_args()
+
+def testArgs(values):
+    if (values.r1 == None):
+        values.r1 = "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
+    if (values.r2 == None):
+        values.r2 = "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT"
+    return (values.r1, values.r2)
+testArgs(values)
+
+>>>>>>> test my eclipse installation works
 
 def cutadaptMe(f,adapter,m):
     cmd = "cutadapt -m "+ m + " -a "+ adapter +" -o "+ f[:-8]+"clipped_m"+m+".fastq.gz" + "  "+f
@@ -72,6 +99,7 @@ def cutadaptMe(f,adapter,m):
     result_handle.write(output[0])
 
 for dirname, dirnames, filenames in os.walk(values.d, topdown=True):
+<<<<<<< HEAD
     for f in filenames:
         if (re.search("R1_001.fastq.gz", f)):
             adapter = r1_adapter
@@ -83,3 +111,20 @@ for dirname, dirnames, filenames in os.walk(values.d, topdown=True):
             fileToBeClipped=str(os.path.join(dirname,f))
             print "FILETOBECLIPPED2 ",fileToBeClipped
             cutadaptMe(fileToBeClipped,adapter,values.m)
+=======
+    for file in filenames:
+        if (re.search("R1_001.fastq.gz", file)):
+            adapter = values.r1
+            fileToBeClipped=str(os.path.join(dirname,file))
+            print "FILETOBECLIPPED1 ",fileToBeClipped
+            cutadaptMe(fileToBeClipped,adapter,values.m)
+        elif (re.search("R2_001.fastq.gz", file)):
+            adapter  = values.r2
+            fileToBeClipped=str(os.path.join(dirname,file))
+            print "FILETOBECLIPPED2 ",fileToBeClipped
+            cutadaptMe(fileToBeClipped,adapter,values.m)
+            
+
+msg="r1 ",values.r1," r2",values.r2,"on s'arretes ici pour l'instant"
+sys.exit(msg)
+>>>>>>> test my eclipse installation works

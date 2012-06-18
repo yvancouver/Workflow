@@ -19,9 +19,12 @@ r2_adapter = "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT"
 root = sys.argv[1]
 m = sys.argv[2]
 
+print m
+print root
 
 def cutadaptMe(file,adapter,m):
     cmd = "cutadapt -m "+ m + " -a "+ adapter +" -o "+ file[:-8]+"clipped_m"+m+".fastq.gz" + "  "+file
+    print cmd
     args = shlex.split(cmd)
     job = Popen(args, stdout=PIPE, stdin=PIPE, stderr=STDOUT)
     output = job.communicate()
@@ -31,6 +34,7 @@ def cutadaptMe(file,adapter,m):
 
 for dirname, dirnames, filenames in os.walk(root, topdown=True):
     for file in filenames:
+        print file
         if (re.search("R1_001.pf.fastq.gz", file)):
             adapter = r1_adapter
             fileToBeClipped=str(os.path.join(dirname,file))
@@ -41,4 +45,6 @@ for dirname, dirnames, filenames in os.walk(root, topdown=True):
             fileToBeClipped=str(os.path.join(dirname,file))
             print "FILETOBECLIPPED2 ",fileToBeClipped
             cutadaptMe(fileToBeClipped,adapter,m)
+        else:
+            print "files not found"
 
