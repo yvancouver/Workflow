@@ -50,24 +50,24 @@ root = sys.argv[1]
 m = sys.argv[2]
 
 
-def cutadaptMe(file,adapter,m):
-    cmd = "cutadapt -m "+ m + " -a "+ adapter +" -o "+ file[:-8]+"clipped_m"+m+".fastq.gz" + "  "+file
+def cutadaptMe(f,adapter,m):
+    cmd = "cutadapt -m "+ m + " -a "+ adapter +" -o "+ f[:-8]+"clipped_m"+m+".fastq.gz" + "  "+f
     args = shlex.split(cmd)
     job = Popen(args, stdout=PIPE, stdin=PIPE, stderr=STDOUT)
     output = job.communicate()
-    results=file[:-8]+".report"
+    results=f[:-8]+".report"
     result_handle=open(results,"w+")
     result_handle.write(output[0])
 
 for dirname, dirnames, filenames in os.walk(root, topdown=True):
-    for file in filenames:
-        if (re.search("R1_001.fastq.gz", file)):
+    for f in filenames:
+        if (re.search("R1_001.fastq.gz", f)):
             adapter = r1_adapter
-            fileToBeClipped=str(os.path.join(dirname,file))
+            fileToBeClipped=str(os.path.join(dirname,f))
             print "FILETOBECLIPPED1 ",fileToBeClipped
             cutadaptMe(fileToBeClipped,adapter,m)
-        elif (re.search("R2_001.fastq.gz", file)):
+        elif (re.search("R2_001.fastq.gz", f)):
             adapter  = r2_adapter
-            fileToBeClipped=str(os.path.join(dirname,file))
+            fileToBeClipped=str(os.path.join(dirname,f))
             print "FILETOBECLIPPED2 ",fileToBeClipped
             cutadaptMe(fileToBeClipped,adapter,m)
