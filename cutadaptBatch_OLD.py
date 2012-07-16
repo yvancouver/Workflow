@@ -19,6 +19,9 @@ r2_adapter = "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT"
 root = sys.argv[1]
 m = sys.argv[2]
 
+print root
+print m
+
 
 def cutadaptMe(file,adapter,m):
     cmd = "cutadapt -m "+ m + " -a "+ adapter +" -o "+ file[:-8]+"clipped_m"+m+".fastq.gz" + "  "+file
@@ -42,4 +45,4 @@ for dirname, dirnames, filenames in os.walk(root, topdown=True):
             fileToBeClipped=str(os.path.join(dirname,file))
             print "FILETOBECLIPPED2 ",fileToBeClipped
             cutadaptMe(fileToBeClipped,adapter,m)
-
+print "i have seen for"
