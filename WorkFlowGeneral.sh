@@ -1,4 +1,7 @@
 #!/bin/bash
+## ToDo
+# Check if this fole is the last one
+
 #Where should I call the script???? Start in the main Folder above the passed_filter
 ##
 # executables
