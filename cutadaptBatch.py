@@ -75,8 +75,8 @@ sys.exit("on s'arretes ici pour l'instant")
 =======
 parser.add_argument('-m', help='match region length, I use generally 20', required=True, nargs='?', default=20, type=int)
 parser.add_argument('-d', help='fastq.gz containing dir', required=True, nargs='?')
-parser.add_argument('-r1', help='Read1 adapter',required=False)
-parser.add_argument('-r2', help='Read2 adapter',required=False)
+parser.add_argument('-r1', help='Read1 adapter per default this is the index illumina adapter, AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC',required=False)
+parser.add_argument('-r2', help='Read2 adapter per default this is the illumina universal sequencing primer, AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT',required=False)
 values = parser.parse_args()
 
 def testArgs(values):
