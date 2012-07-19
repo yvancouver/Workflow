@@ -8,6 +8,8 @@
 ## cutadapt -m 32 -a adapter -o fastq.clipped.gz original.fastq.gz
 ## -m 32 will remove every ry smaller than 32 nt, bwa seed is 32 by default
 ## one should give an gunziped file and retrieve a uncompress one, because TimSync is (for now) taking ony uncompress file
+## cutadapt -a ADAPTER-SEQUENCE input.fastq.gz > output.fastq
+## args should be ['cutadapt', '-m', '32', '-a', 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC', 'input.fastq.gz', '-o', 'output.clipped_AM32.fasta'] 
 ## args should be ['cutadapt', '-m', '32', '-a', 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC', '-o', '/Users/yvans/Home/Analysis/Cardio_analysis_01.17.2012/Project_Diag-Cardiomyopathy-2011-12-09/Sample_KA-001/KA-001_ATCACG_L001_R1_001.clipped_m20.fastq.gz', '/Users/yvans/Home/Analysis/Cardio_analysis_01.17.2012/Project_Diag-Cardiomyopathy-2011-12-09/Sample_KA-001/KA-001_ATCACG_L001_R1_001.fastq.gz']
 ## have a look here http://argparse.googlecode.com/svn/trunk/doc/argparse-vs-optparse.html
 ##                  http://docs.python.org/library/argparse.html#module-argparse
@@ -70,12 +72,12 @@ def cutadaptMe(f,adapter,m):
 for dirname, dirnames, filenames in os.walk(values.d, topdown=True):
     for f in filenames:
         if (re.search("R1_001.fastq.gz", f)):
-            adapter = r1_adapter
+            adapter = values.r1
             fileToBeClipped=str(os.path.join(dirname,f))
             print "FILETOBECLIPPED1 ",fileToBeClipped
             cutadaptMe(fileToBeClipped,adapter,values.m)
         elif (re.search("R2_001.fastq.gz", f)):
-            adapter  = r2_adapter
+            adapter  = values.r2
             fileToBeClipped=str(os.path.join(dirname,f))
             print "FILETOBECLIPPED2 ",fileToBeClipped
             cutadaptMe(fileToBeClipped,adapter,values.m)
