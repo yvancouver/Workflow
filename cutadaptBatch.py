@@ -42,6 +42,8 @@ parser = argparse.ArgumentParser(prog='cutadaptBatch',
                                                             ),
                                  epilog="If any questions contact me good, luck!"
                                  )
+parser.add_argument('-v', help='Add some verbose output for the test', required=False, action="store_true")
+parser.add_argument('-t', help='Runs the testdoc module', required=False, action="store_true")
 parser.add_argument('-m', help='match region length, I use generally 32 [Default 32]', required=False, nargs='?', default=32, type=int, action="store")
 parser.add_argument('-d', help='fastq.gz containing dir [Required]', required=True, nargs='?')
 parser.add_argument('-r1', help='Read1 adapter [Default = AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC', default="AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC")
@@ -49,16 +51,31 @@ parser.add_argument('-r2', help='Read2 adapter [Default = AGATCGGAAGAGCGTCGTGTAG
 values = parser.parse_args()
 
 def testArgs(values):
+    print "t\t\t",values.t
+    if values.t == True:
+        # Import Test for cutadapt
+        import doctest
+        import cutadaptTest
+        print "Cut:\t", doctest.testmod(cutadaptTest)
+
+    if values.t == True & values.v == True:
+        print "m type Option\t", type(values.m)
+        print "m  Option\t", values.m
+        print "dir Option\t", values.d
+        print "r1 Option\t",values.r1
+        print "r2 Option\t",values.r2
+
     if values.m == None:
         values.m = 32
     if values.d == None:
         sys.exit("please enter a directory containing the reads")
-    print dir(values)
-    print "m type Option\t", type(values.m)
-    print "m  Option\t", values.m
-    print "dir Option\t", values.d
-    print values.r1
-testArgs(values)
+    
+if values.t == True:
+    testArgs(values)
+    msg="\n\n#######################################################\n\
+# finished the test, please check output for mistakes #\n\
+#######################################################"
+    sys.exit(msg)
 
 def cutadaptMe(f,adapter,m):
     cmd = "cutadapt -m "+ m + " -a "+ adapter +" -o "+ f[:-8]+"clipped_m"+m+".fastq.gz" + "  "+f
@@ -70,13 +87,17 @@ def cutadaptMe(f,adapter,m):
     result_handle.write(output[0])
 
 for dirname, dirnames, filenames in os.walk(values.d, topdown=True):
+    #print "entering ", dirname, "  ", dirnames
     for f in filenames:
-        if (re.search("R1_001.fastq.gz", f)):
+        #print f
+        if (re.search("R1*.fastq.gz", f)):
+            print "entered R1"
             adapter = values.r1
             fileToBeClipped=str(os.path.join(dirname,f))
             print "FILETOBECLIPPED1 ",fileToBeClipped
             cutadaptMe(fileToBeClipped,adapter,values.m)
-        elif (re.search("R2_001.fastq.gz", f)):
+        elif (re.search("R2*.fastq.gz", f)):
+            print "R2"
             adapter  = values.r2
             fileToBeClipped=str(os.path.join(dirname,f))
             print "FILETOBECLIPPED2 ",fileToBeClipped
