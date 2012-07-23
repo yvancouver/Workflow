@@ -20,4 +20,6 @@ section = 'cutadapt'
 config_file = '/Users/yvans/Home/workspace/Workflow/config.cfg'
 
 if __name__ == "__main__":
-    doctest.testmod()
+#    doctest.testmod()
+    doctest.run_docstring_examples(cutadaptVersion,globals(), name="Version")
+    doctest.run_docstring_examples(cutadaptLocation,globals(),verbose=True, name="Location")

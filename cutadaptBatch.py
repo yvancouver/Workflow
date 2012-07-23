@@ -30,6 +30,8 @@ import textwrap
 from subprocess import Popen, PIPE, STDOUT
 import shlex
 
+for a in sys.argv:
+    print a
 
 parser = argparse.ArgumentParser(prog='cutadaptBatch',
                                  formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -40,18 +42,28 @@ parser = argparse.ArgumentParser(prog='cutadaptBatch',
                                                             License: GPL 3.0 (http://www.gnu.org/licenses/gpl-3.0.txt)
                                                             '''
                                                             ),
-                                 epilog="If any questions contact me good, luck!"
+                                 epilog="If any questions contact me! Good luck!"
                                  )
 parser.add_argument('-v', help='Add some verbose output for the test', required=False, action="store_true")
 parser.add_argument('-t', help='Runs the testdoc module', required=False, action="store_true")
+
 parser.add_argument('-m', help='match region length, I use generally 32 [Default 32]', required=False, nargs='?', default=32, type=int, action="store")
-parser.add_argument('-d', help='fastq.gz containing dir [Required]', required=True, nargs='?')
+
+parser.add_argument('-d', help='fastq.gz containing dir [Required], Default is the working directory', required='True', action='store_const', const=os.getcwd())
+
 parser.add_argument('-r1', help='Read1 adapter [Default = AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC', default="AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC")
 parser.add_argument('-r2', help='Read2 adapter [Default = AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT',required=False, default="AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT")
+
+parser.add_argument('--version', action='version', version='%(prog)s 1.0')
+
 values = parser.parse_args()
+print values
+print type(values)
+print "Dir\t\t",type(values.d),"\t\t", values.d
 
 def testArgs(values):
     print "t\t\t",values.t
+    
     if values.t == True:
         # Import Test for cutadapt
         import doctest
@@ -68,8 +80,9 @@ def testArgs(values):
     if values.m == None:
         values.m = 32
     if values.d == None:
-        sys.exit("please enter a directory containing the reads")
-    
+        sys.exit("please enter a directory containing the reads.\nPlease use the < -h > option for more info")
+    else:
+        print values.d
 if values.t == True:
     testArgs(values)
     msg="\n\n#######################################################\n\
@@ -85,11 +98,12 @@ def cutadaptMe(f,adapter,m):
     results=f[:-8]+".report"
     result_handle=open(results,"w+")
     result_handle.write(output[0])
+print "why do I stop before here"
 
 for dirname, dirnames, filenames in os.walk(values.d, topdown=True):
-    #print "entering ", dirname, "  ", dirnames
+    print "entering ", dirname, "  ", dirnames
     for f in filenames:
-        #print f
+        print f
         if (re.search("R1*.fastq.gz", f)):
             print "entered R1"
             adapter = values.r1
