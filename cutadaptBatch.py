@@ -30,8 +30,12 @@ import textwrap
 from subprocess import Popen, PIPE, STDOUT
 import shlex
 
-for a in sys.argv:
-    print a
+class MyParser(argparse.ArgumentParser):
+    def error(self, message):
+        sys.stderr.write('error: %s\n' % message)
+        self.print_help()
+        sys.exit(2)
+
 
 parser = argparse.ArgumentParser(prog='cutadaptBatch',
                                  formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -49,7 +53,7 @@ parser.add_argument('-t', help='Runs the testdoc module', required=False, action
 
 parser.add_argument('-m', help='match region length, I use generally 32 [Default 32]', required=False, nargs='?', default=32, type=int, action="store")
 
-parser.add_argument('-d', help='fastq.gz containing dir [Required], Default is the working directory', required='True', action='store_const', const=os.getcwd())
+parser.add_argument('-d', help='fastq.gz containing dir [Required], Default is the working directory', required=False, nargs='?', default="/Volumes/MyFolder/Sample_KA-087/")
 
 parser.add_argument('-r1', help='Read1 adapter [Default = AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC', default="AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC")
 parser.add_argument('-r2', help='Read2 adapter [Default = AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT',required=False, default="AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT")
@@ -57,13 +61,20 @@ parser.add_argument('-r2', help='Read2 adapter [Default = AGATCGGAAGAGCGTCGTGTAG
 parser.add_argument('--version', action='version', version='%(prog)s 1.0')
 
 values = parser.parse_args()
-print values
-print type(values)
-print "Dir\t\t",type(values.d),"\t\t", values.d
+
+# Test is the script is call without argument, if yes just print usage and exit
+if len(sys.argv) == 1:
+    parser.print_help()
+    sys.exit(1)
 
 def testArgs(values):
     print "t\t\t",values.t
-    
+    print type(values)
+    print "Dir\t\t",type(values.d),"\t\t", values.d
+    if values.d == None:
+        sys.exit("please enter a directory containing the reads.\nPlease use the < -h > option for more info")
+    else:
+        print values.d    
     if values.t == True:
         # Import Test for cutadapt
         import doctest
@@ -79,40 +90,44 @@ def testArgs(values):
 
     if values.m == None:
         values.m = 32
-    if values.d == None:
-        sys.exit("please enter a directory containing the reads.\nPlease use the < -h > option for more info")
-    else:
-        print values.d
+
 if values.t == True:
     testArgs(values)
     msg="\n\n#######################################################\n\
 # finished the test, please check output for mistakes #\n\
 #######################################################"
     sys.exit(msg)
-
+else:
+    testArgs(values)
+    
 def cutadaptMe(f,adapter,m):
-    cmd = "cutadapt -m "+ m + " -a "+ adapter +" -o "+ f[:-8]+"clipped_m"+m+".fastq.gz" + "  "+f
+    print f," type of ",type(f)
+    print adapter," type of ",type(adapter)
+    print m," type of ",type(m)
+# Old cm for keeping inpout and output gunzipped
+    #cmd_old = "cutadapt -m "+ str(m) + " -a "+ adapter +" -o "+ f[:-8]+"clipped_m"+str(m)+".fastq.gz" + "  "+f
+    cmd = "cutadapt -m "+ str(m) + " -a "+ adapter + "  "+f+ " -o "+ f[:-8]+"clipped_AM"+str(m)+".fastq"
+    print "CMD; ",cmd
     args = shlex.split(cmd)
     job = Popen(args, stdout=PIPE, stdin=PIPE, stderr=STDOUT)
     output = job.communicate()
-    results=f[:-8]+".report"
+    results=f[:-8]+"report"
     result_handle=open(results,"w+")
     result_handle.write(output[0])
-print "why do I stop before here"
 
 for dirname, dirnames, filenames in os.walk(values.d, topdown=True):
     print "entering ", dirname, "  ", dirnames
     for f in filenames:
         print f
-        if (re.search("R1*.fastq.gz", f)):
+        if (re.search("R1.*.fastq.gz", f)):
             print "entered R1"
             adapter = values.r1
             fileToBeClipped=str(os.path.join(dirname,f))
             print "FILETOBECLIPPED1 ",fileToBeClipped
-            cutadaptMe(fileToBeClipped,adapter,values.m)
-        elif (re.search("R2*.fastq.gz", f)):
-            print "R2"
+            #cutadaptMe(fileToBeClipped,adapter,values.m)
+        elif (re.search("R2.*.fastq.gz", f)):
+            print "entered R2"
             adapter  = values.r2
             fileToBeClipped=str(os.path.join(dirname,f))
             print "FILETOBECLIPPED2 ",fileToBeClipped
-            cutadaptMe(fileToBeClipped,adapter,values.m)
+            #cutadaptMe(fileToBeClipped,adapter,values.m)
