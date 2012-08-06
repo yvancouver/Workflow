@@ -53,7 +53,7 @@ def CollectCov(coverageResult,cov):
                         start = entry.start+int(entry[6])-1
                     feature = entry.name
                 if feature != "None" and feature != entry.name:
-                    print chrom,"\t",str(start),"\t",str(stop),"\t",feature,"\t",entry.score,"\t",entry.strand
+                    print chrom+"\t"+str(start)+"\t"+str(stop)+"\t"+feature+"\t"+entry.score+"\t"+entry.strand
                     if entry.start == 1:
                         start = entry.start+int(entry[6])-2
                     else:    
@@ -67,7 +67,7 @@ def CollectCov(coverageResult,cov):
                     stop = entry.start + int(entry[6])
                 
     last_entry = coverageResult[len(coverageResult)-1]
-    print last_entry.chrom,"\t",str(start),"\t",str(stop),"\t",last_entry.name,"\t",last_entry.score,"\t",last_entry.strand
+    print last_entry.chrom+"\t"+str(start)+"\t"+str(stop)+"\t"+last_entry.name+"\t"+last_entry.score+"\t"+last_entry.strand
 CollectCov(c,0)
 
 
