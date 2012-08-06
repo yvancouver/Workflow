@@ -45,9 +45,9 @@ def CollectCov(coverageResult,cov,feature):
     chrom = ""
     start = 0
     stop = 0
-    score = ""
-    strand = ""
-    lengthFeature = 0
+    #score = ""
+    #strand = ""
+    #lengthFeature = 0
     #print "chrom\tstart\tstop\tfeature\t\t\t\t\tscore\tstrand"
     for entry in  coverageResult[0:len(coverageResult)]:
         i += 1
@@ -62,27 +62,53 @@ def CollectCov(coverageResult,cov,feature):
 ## 7    1446 1460    NM_001166220_exon_5_0_chr7_35293105_r    0    -
 
             if feature != entry.name:
-                print "entry_start",entry.start
-                print "entry_6", entry[6]
-            
-                start = entry.start+int(entry[6])-1
-                current_feature = entry.name
-                feature = entry.name
-                if feature != "None":
-                    print chrom,"\t",str(start-1),"\t",str(stop),"\t",current_feature,"\t",entry.score,"\t",entry.strand
+## new feature so have to get his name and the start position (column 6)
+                if feature == "None":
+                    #print "I saw None"
+                    if entry.start == 1:
+                        start = entry.start+int(entry[6])-2
+                    else:    
+                        start = entry.start+int(entry[6])-1
+                    #start = entry.start
+                    #current_feature = entry.name
+                    feature = entry.name
+                    #print "Got this start ", start
+                if feature != "None" and feature != entry.name:
+                    #print"I have seen a new feature name ", entry.name, " the previous was named " , feature
+                    #print "\t and it was "
+                    print "\tchrom",chrom,"\tstart",str(start),"\tstop",str(stop),"\tfeature",feature,"\tscore",entry.score,"\tstrand",entry.strand
+                    if entry.start == 1:
+                        start = entry.start+int(entry[6])-2
+                    else:    
+                        start = entry.start+int(entry[6])-1
+                        #start = entry.start+int(entry[6])-1
+                    #start = entry.start
+                    #current_feature = entry.name
+                    feature = entry.name
+                    #print "Got this start ", start
+                #print "entry_start",entry.start
+                #print "entry_6", entry[6]
+                #
+                #print chrom,"\t",str(start-1),"\t",str(stop),"\t",current_feature,"\t",entry.score,"\t",entry.strand
                 #print "current :",current_feature
                 #print chrom,"\t",str(start-1),"\t",str(stop),"\t",current_feature,"\t",entry.score,"\t",entry.strand
             else:
                 #print chrom,"\t",str(start-1),"\t",str(stop),"\t",current_feature,"\t",entry.score,"\t",entry.strand
-                lengthFeature = int(entry[6])
+                #lengthFeature = int(entry[6])
+                #print "New length " , lengthFeature
                 chrom = entry[0]
-                stop = entry.start+int(entry[6])
-                score = entry.score
-                strand = entry.strand
-                current_feature = entry.name
+                #print "New Chrom" , chrom
+                if entry.start == 1:
+                    stop = entry.start + int(entry[6])-1
+                else:
+                    stop = entry.start + int(entry[6])
+                #print "New stop ", stop
+                #score = entry.score
+                #strand = entry.strand
+                #current_feature = entry.name
     
     last_entry = coverageResult[len(coverageResult)-1]
-    print last_entry.chrom,"\t",str(last_entry.start+lengthFeature),"\t",str(stop),"\t",last_entry.name,"\t",last_entry.score,"\t",last_entry.strand
+    print "\tchrom",last_entry.chrom,"\tstart",str(start),"\tstop",str(stop),"\tfeature",last_entry.name,"\tscore",last_entry.score,"\tstrand",last_entry.strand
 CollectCov(c,0,feature)
 
 
