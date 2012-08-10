@@ -1,18 +1,39 @@
+#!/usr/bin/python
+# Aout 2012 Yvan Strahm yvan.strahm@gmail.com
+
 import sys
 import pybedtools
 
-a = pybedtools.BedTool('/Volumes/ToveExFat/120615/040_KA005/020_refineAlignment/030_BQRecalGATK/all.realigned.markDup.baseQreCali.bam')
+import argparse
+import textwrap
+
+parser = argparse.ArgumentParser(prog='bedtools_coverage',
+                                 formatter_class=argparse.RawDescriptionHelpFormatter,
+                                 description=textwrap.dedent('''\
+                                                            bedtools_coverage is use to return a bed file containing region with a desired minimal coverage
+                                                            This was made in order to get a better idea of the coverage from Halo produced data.
+                                                            Author: Yvan Strahm (yvan.strahm@gmail.com)
+                                                            License: GPL 3.0 (http://www.gnu.org/licenses/gpl-3.0.txt)
+                                                            '''
+                                                            ),
+                                 epilog="If any questions contact me! Good luck!"
+                                 )
+parser.add_argument('--version', action='version', version='%(prog)s 1.0')
+
+#a = pybedtools.BedTool('/Volumes/ToveExFat/120615/040_KA005/020_refineAlignment/030_BQRecalGATK/all.realigned.markDup.baseQreCali.bam')
+#a = pybedtools.BedTool(sys.argv[1])
 #a = pybedtools.BedTool('/Volumes/ToveExFat/120615/040_KA005/020_refineAlignment/030_BQRecalGATK/all.realigned.markDup.baseQreCali1000b.bam')
 #print type(a)
 #print "Is a ",a.fn," a bam file ? ", a._isbam
 
-b = pybedtools.BedTool(sys.argv[1])
+
+#b = pybedtools.BedTool(sys.argv[2])
 #print type(b)
 #print "Is b ",b.fn," a bam file ? ",b._isbam
 #print"command c = a.coverage(b,d=True)"
 
-c = a.coverage(b,d=True)
-#c = pybedtools.BedTool('/Volumes/ToveExFat/120615/040_KA005/CoverageYvan/040_KA005_uscsRefSeq33genes_b37_zeroTest.bed')
+#c = a.coverage(b,d=True)
+c = pybedtools.BedTool('/Volumes/ToveExFat/120615/020_KA038/YvanCoverage/zero_coverageTargetEX.bed')
 
 '''''
 1    1    50    NR_047544_exon_0_0_chr1_156052369_f    0    +    1    0
@@ -33,9 +54,10 @@ def CollectCov(coverageResult,cov):
     start = 0
     stop = 0
     feature = "None"
-    
+    colors = "\t255,0,0"
+     
 ## Get the chrom, start and stop
-## From the example above we can see that chrom, start, stop, feature,score, and strand stau the same only posinfeat change
+## From the example above we can see that chrom, start, stop, feature,score, and strand stay the same only posinfeat change
 ## One should return an line with summarizing the "strech" of the feature satisfying the wanted coverage.
 ## In the first example it should return
 ## 1    1    30    NR_047544_exon_0_0_chr1_156052369_f    0    +
@@ -53,7 +75,7 @@ def CollectCov(coverageResult,cov):
                         start = entry.start+int(entry[6])-1
                     feature = entry.name
                 if feature != "None" and feature != entry.name:
-                    print chrom+"\t"+str(start)+"\t"+str(stop)+"\t"+feature+"\t"+entry.score+"\t"+entry.strand
+                    print chrom+"\t"+str(start)+"\t"+str(stop)+"\t"+feature+"\t"+entry.score+"\t"+entry.strand+"\t"+str(start)+"\t"+str(stop)+colors
                     if entry.start == 1:
                         start = entry.start+int(entry[6])-2
                     else:    
@@ -67,28 +89,6 @@ def CollectCov(coverageResult,cov):
                     stop = entry.start + int(entry[6])
                 
     last_entry = coverageResult[len(coverageResult)-1]
-    print last_entry.chrom+"\t"+str(start)+"\t"+str(stop)+"\t"+last_entry.name+"\t"+last_entry.score+"\t"+last_entry.strand
+    print last_entry.chrom+"\t"+str(start)+"\t"+str(stop)+"\t"+last_entry.name+"\t"+last_entry.score+"\t"+last_entry.strand+"\t"+str(start)+"\t"+str(stop)+colors
+
 CollectCov(c,0)
-
-
-
-'''print entry.chrom
-                print entry.start
-                print entry.stop
-                print entry.name
-                print entry.fields
-                print entry.score
-                print entry.strand
-                print entry.fields[6]
-                print entry.fields[7]
-                
-    chrom = entry[0]
-    start = entry[1]
-    stop = entry[2]
-    feature = entry[3]
-    score = entry[4]
-    strand = entry[5]
-    posinfeat = entry[6]
-    coverage = entry[7]
-    print chrom,"\t",start,"\t",stop,"\t",feature,"\t",score,"\t",strand,"\t",posinfeat,"\t",coverage
-'''     
