@@ -19,6 +19,9 @@ parser = argparse.ArgumentParser(prog='bedtools_coverage',
                                  epilog="If any questions contact me! Good luck!"
                                  )
 parser.add_argument('--version', action='version', version='%(prog)s 1.0')
+parser.add_argument('-t', help='Runs the testdoc module', required=False, action="store_true")
+
+
 
 #a = pybedtools.BedTool('/Volumes/ToveExFat/120615/040_KA005/020_refineAlignment/030_BQRecalGATK/all.realigned.markDup.baseQreCali.bam')
 #a = pybedtools.BedTool(sys.argv[1])
