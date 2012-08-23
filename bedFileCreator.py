@@ -14,6 +14,10 @@ def massage_the_list(list):
             print str(i).rstrip()
     print len(list)
     print type(list)
+    
+# First get the length of the list in order to get the number of exon
+    print len(list)
+# determine if the gene is on the reverse or the forward stand
 # search reverse
     if (re.search("_r$", entry.name)):
         #print "FOUNDrevere"
