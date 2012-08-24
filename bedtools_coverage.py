@@ -24,19 +24,20 @@ parser.add_argument('-t', help='Runs the testdoc module', required=False, action
 
 
 #a = pybedtools.BedTool('/Volumes/ToveExFat/120615/040_KA005/020_refineAlignment/030_BQRecalGATK/all.realigned.markDup.baseQreCali.bam')
-#a = pybedtools.BedTool(sys.argv[1])
+a = pybedtools.BedTool(sys.argv[1])
 #a = pybedtools.BedTool('/Volumes/ToveExFat/120615/040_KA005/020_refineAlignment/030_BQRecalGATK/all.realigned.markDup.baseQreCali1000b.bam')
 #print type(a)
 #print "Is a ",a.fn," a bam file ? ", a._isbam
 
 
 #b = pybedtools.BedTool(sys.argv[2])
+b = pybedtools.BedTool('/Users/yvans/Home/Dropbox/travail/BED_GFF_INTERVALS/Valided_And_Correct/CARDIO/Galaxy_GFFtoBED_EGS179.r150.readableregion_b37_sorted_GeneName.bed')
 #print type(b)
 #print "Is b ",b.fn," a bam file ? ",b._isbam
 #print"command c = a.coverage(b,d=True)"
 
-#c = a.coverage(b,d=True)
-c = pybedtools.BedTool('/Volumes/ToveExFat/120615/020_KA038/YvanCoverage/zero_coverageTargetEX.bed')
+c = a.coverage(b,d=True)
+#c = pybedtools.BedTool('/Volumes/ToveExFat/120615/020_KA038/YvanCoverage/zero_coverageTargetEX.bed')
 
 '''''
 1    1    50    NR_047544_exon_0_0_chr1_156052369_f    0    +    1    0
