@@ -7,6 +7,8 @@ import pybedtools
 import argparse
 import textwrap
 
+import CollectCov
+
 parser = argparse.ArgumentParser(prog='bedtools_coverage',
                                  formatter_class=argparse.RawDescriptionHelpFormatter,
                                  description=textwrap.dedent('''\
@@ -18,9 +20,21 @@ parser = argparse.ArgumentParser(prog='bedtools_coverage',
                                                             ),
                                  epilog="If any questions contact me! Good luck!"
                                  )
-parser.add_argument('--version', action='version', version='%(prog)s 1.0')
-parser.add_argument('-t', help='Runs the testdoc module', required=False, action="store_true")
+parser.add_argument('--version', action='version', version='%(prog)s 0.1')
+parser.add_argument('-t', help = 'Runs the testdoc module', required=False, action="store_true")
+parser.add_argument('-a', help = 'bam file', required=False)
+parser.add_argument('-b', help = 'bed file', required=False)
+parser.add_argument('-c', help = 'coverage file, if it is provided no coverageBed will be called', required=False)
+parser.add_argument('-n', help = 'minimal coverage required', required = True, type = int)
 
+values = parser.parse_args()
+
+def test_values(values):
+    if values.c:
+        #print values.c
+        #print type(values.c)
+        CollectCov.CollectCov(values.c,values.n)
+test_values(values)
 
 
 #a = pybedtools.BedTool('/Volumes/ToveExFat/120615/040_KA005/020_refineAlignment/030_BQRecalGATK/all.realigned.markDup.baseQreCali.bam')
@@ -37,21 +51,31 @@ parser.add_argument('-t', help='Runs the testdoc module', required=False, action
 #print"command c = a.coverage(b,d=True)"
 
 #c = a.coverage(b,d=True)
-c = pybedtools.BedTool('/Users/yvans/Home/Dropbox/travail/meetings/data/zero_coverage_agilent_halo_bait.bed')
+c = pybedtools.BedTool('/Users/yvans/Home/workspace/Workflow/TestFiles/coverageTest2Test1_1.bed')
 
 '''''
-1    1    50    NR_047544_exon_0_0_chr1_156052369_f    0    +    1    0
-1    1    50    NR_047544_exon_0_0_chr1_156052369_f    0    +    2    0
-1    1    50    NR_047544_exon_0_0_chr1_156052369_f    0    +    29    0
-1    1    50    NR_047544_exon_0_0_chr1_156052369_f    0    +    30    0
-7    1000    2000    NM_001077653_exon_7_0_chr7_35293105_r    0    -    446    0
-7    1000    2000    NM_001077653_exon_7_0_chr7_35293105_r    0    -    447    0
-7    1000    2000    NM_001077653_exon_7_0_chr7_35293105_r    0    -    459    0
-7    1000    2000    NM_001077653_exon_7_0_chr7_35293105_r    0    -    460    0
-7    1000    2000    NM_001166220_exon_5_0_chr7_35293105_r    0    -    446    0
-7    1000    2000    NM_001166220_exon_5_0_chr7_35293105_r    0    -    447    0
-7    1000    2000    NM_001166220_exon_5_0_chr7_35293105_r    0    -    459    0
-7    1000    2000    NM_001166220_exon_5_0_chr7_35293105_r    0    -    460    0
+cmommand:
+coverageBed -a test2.bed -b test1_1.bed -d > coverageTest2Test1_1.bed
+
+test2.bed:
+7    10001    10050    gene1_ex1    0    +
+7    10060    10080    gene1_ex2    0    +
+7    10100    10200    gene1_ex3    0    +
+7    10250    10300    gene1_ex4    0    +
+7    10310    10400    gene1_ex5    0    +
+
+test1_1.bed:
+7    10001    10100    Pos1_ex1    0    +
+7    10150    10320    Pos1_ex2    0    +
+7    10350    10500    Pos1_ex3    0    +
+
+should give after manual cleaning:
+7    10050    10059    Pos1_ex1    0    +    50    0
+7    10081    10100    Pos1_ex1    0    +    80    0
+7    10200    10250    Pos1_ex2    0    +    51    0
+7    10300    10310    Pos1_ex2    0    +    151    0
+7    10400    10500    Pos1_ex3    0    +    51    0
+'''
 '''
 def CollectCov(coverageResult,cov):
     chrom = ""
@@ -63,10 +87,12 @@ def CollectCov(coverageResult,cov):
 ## Get the chrom, start and stop
 ## From the example above we can see that chrom, start, stop, feature,score, and strand stay the same only posinfeat change
 ## One should return an line with summarizing the "strech" of the feature satisfying the wanted coverage.
-## In the first example it should return
-## 1    1    30    NR_047544_exon_0_0_chr1_156052369_f    0    +
-## 7    1446 1460    NM_001077653_exon_7_0_chr7_35293105_r    0    -
-## 7    1446 1460    NM_001166220_exon_5_0_chr7_35293105_r    0    -
+## 7    10050    10059    Pos1_ex1    0    +    50    0
+## 7    10081    10100    Pos1_ex1    0    +    80    0
+## 7    10200    10250    Pos1_ex2    0    +    51    0
+## 7    10300    10310    Pos1_ex2    0    +    151    0
+## 7    10400    10500    Pos1_ex3    0    +    51    0
+
     for entry in  coverageResult[0:len(coverageResult)]:
         if int(entry[7]) <= int(cov):
 
@@ -96,3 +122,4 @@ def CollectCov(coverageResult,cov):
     print last_entry.chrom+"\t"+str(start)+"\t"+str(stop)+"\t"+last_entry.name+"\t"+last_entry.score+"\t"+last_entry.strand+"\t"+str(start)+"\t"+str(stop)+colors
 
 CollectCov(c,0)
+'''

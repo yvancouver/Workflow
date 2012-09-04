@@ -8,15 +8,15 @@ import pybedtools
 seed = "None"
 list_of_exons = []
 
-def massage_the_list(list):
+def massage_the_list(the_list):
     print "new list"
     for i in list_of_exons:
             print str(i).rstrip()
-    print len(list)
-    print type(list)
+    print len(the_list)
+    print type(the_list)
     
 # First get the length of the list in order to get the number of exon
-    print len(list)
+    print len(the_list)
 # determine if the gene is on the reverse or the forward stand
 # search reverse
     if (re.search("_r$", entry.name)):
@@ -51,8 +51,8 @@ for entry in  bedfile[0:len(bedfile)]:
         pre_pattern = entry.name.split("_")
         seed = pre_pattern[1]
         #sys.exit(pattern)
-'''
 
+'''
 entry = bedfile[0]
 print "chr",entry.chrom,"start",entry.start,"stop",entry.stop,"name",entry.name,"score",entry.score,"strand",entry.strand,"o_start",entry.o_start,"o_amt",entry.o_amt
 print dir(bedfile[0])
