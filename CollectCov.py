@@ -39,7 +39,7 @@ def CollectCov(coverageResult,cov):
                         start = entry.start+int(entry[6])-1
                     feature = entry.name
             else:
-                chrom = entry[0]
+                #chrom = entry[0]
                 if entry.start == 1:
                     stop = entry.start + int(entry[6])-1
                 else:

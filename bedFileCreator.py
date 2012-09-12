@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # Aout 2012 Yvan Strahm yvan.strahm@gmail.com
-#'chrom', 'count', 'deparse_attrs', 'end', 'fields', 'file_type', 'length', 'name', 'o_amt', 'o_end', 'o_start', 'score', 'start', 'stop', 'strand'
+# 'chrom', 'count', 'deparse_attrs', 'end', 'fields', 'file_type', 'length', 'name', 'o_amt', 'o_end', 'o_start', 'score', 'start', 'stop', 'strand'
+# this script should call a bed formatted file produce by coverageBed (sure?)
+
 import sys
 import re
 import pybedtools
