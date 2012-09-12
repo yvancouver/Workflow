@@ -15,7 +15,7 @@ time cutadapt -m 32 -a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCAT
 
 #dont forget to change the line number
 
-export PREFIX=${READS1%_L001_RX_001.fastq.gz}
+export PREFIX=${READS1%_L00X_R1_001.fastq.gz}
 echo "$PREFIX"
 
 echo
