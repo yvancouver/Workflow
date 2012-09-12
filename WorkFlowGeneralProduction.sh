@@ -1,6 +1,6 @@
 date
-export READS1=KA-005_ACAGTG_L001_R1_001.fastq.gz
-export READS2=KA-005_ACAGTG_L001_R2_001.fastq.gz
+export READS1=
+export READS2=
 
 echo $READS1
 echo $READS2
@@ -13,7 +13,9 @@ echo
 echo "cutadapt r2"
 time cutadapt -m 32 -a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT $READS2 >${READS2%.fastq.gz}_Cutadapt_a_m32.fastq 2> ${READS2%.fastq.gz}_cutadapt_R2_a_m32.log
 
-export PREFIX=${READS1%_L001_R1_001.fastq.gz}
+#dont forget to change the line number
+
+export PREFIX=${READS1%_L001_RX_001.fastq.gz}
 echo "$PREFIX"
 
 echo
