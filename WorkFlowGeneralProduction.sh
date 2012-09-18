@@ -1,18 +1,25 @@
+##
+# Should the different Db should be declared in this script
+##
+
 date
 export READS1=
 export READS2=
 
+if [ $READS1 != $READS2 ] ; then  echo NOT  ; fi
 
 echo $READS1
 echo $READS2
 
 echo
 echo "cutadapt r1"
-time cutadapt -m 32 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC $READS1 > ${READS1%.fastq.gz}_Cutadapt_a_m32.fastq 2> ${READS1%.fastq.gz}_cutadapt_R1_a_m32.log
+time cutadapt -m 32 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC $READS1 > ${READS1%.fastq.gz}_Cutadapt_a_m32.fastq \
+2> ${READS1%.fastq.gz}_cutadapt_R1_a_m32.log
 
 echo
 echo "cutadapt r2"
-time cutadapt -m 32 -a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT $READS2 >${READS2%.fastq.gz}_Cutadapt_a_m32.fastq 2> ${READS2%.fastq.gz}_cutadapt_R2_a_m32.log
+time cutadapt -m 32 -a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT $READS2 > ${READS2%.fastq.gz}_Cutadapt_a_m32.fastq \
+2> ${READS2%.fastq.gz}_cutadapt_R2_a_m32.log
 
 #dont forget to change the line number
 
@@ -21,10 +28,17 @@ echo "$PREFIX"
 
 echo
 echo "syncing"
-/Users/yvans//Home/workspace/Workflow/TimSync.sh ${READS1%.fastq.gz}_Cutadapt_a_m32.fastq ${READS2%.fastq.gz}_Cutadapt_a_m32.fastq $PREFIX > ${READS2%.fastq.gz}_TimSync.log
+/Users/yvans//Home/workspace/Workflow/TimSync.sh \
+${READS1%.fastq.gz}_Cutadapt_a_m32.fastq \
+${READS2%.fastq.gz}_Cutadapt_a_m32.fastq \
+$PREFIX > ${READS2%.fastq.gz}_TimSync.log
 
 gzip ${READS1%.fastq.gz}_Cutadapt_a_m32.fastq
 gzip ${READS2%.fastq.gz}_Cutadapt_a_m32.fastq
+
+##
+# don't forget to add some lines in order to clean after the sync, delete or compress files
+##
 
 echo
 echo "mapping r1"
@@ -73,6 +87,8 @@ O="$PREFIX"_pairedFixed.bam \
 
 rm -f "$PREFIX"_paired.sam
 rm -f "$PREFIX"_paired.bam
+rm -f "$PREFIX"_paired_r1.fq
+rm -f "$PREFIX"_paired_r2.fq
 
 echo
 echo "Picard indexing"

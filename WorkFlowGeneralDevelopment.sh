@@ -1,6 +1,21 @@
 ##
-# Should the different Db should be declared in this script
+# Should the different DB and soft should be declared in this script
 ##
+
+# BWA
+# Version: ?
+export BWA=on data.odin software mac 
+
+#SAMTOOLS
+#Version: ?
+export SAMTOOLS=on data.odin software mac 
+
+export DB=/Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/bwa_v5.10/human_g1k_v37_decoy.fasta
+export GATK=/Users/yvans/Home/bin/GenomeAnalysisTK-1.4-37-g0b29d54/
+export PICARD=/Users/yvans/Home/bin/picard-tools-1.62/picard-tools-1.62/
+export DBSNP=/Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/dbsnp_132.b37.vcf
+export HAPMAP=/Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/hapmap_3.3.b37.sites.vcf
+export OMNI=/Users/yvans//Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/1000G_omni2.5.b37.sites.vcf
 
 date
 export READS1=
@@ -13,12 +28,14 @@ echo $READS2
 
 echo
 echo "cutadapt r1"
-time cutadapt -m 32 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC $READS1 > ${READS1%.fastq.gz}_Cutadapt_a_m32.fastq \
+time cutadapt -m 32 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC \
+$READS1 > ${READS1%.fastq.gz}_Cutadapt_a_m32.fastq \
 2> ${READS1%.fastq.gz}_cutadapt_R1_a_m32.log
 
 echo
 echo "cutadapt r2"
-time cutadapt -m 32 -a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT $READS2 > ${READS2%.fastq.gz}_Cutadapt_a_m32.fastq \
+time cutadapt -m 32 -a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \
+$READS2 > ${READS2%.fastq.gz}_Cutadapt_a_m32.fastq \
 2> ${READS2%.fastq.gz}_cutadapt_R2_a_m32.log
 
 #dont forget to change the line number
@@ -70,6 +87,14 @@ I="$PREFIX"_paired.sam \
 O="$PREFIX"_paired.bam \
 SO=coordinate 2>errSortSam
 
+echo "Check for the bam file validity"
+
+java -Xmx8g -jar /Users/yvans/Home/bin/picard-tools-1.62/picard-tools-1.62/ValidateSamFile.jar \
+INPUT="$PREFIX"_paired.bam \
+MODE=SUMMARY \
+MAX_OUTPUT=null
+>first_bam_validity.txt
+
 echo
 echo "Picard Fixmate"
 time java -Xmx8g -jar /Users/yvans/Home/bin/picard-tools-1.62/picard-tools-1.62/FixMateInformation.jar \
@@ -109,7 +134,7 @@ echo "InsertMetrics"
 time java -Xmx8g -jar /Users/yvans/Home/bin/picard-tools-1.62/picard-tools-1.62/CollectInsertSizeMetrics.jar \
 INPUT="$PREFIX"_pairedFixed.bam \
 OUTPUT=insertSizeMetrics.txt \
-HISTOGRAM_FILE=insertSizeHistogram.pdf 
+HISTOGRAM_FILE=insertSizeHistogram.pdf \
 2>CollectInsertSizeMetrics.txt
 
 echo
@@ -187,6 +212,13 @@ time java -Xmx8g -jar /Users/yvans/Home/bin/GenomeAnalysisTK-1.4-37-g0b29d54/Gen
 -recalFile table.recal_data.post.csv \
 -nt 3  > countCovariatesPostInfo.txt 2>errCountCovariatesPost
 
+echo "Check for the final bam file validity"
+
+java -Xmx8g -jar /Users/yvans/Home/bin/picard-tools-1.62/picard-tools-1.62/ValidateSamFile.jar \
+INPUT="$PREFIX"_paired.baseQreCali.bam \
+MODE=SUMMARY \
+MAX_OUTPUT=null
+>final_bam_validity.txt
 echo
 echo "create pre and post folder"
 mkdir pre_recal
@@ -266,7 +298,7 @@ time java -Xmx8g -jar /Users/yvans/Home/bin/GenomeAnalysisTK-1.4-37-g0b29d54/Gen
 --filterName "QDFilter" \
 --filterName "MQFilter" \
 --filterName "FSFilter" \
---filterName "MQRankSumFilter" 
+--filterName "MQRankSumFilter" \
 > snpFilterInfo.txt 2>errSnpFilter
 
 echo
