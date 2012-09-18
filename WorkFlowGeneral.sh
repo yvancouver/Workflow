@@ -1,6 +1,6 @@
 #!/bin/bash
 ## ToDo
-# Check if this fole is the last one, maybe yes
+# Check if this file is the last one, maybe yes
 
 #Where should I call the script???? Start in the main Folder above the passed_filter
 ##
@@ -25,6 +25,7 @@ export PICARD=/Users/yvans/Home/bin/picard-tools-1.62/picard-tools-1.62/
 export DBSNP=/Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/dbsnp_132.b37.vcf
 export HAPMAP=/Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/hapmap_3.3.b37.sites.vcf
 export OMNI=/Users/yvans//Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/1000G_omni2.5.b37.sites.vcf
+export ANNOVAR=/Volumes/data.odin/software/mac/annovar/annovar_2012May25/
 
 #The reads which have passed QC are located in the passed_filter
 # DIR is the top of the Reads containing folder
@@ -40,10 +41,18 @@ export READS2=
 
 #
 ## RG line for the GATK consistency like that "@RG\tID:\tPL:ILLUMINA\tSM:"
-## ID = Read group identier. Each @RG line must have a unique ID. The value of ID is used in the RG tags of alignment records. Must be unique among all read groups in header section. Read group IDs may be modied when merging SAM files in order to handle collisions.
-## PL = Platform/technology used to produce the reads. Valid values: CAPILLARY, LS454, ILLUMINA, SOLID, HELICOS, IONTORRENT and PACBIO.
+#
+## ID = Read group identifier. Each @RG line must have a unique ID. 
+#       The value of ID is used in the RG tags of alignment records. 
+#       Must be unique among all read groups in header section. 
+#       Read group IDs may be modified when merging SAM files in order to handle collisions.
+#
+## PL = Platform/technology used to produce the reads. 
+#		Valid values: CAPILLARY, LS454, ILLUMINA, SOLID, HELICOS, IONTORRENT and PACBIO.
+#
 ## SM = Sample. Use pool name where a pool is being sequenced.
 #
+
 export RG=
 
 # LOG

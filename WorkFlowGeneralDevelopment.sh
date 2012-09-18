@@ -3,21 +3,48 @@
 ##
 
 # BWA
-# Version: ?
-export BWA=on data.odin software mac 
+# Version: 0.5.9-r26-dev
+export BWA=/Volumes/data.odin/software/mac/bwa/bwa-0.5.10
 
 #SAMTOOLS
-#Version: ?
-export SAMTOOLS=on data.odin software mac 
+#Version: 0.1.18 (r982:295)
+export SAMTOOLS=/Volumes/data.odin/software/mac/samtools/samtools-0.1.18/samtools
 
 export DB=/Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/bwa_v5.10/human_g1k_v37_decoy.fasta
 export GATK=/Users/yvans/Home/bin/GenomeAnalysisTK-1.4-37-g0b29d54/
-export PICARD=/Users/yvans/Home/bin/picard-tools-1.62/picard-tools-1.62/
-export DBSNP=/Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/dbsnp_132.b37.vcf
-export HAPMAP=/Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/hapmap_3.3.b37.sites.vcf
-export OMNI=/Users/yvans//Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/1000G_omni2.5.b37.sites.vcf
+export PICARD=/Volumes/data.odin/software/mac/picard/picard-tools-1.62/picard-tools-1.62/
+export DBSNP=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/dbsnp_132.b37.vcf
+export HAPMAP=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/hapmap_3.3.b37.sites.vcf
+export OMNI=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/1000G_omni2.5.b37.sites.vcf
+export Mills_1000G_gold=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/Mills_and_1000G_gold_standard.indels.b37.sites.vcf
+export ANNOVAR=/Volumes/data.odin/software/mac/annovar/annovar_2012May25/
 
-date
+# LOG
+export LOG="$PWD/$0_`date '+%F_%T'`.log"
+export TimeUsed=timeUsed.txt
+echo `date` > $TimeUsed
+echo $LOG
+
+echo -e "`date`
+Files and binaries for this analysis
+BWA:\t\t$BWA
+SAMTOOLS:\t$SAMTOOLS 
+DB:\t\t$DB 
+GATK:\t\t$GATK 
+PICARD:\t\t$PICARD
+DBSNP:\t\t$DBSNP
+OMNI:\t\t$OMNI
+HAPMAP:\t\t$HAPMAP
+ANNOVAR:\t\t$ANNOVAR
+Mills_1000g:\t\t$Mils_1000G_gold
+DIR:\t\t$DIR 
+WORKINGDIR:\t$WORKINGDIR 
+READS1:\t\t$READS1
+READS2:\t\t$READS2 
+RG:\t\t$RG
+
+"> $LOG
+
 export READS1=
 export READS2=
 
@@ -27,6 +54,7 @@ echo $READS1
 echo $READS2
 
 echo
+
 echo "cutadapt r1"
 time cutadapt -m 32 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC \
 $READS1 > ${READS1%.fastq.gz}_Cutadapt_a_m32.fastq \
