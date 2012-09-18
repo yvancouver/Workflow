@@ -26,10 +26,6 @@ echo "syncing"
 gzip ${READS1%.fastq.gz}_Cutadapt_a_m32.fastq
 gzip ${READS2%.fastq.gz}_Cutadapt_a_m32.fastq
 
-##
-# don't forget to add some lines in order to clean after the sync, delete or compress files
-##
-
 echo
 echo "mapping r1"
 time /Users/yvans/Home/bin/bwa-0.5.9/bwa aln -t 3 \
@@ -59,6 +55,14 @@ time java -Xmx8g -jar /Users/yvans/Home/bin/picard-tools-1.62/picard-tools-1.62/
 I="$PREFIX"_paired.sam \
 O="$PREFIX"_paired.bam \
 SO=coordinate 2>errSortSam
+
+echo "Check for the bam file validity"
+
+java -Xmx8g -jar /Users/yvans/Home/bin/picard-tools-1.62/picard-tools-1.62/ValidateSamFile.jar \
+INPUT="$PREFIX"_paired.bam \
+MODE=SUMMARY \
+MAX_OUTPUT=null
+>first_bam_validity.txt
 
 echo
 echo "Picard Fixmate"
@@ -134,6 +138,7 @@ time java -Xmx8g -jar /Users/yvans/Home/bin/GenomeAnalysisTK-1.4-37-g0b29d54/Gen
 
 rm -f "$PREFIX"_pairedFixed.bam
 
+
 echo
 echo "count variant before"
 time java -Xmx8g -jar /Users/yvans/Home/bin/GenomeAnalysisTK-1.4-37-g0b29d54/GenomeAnalysisTK.jar \
@@ -175,6 +180,13 @@ time java -Xmx8g -jar /Users/yvans/Home/bin/GenomeAnalysisTK-1.4-37-g0b29d54/Gen
 -recalFile table.recal_data.post.csv \
 -nt 3  > countCovariatesPostInfo.txt 2>errCountCovariatesPost
 
+echo "Check for the final bam file validity"
+
+java -Xmx8g -jar /Users/yvans/Home/bin/picard-tools-1.62/picard-tools-1.62/ValidateSamFile.jar \
+INPUT="$PREFIX"_paired.baseQreCali.bam \
+MODE=SUMMARY \
+MAX_OUTPUT=null
+>final_bam_validity.txt
 echo
 echo "create pre and post folder"
 mkdir pre_recal
