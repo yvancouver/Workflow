@@ -18,33 +18,24 @@ export BWA=/Volumes/data.odin/software/mac/bwa/bwa-0.5.10
 #Version: 0.1.18 (r982:295)
 export SAMTOOLS=/Volumes/data.odin/software/mac/samtools/samtools-0.1.18/samtools
 
-export DB=/Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/bwa_v5.10/human_g1k_v37_decoy.fasta
-export GATK=/Users/yvans/Home/bin/GenomeAnalysisTK-1.4-37-g0b29d54/
-export PICARD=/Volumes/data.odin/software/mac/picard/picard-tools-1.62/picard-tools-1.62/
-export DBSNP=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/dbsnp_132.b37.vcf
-export HAPMAP=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/hapmap_3.3.b37.sites.vcf
-export OMNI=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/1000G_omni2.5.b37.sites.vcf
-export Mills_1000G_gold=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/Mills_and_1000G_gold_standard.indels.b37.sites.vcf
-export ANNOVAR=/Volumes/data.odin/software/mac/annovar/annovar_2012May25/
-
 DB=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/bwa_v5.10/human_g1k_v37_decoy.fasta
-# What version should we use??
-GATK=/Users/yvans/Home/bin/GenomeAnalysisTK-1.4-37-g0b29d54/
-#
-PICARD=/Volumes/data.odin/software/mac/picard/picard-tools-1.62/picard-tools-1.6
-DBSNP=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/dbsnp_132.b37.vcf"
-HAPMAP=/Users/yvans/Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/hapmap_3.3.b37.sites.vcf
-OMNI=/Users/yvans//Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2/b37/1000G_omni2.5.b37.sites.vcf
-Mills_Gold_1000=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/
+
+GATK=/Volumes/data.odin/software/mac/gatk/GenomeAnalysisTK-1.4-30-gf2ef8d1/dist/
+PICARD=/Volumes/data.odin/software/mac/picard/picard-tools-1.62/picard-tools-1.62
+DBSNP=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/dbsnp_132.b37.vcf
+HAPMAP=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/hapmap_3.3.b37.sites.vcf
+OMNI=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/1000G_omni2.5.b37.sites.vcf
+Mills_1000G_gold=/Volumes/data.odin/common/GATK_resource_bundle/1.2/b37/Mills_and_1000G_gold_standard.indels.b37.sites.vcf
+ANNOVAR=/Volumes/data.odin/software/mac/annovar/annovar_2012May25/
+RG="@RG\tID:1\tPL:ILLUMINA\tSM:"$PREFIX"_paired_a_m32"
 
 # hsMetrics
 BAIT=
 TARGET=
 
-RG="@RG\tID:1\tPL:ILLUMINA\tSM:"$PREFIX"_paired_a_m32"
 # LOG
-export LOG="$PWD/$0_`date '+%F_%T'`.log"
-export TimeUsed=timeUsed.txt
+LOG="$PWD/$0_`date '+%F_%T'`.log"
+TimeUsed=timeUsed.txt
 echo `date` > $TimeUsed
 echo $LOG
 
