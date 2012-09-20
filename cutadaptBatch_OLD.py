@@ -33,7 +33,7 @@ def cutadaptMe(file,adapter,m):
     result_handle.write(output[0])
 
 for dirname, dirnames, filenames in os.walk(root, topdown=True):
-    print filenames
+    #print filenames
     for file in filenames:
         if (re.search("R1_001.fastq.gz", file)):
             adapter = r1_adapter
@@ -45,4 +45,4 @@ for dirname, dirnames, filenames in os.walk(root, topdown=True):
             fileToBeClipped=str(os.path.join(dirname,file))
             print "FILETOBECLIPPED2 ",fileToBeClipped
             cutadaptMe(fileToBeClipped,adapter,m)
-print "i have seen for"
+#print "i have seen for"
