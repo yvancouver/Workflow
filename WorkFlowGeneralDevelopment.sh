@@ -74,6 +74,17 @@ echo $READS1
 echo $READS2
 
 echo
+#
+## Create working directory
+#
+
+
+if [ ! -d $WORKINGDIR ] ; then
+	mkdir -p $WORKINGDIR/000_cleaning ;
+	cd  $WORKINGDIR/000_cleaning ;
+else
+	cd  $WORKINGDIR/000_cleaning ;
+fi
 
 echo "cutadapt r1"
 time $CUT -m $mCUT -a $adapter1 \
@@ -102,9 +113,17 @@ $PREFIX > ${READS2%.fastq.gz}_TimSync.log
 gzip ${READS1%.fastq.gz}_Cutadapt_a_m32.fastq
 gzip ${READS2%.fastq.gz}_Cutadapt_a_m32.fastq
 
-##
-# don't forget to add some lines in order to clean after the sync, delete or compress files
-##
+#
+## Create working directory
+#
+
+
+if [ ! -d $WORKINGDIR ] ; then
+	mkdir -p $WORKINGDIR/010_alignment ;
+	cd  $WORKINGDIR/010_alignment ;
+else
+	cd  $WORKINGDIR/010_alignment ;
+fi
 
 echo
 echo "mapping r1"

@@ -30,10 +30,24 @@ parser.add_argument('-n', help = 'minimal coverage required', required = True, t
 values = parser.parse_args()
 
 def test_values(values):
-    if values.c:
+# test if the a b pair is passed properly 
+    if (values.a and values.b):
+        try:
+            with open(values.a) as f1:
+                try:
+                    with open(values.b) as f2:
+                        CollectCov.CollectCov(values.a,values.n,values.b) 
+                except IOError as e2:
+                    print 'Please check that the bed file exists'
+        except IOError as e1:
+            print 'Please check that the bam file exists'
+    elif values.c:
         #print values.c
         #print type(values.c)
-        CollectCov.CollectCov(values.c,values.n)
+        CollectCov.CollectCov(values.c,values.n)    
+    else:
+        sys.exit("Please, check the path of the bam and/or the bed files")
+        
 test_values(values)
 
 

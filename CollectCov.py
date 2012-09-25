@@ -19,9 +19,10 @@ def CollectCov(coverageResult,cov):
 
     for entry in  coverage_object[0:len(coverage_object)]:
         #if int(entry[7]) <= int(cov):
-        print cov, feature
+
         if int(entry[7]) <= cov:
-        
+            print cov, feature
+            print entry
             if feature != entry.name:
 ## new feature so have to get his name and the start position (column 6)
                 if feature == "None":
