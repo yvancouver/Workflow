@@ -1,12 +1,14 @@
 ## Get the chrom, start and stop
 ## From the example above we can see that chrom, start, stop, feature,score, and strand stay the same only posinfeat change
 ## One should return an line with summarizing the "strech" of the feature satisfying the wanted coverage.
-## 7    10050    10059    Pos1_ex1    0    +    50    0
-## 7    10081    10100    Pos1_ex1    0    +    80    0
-## 7    10200    10250    Pos1_ex2    0    +    51    0
-## 7    10300    10310    Pos1_ex2    0    +    151    0
-## 7    10400    10500    Pos1_ex3    0    +    51    0
-
+## coverageBed -a test2.bed -b test1_1.bed -d
+## should return
+## chr    start    stop   exon in b  score strand start    stop     color code
+## 7    10050    10060    Pos1_ex1    0    +    10050    10060    255,0,0
+## 7    10080    10100    Pos1_ex1    0    +    10080    10100    255,0,0
+## 7    10200    10250    Pos1_ex2    0    +    10200    10250    255,0,0
+## 7    10300    10310    Pos1_ex2    0    +    10300    10310    255,0,0
+## 7    10400    10500    Pos1_ex3    0    +    10400    10500    255,0,0
 
 def CollectCov(coverageResult,cov):
     import pybedtools

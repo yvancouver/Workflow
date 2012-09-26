@@ -35,105 +35,38 @@ def test_values(values):
         try:
             with open(values.a) as f1:
                 try:
-                    with open(values.b) as f2:
-                        CollectCov.CollectCov(values.a,values.n,values.b) 
+                    with open(values.b) as f2:pass
                 except IOError as e2:
                     print 'Please check that the bed file exists'
         except IOError as e1:
             print 'Please check that the bam file exists'
     elif values.c:
+        pass
         #print values.c
         #print type(values.c)
-        CollectCov.CollectCov(values.c,values.n)    
     else:
         sys.exit("Please, check the path of the bam and/or the bed files")
         
+def runCoverageBed(a_file,b_file):
+
+    a = pybedtools.BedTool(a_file)
+    if a._isbam:
+        print "Is a ",a.fn," a bam file ? ", a._isbam
+    else:
+        message = "Check your bam file"+str(a.fn)
+# for now use to bed file to developp the Collectcov script 
+# but a should be a bam fiel produced by the pipeline
+        #sys.exit(message)
+    b = pybedtools.BedTool(b_file)
+    print "Is b ",b.fn," b bam file ? ", b._isbam
+    print"command coverageFile = a.coverage(b,d=True)"
+    coverageFile = a.coverage(b,d=True)
+    return coverageFile
+
 test_values(values)
 
-
-#a = pybedtools.BedTool('/Volumes/ToveExFat/120615/040_KA005/020_refineAlignment/030_BQRecalGATK/all.realigned.markDup.baseQreCali.bam')
-#a = pybedtools.BedTool(sys.argv[1])
-#a = pybedtools.BedTool('/Volumes/ToveExFat/120615/040_KA005/020_refineAlignment/030_BQRecalGATK/all.realigned.markDup.baseQreCali1000b.bam')
-#print type(a)
-#print "Is a ",a.fn," a bam file ? ", a._isbam
-
-
-#b = pybedtools.BedTool(sys.argv[2])
-#b = pybedtools.BedTool('/Users/yvans/Home/Dropbox/travail/BED_GFF_INTERVALS/Valided_And_Correct/CARDIO/Galaxy_GFFtoBED_EGS179.r150.readableregion_b37_sorted_GeneName.bed')
-#print type(b)
-#print "Is b ",b.fn," a bam file ? ",b._isbam
-#print"command c = a.coverage(b,d=True)"
-
-#c = a.coverage(b,d=True)
-c = pybedtools.BedTool('/Users/yvans/Home/workspace/Workflow/TestFiles/coverageTest2Test1_1.bed')
-
-'''''
-cmommand:
-coverageBed -a test2.bed -b test1_1.bed -d > coverageTest2Test1_1.bed
-
-test2.bed:
-7    10001    10050    gene1_ex1    0    +
-7    10060    10080    gene1_ex2    0    +
-7    10100    10200    gene1_ex3    0    +
-7    10250    10300    gene1_ex4    0    +
-7    10310    10400    gene1_ex5    0    +
-
-test1_1.bed:
-7    10001    10100    Pos1_ex1    0    +
-7    10150    10320    Pos1_ex2    0    +
-7    10350    10500    Pos1_ex3    0    +
-
-should give after manual cleaning:
-7    10050    10059    Pos1_ex1    0    +    50    0
-7    10081    10100    Pos1_ex1    0    +    80    0
-7    10200    10250    Pos1_ex2    0    +    51    0
-7    10300    10310    Pos1_ex2    0    +    151    0
-7    10400    10500    Pos1_ex3    0    +    51    0
-'''
-'''
-def CollectCov(coverageResult,cov):
-    chrom = ""
-    start = 0
-    stop = 0
-    feature = "None"
-    colors = "\t255,0,0"
-     
-## Get the chrom, start and stop
-## From the example above we can see that chrom, start, stop, feature,score, and strand stay the same only posinfeat change
-## One should return an line with summarizing the "strech" of the feature satisfying the wanted coverage.
-## 7    10050    10059    Pos1_ex1    0    +    50    0
-## 7    10081    10100    Pos1_ex1    0    +    80    0
-## 7    10200    10250    Pos1_ex2    0    +    51    0
-## 7    10300    10310    Pos1_ex2    0    +    151    0
-## 7    10400    10500    Pos1_ex3    0    +    51    0
-
-    for entry in  coverageResult[0:len(coverageResult)]:
-        if int(entry[7]) <= int(cov):
-
-            if feature != entry.name:
-## new feature so have to get his name and the start position (column 6)
-                if feature == "None":
-                    if entry.start == 1:
-                        start = entry.start+int(entry[6])-2
-                    else:    
-                        start = entry.start+int(entry[6])-1
-                    feature = entry.name
-                if feature != "None" and feature != entry.name:
-                    print chrom+"\t"+str(start)+"\t"+str(stop)+"\t"+feature+"\t"+entry.score+"\t"+entry.strand+"\t"+str(start)+"\t"+str(stop)+colors
-                    if entry.start == 1:
-                        start = entry.start+int(entry[6])-2
-                    else:    
-                        start = entry.start+int(entry[6])-1
-                    feature = entry.name
-            else:
-                chrom = entry[0]
-                if entry.start == 1:
-                    stop = entry.start + int(entry[6])-1
-                else:
-                    stop = entry.start + int(entry[6])
-                
-    last_entry = coverageResult[len(coverageResult)-1]
-    print last_entry.chrom+"\t"+str(start)+"\t"+str(stop)+"\t"+last_entry.name+"\t"+last_entry.score+"\t"+last_entry.strand+"\t"+str(start)+"\t"+str(stop)+colors
-
-CollectCov(c,0)
-'''
+if (values.a and values.b):
+    coverageFile = runCoverageBed(values.a,values.b)
+    CollectCov.CollectCov(coverageFile,values.n)
+else:
+    CollectCov.CollectCov(values.c,values.n)
