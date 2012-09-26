@@ -18,8 +18,6 @@ def CollectCov(coverageResult,cov):
     colors = "\t255,0,0"
 
     for entry in  coverage_object[0:len(coverage_object)]:
-        #if int(entry[7]) <= int(cov):
-
         if int(entry[7]) <= cov:
             print cov, feature
             print entry
