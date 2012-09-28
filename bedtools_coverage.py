@@ -58,8 +58,8 @@ def runCoverageBed(a_file,b_file):
 # but a should be a bam fiel produced by the pipeline
         #sys.exit(message)
     b = pybedtools.BedTool(b_file)
-    print "Is b ",b.fn," b bam file ? ", b._isbam
-    print"command coverageFile = a.coverage(b,d=True)"
+    #print "Is b ",b.fn," b bam file ? ", b._isbam
+    #print"command coverageFile = a.coverage(b,d=True)"
     coverageFile = a.coverage(b,d=True)
     return coverageFile
 

@@ -13,38 +13,71 @@
 def CollectCov(coverageResult,cov):
     import pybedtools
     coverage_object = pybedtools.BedTool(coverageResult)
-    #chrom = ""
-    start = 0
-    stop = 0
+    chrom = ""
+    start = 0.1
+    stop = 0.1
     feature = "None"
     colors = "\t255,0,0"
-
+    i = 1
+    notSee = True
     for entry in  coverage_object[0:len(coverage_object)]:
         if int(entry[7]) <= cov:
-            print cov, feature
-            print entry
-            if feature != entry.name:
-## new feature so have to get his name and the start position (column 6)
-                if feature == "None":
-                    if entry.start == 1:
-                        print "start entry",entry
-                        start = entry.start+int(entry[6])-2
-                    else:    
-                        start = entry.start+int(entry[6])-1
+            #print "F:t",feature == entry.name
+            #print "So:t",int(entry[6]) == stop+1
+            if feature != entry.name and stop != int(entry[6]):
+                #print dir(entry)
+                if feature == "None" and notSee:
+# Need to remember the start of the region
+# which is entry.start + start
+                    notSee = False
                     feature = entry.name
-                if feature != "None" and feature != entry.name:
-                    #print chrom+"\t"+str(start)+"\t"+str(stop)+"\t"+feature+"\t"+entry.score+"\t"+entry.strand+"\t"+str(start)+"\t"+str(stop)+colors
-                    if entry.start == 1:
-                        start = entry.start+int(entry[6])-2
-                    else:    
-                        start = entry.start+int(entry[6])-1
+                    chr_start = entry.start
+                    chr_stop = entry.stop
+                    strand = entry.strand
+                    score = entry.score
+                    start = int(entry[6])
+                    stop = int(entry[6])
+                    chrom = entry.chrom
+                    #print "1a\tline:",i,"\t",chrom,"\t",chr_start,"\t",chr_stop,"\t",feature,"\t",score,"\t",strand,"\t",stop                    
+                    #continue
+                elif feature != entry.name:
+                    print "1b:\tline:",i,"\t",chrom,"\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
+                    print "1c:\tline:",i,"\t",entry
                     feature = entry.name
-            else:
-                #chrom = entry[0]
-                if entry.start == 1:
-                    stop = entry.start + int(entry[6])-1
-                else:
-                    stop = entry.start + int(entry[6])
-                
+                    stop = int(entry[6])
+                #print feature , entry.start, start
+                i += 1
+                #print"\t\tjumped line 51"
+                continue
+# if the feature is the same AND the base is next one just remember it
+# but start is becoming stop
+            if feature == entry.name and int(entry[6]) == stop+1 :
+                stop = int(entry[6])
+                print "1c:\tline:",i,"\t", stop
+                i += 1
+                #print"\t\tjumped line 59"
+                continue
+# if the feature change or the base is not the next one
+# print the previous and record the new values
+            if feature == entry.name or int(entry[6]) != stop+1 :
+                #print "3a_ori:\tline:",i-1,"\t",chrom,"\t",chr_start,"\t",chr_stop,"\t",feature,"\t",score,"\t",strand,"\t",stop
+                print "3a:\tline:",i,"\t",chrom,"\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
+                #print "3b:\tline:",i,"\t",entry
+                start = int(entry[6])
+                stop = int(entry[6])
+                #print "3c:\tline:",i,"\t",chrom,"\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
+                #print "jumped line 69"
+                continue
+            elif feature != entry.name or int(entry[6]) == stop+1 :
+                #print "4a_ori:\tline:",i-1,"\t",chrom,"\t",chr_start,"\t",chr_stop,"\t",feature,"\t",score,"\t",strand,"\t",stop
+                print "4a:\tline:",i,"\t",chrom,"\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
+                #print "4b:\tline:",i,"\t",entry
+                feature = entry.name
+                start = int(entry[6])
+                stop = int(entry[6])
+                print "4c:\tline:",i,"\t",chrom,"\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
+
+            i += 1
     last_entry = coverage_object[len(coverage_object)-1]
-    print "last entry:",last_entry.chrom+"\t"+str(start)+"\t"+str(stop)+"\t"+last_entry.name+"\t"+last_entry.score+"\t"+last_entry.strand+"\t"+str(start)+"\t"+str(stop)+colors
+    print "last entry_ori:\t\t",last_entry.chrom,"\t",last_entry.start,"\t",last_entry.stop,"\t",last_entry.name,"\t",last_entry.score,"\t",last_entry.strand,"\t",start,"\t",stop,colors
+            
