@@ -38,13 +38,15 @@ def CollectCov(coverageResult,cov):
                     start = int(entry[6])
                     stop = int(entry[6])
                     chrom = entry.chrom
-                    #print "1a\tline:",i,"\t",chrom,"\t",chr_start,"\t",chr_stop,"\t",feature,"\t",score,"\t",strand,"\t",stop                    
+                    print "1a\tline:",i,"\t",chrom,"\t",chr_start,"\t",chr_stop,"\t",feature,"\t",score,"\t",strand,"\t",stop                    
                     #continue
                 elif feature != entry.name:
                     print "1b:\tline:",i,"\t",chrom,"\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
                     print "1c:\tline:",i,"\t",entry
                     feature = entry.name
                     stop = int(entry[6])
+                    print "1d:\tline:",i,"\t",chrom,"\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
+                    
                 #print feature , entry.start, start
                 i += 1
                 #print"\t\tjumped line 51"
@@ -53,7 +55,7 @@ def CollectCov(coverageResult,cov):
 # but start is becoming stop
             if feature == entry.name and int(entry[6]) == stop+1 :
                 stop = int(entry[6])
-                print "1c:\tline:",i,"\t", stop
+                print "2:\tline:",i,"\t", stop
                 i += 1
                 #print"\t\tjumped line 59"
                 continue
