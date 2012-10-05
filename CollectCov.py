@@ -49,7 +49,7 @@ def CollectCov(coverageResult,cov):
                     chrom = entry.chrom
                     #continue
                 elif feature != entry.name:
-                    print chrom+"\t"+str(chr_start+start)+"\t"+str(chr_start+stop)+"\t"+feature+"\t"+score+"\t"+strand+"\t"+str(chr_start+start)+"\t"+str(chr_start+stop)+"\t"+colors
+                    print chrom+"\t"+str(chr_start+start-1)+"\t"+str(chr_start+stop)+"\t"+feature+"\t"+score+"\t"+strand+"\t"+str(chr_start+start-1)+"\t"+str(chr_start+stop)+"\t"+colors
                     chrom = entry.chrom
                     feature = entry.name
                     chr_start = entry.start
@@ -67,12 +67,12 @@ def CollectCov(coverageResult,cov):
 # if the feature change or the base is not the next one
 # print the previous and record the new values
             if feature == entry.name or int(entry[6]) != stop+1 :
-                print chrom+"\t"+str(chr_start+start)+"\t"+str(chr_start+stop)+"\t"+feature+"\t"+score+"\t"+strand+"\t"+str(chr_start+start)+"\t"+str(chr_start+stop)+"\t"+colors
+                print chrom+"\t"+str(chr_start+start-1)+"\t"+str(chr_start+stop)+"\t"+feature+"\t"+score+"\t"+strand+"\t"+str(chr_start+start-1)+"\t"+str(chr_start+stop)+"\t"+colors
                 start = int(entry[6])
                 stop = int(entry[6])
                 continue
             elif feature != entry.name or int(entry[6]) == stop+1 :
-                print chrom,"HOHOHProblems\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
+                print chrom,"HOHOHProblems\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start-1,"\t",chr_start+stop,"\t",colors
                 chrom = entry.chrom
                 feature = entry.name
                 start = int(entry[6])
@@ -81,6 +81,6 @@ def CollectCov(coverageResult,cov):
 
             i += 1
     last_entry = coverage_object[len(coverage_object)-1]
-    print last_entry.chrom+"\t"+str(last_entry.start+start)+"\t"+str(last_entry.start+stop)+"\t"+last_entry.name+"\t"+last_entry.score+"\t"+last_entry.strand+"\t"+str(last_entry.start+start)+"\t"+str(last_entry.start+stop)+"\t"+colors        
+    print last_entry.chrom+"\t"+str(last_entry.start+start-1)+"\t"+str(last_entry.start+stop)+"\t"+last_entry.name+"\t"+last_entry.score+"\t"+last_entry.strand+"\t"+str(last_entry.start+start-1)+"\t"+str(last_entry.start+stop)+"\t"+colors        
     
     #print "\t\t\t7    10051    10056    Pos1_ex1    0    +    10051    10056    255,0,0\n\t\t\t7    10081    10086    Pos1_ex1    0    +    10081    10086    255,0,0\n\t\t\t7    10206    10211    Pos1_ex2    0    +    10206    10211    255,0,0\n\t\t\t8    10406    10409    Pos1_ex3    0    +    10406    10409    255,0,0"
