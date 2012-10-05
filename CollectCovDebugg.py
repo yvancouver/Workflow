@@ -25,12 +25,15 @@ def CollectCov(coverageResult,cov):
     start = 0.1
     stop = 0.1
     feature = "None"
-    colors = "255,0,0"
+    colors = "\t255,0,0"
     i = 1
     notSee = True
     for entry in  coverage_object[0:len(coverage_object)]:
         if int(entry[7]) <= cov:
+            #print "F:t",feature == entry.name
+            #print "So:t",int(entry[6]) == stop+1
             if feature != entry.name and stop != int(entry[6]):
+                #print dir(entry)
                 if feature == "None" and notSee:
 # Need to remember the start of the region
 # which is entry.start + start
@@ -43,31 +46,44 @@ def CollectCov(coverageResult,cov):
                     start = int(entry[6])
                     stop = int(entry[6])
                     chrom = entry.chrom
+                    #print "1a\tline:",i,"\t",chrom,"\t",chr_start,"\t",chr_stop,"\t",feature,"\t",score,"\t",strand,"\t",stop                    
                     #continue
                 elif feature != entry.name:
-                    print chrom+"\t"+str(chr_start+start)+"\t"+str(chr_start+stop)+"\t"+feature+"\t"+score+"\t"+strand+"\t"+str(chr_start+start)+"\t"+str(chr_start+stop)+"\t"+colors
+                    print "1b:\tline:",i,"\t",chrom,"\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
+                    #print "1c:\tline:",i,"\t",entry
                     feature = entry.name
                     chr_start = entry.start
                     start = int(entry[6])
                     stop = int(entry[6])
+                    #print "1d:\tline:",i,"\t",chrom,"\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
                     
+                #print feature , entry.start, start
                 i += 1
+                #print"\t\tjumped line 51"
                 continue
 # if the feature is the same AND the base is next one just remember it
 # but start is becoming stop
             if feature == entry.name and int(entry[6]) == stop+1 :
                 stop = int(entry[6])
+                #print "2:\tline:",i,"\t", stop
                 i += 1
+                #print"\t\tjumped line 59"
                 continue
 # if the feature change or the base is not the next one
 # print the previous and record the new values
             if feature == entry.name or int(entry[6]) != stop+1 :
-                print chrom+"\t"+str(chr_start+start)+"\t"+str(chr_start+stop)+"\t"+feature+"\t"+score+"\t"+strand+"\t"+str(chr_start+start)+"\t"+str(chr_start+stop)+"\t"+colors
+                #print "3a_ori:\tline:",i-1,"\t",chrom,"\t",chr_start,"\t",chr_stop,"\t",feature,"\t",score,"\t",strand,"\t",stop
+                print "3a:\tline:",i,"\t",chrom,"\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
+                #print "3b:\tline:",i,"\t",entry
                 start = int(entry[6])
                 stop = int(entry[6])
+                #print "3c:\tline:",i,"\t",chrom,"\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
+                #print "jumped line 69"
                 continue
             elif feature != entry.name or int(entry[6]) == stop+1 :
-                print chrom,"HOHOHProblems\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
+                #print "4a_ori:\tline:",i-1,"\t",chrom,"\t",chr_start,"\t",chr_stop,"\t",feature,"\t",score,"\t",strand,"\t",stop
+                print "4a:\tline:",i,"\t",chrom,"\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
+                #print "4b:\tline:",i,"\t",entry
                 feature = entry.name
                 start = int(entry[6])
                 stop = int(entry[6])
@@ -75,6 +91,5 @@ def CollectCov(coverageResult,cov):
 
             i += 1
     last_entry = coverage_object[len(coverage_object)-1]
-    print last_entry.chrom+"\t"+str(last_entry.start+start)+"\t"+str(last_entry.start+stop)+"\t"+last_entry.name+"\t"+last_entry.score+"\t"+last_entry.strand+"\t"+str(last_entry.start+start)+"\t"+str(last_entry.start+stop)+"\t"+colors        
-    
-    #print "\t\t\t7    10051    10056    Pos1_ex1    0    +    10051    10056    255,0,0\n\t\t\t7    10081    10086    Pos1_ex1    0    +    10081    10086    255,0,0\n\t\t\t7    10206    10211    Pos1_ex2    0    +    10206    10211    255,0,0\n\t\t\t8    10406    10409    Pos1_ex3    0    +    10406    10409    255,0,0"
+    print "last entry_ori:\t\t",last_entry.chrom,"\t",last_entry.start+start,"\t",last_entry.start+stop,"\t",last_entry.name,"\t",last_entry.score,"\t",last_entry.strand,"\t",last_entry.start+start,"\t",last_entry.start+stop,colors        
+    print "\t\t\t7    10051    10056    Pos1_ex1    0    +    10051    10056    255,0,0\n\t\t\t7    10081    10086    Pos1_ex1    0    +    10081    10086    255,0,0\n\t\t\t7    10206    10211    Pos1_ex2    0    +    10206    10211    255,0,0\n\t\t\t8    10406    10409    Pos1_ex3    0    +    10406    10409    255,0,0"
