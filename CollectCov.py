@@ -2,7 +2,7 @@
 ## From the example above we can see that chrom, start, stop, feature,score, and strand stay the same only posinfeat change
 ## One should return an line with summarizing the "strech" of the feature satisfying the wanted coverage.
 ## coverageBed -a test2.bed -b test1_1.bed -d
-## should return
+## should return check it out
 ## chr    start    stop   exon in b  score strand start    stop     color code
 ## 7    10050    10060    Pos1_ex1    0    +    10050    10060    255,0,0
 ## 7    10080    10100    Pos1_ex1    0    +    10080    10100    255,0,0
