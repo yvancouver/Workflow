@@ -1,7 +1,3 @@
-#################################
-# ToDo Get the chromosome!!!    #
-#################################
-
 ## Get the chrom, start and stop
 ## From the example above we can see that chrom, start, stop, feature,score, and strand stay the same only posinfeat change
 ## One should return an line with summarizing the "strech" of the feature satisfying the wanted coverage.

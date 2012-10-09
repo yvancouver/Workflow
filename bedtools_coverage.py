@@ -51,11 +51,12 @@ def runCoverageBed(a_file,b_file):
 
     a = pybedtools.BedTool(a_file)
     if a._isbam:
-        print "Is a ",a.fn," a bam file ? ", a._isbam
+        #print "Is a ",a.fn," a bam file ? ", a._isbam
+        pass
     else:
         message = "Check your bam file"+str(a.fn)
-# for now use to bed file to developp the Collectcov script 
-# but a should be a bam fiel produced by the pipeline
+# for now use to bed file to develop the Collectcov script 
+# but a should be a bam file produced by the pipeline
         #sys.exit(message)
     b = pybedtools.BedTool(b_file)
     #print "Is b ",b.fn," b bam file ? ", b._isbam
