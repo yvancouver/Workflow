@@ -37,7 +37,7 @@ def CollectCov(coverageResult,cov):
                     notSee = False
                     feature = entry.name
                     chr_start = entry.start
-                    chr_stop = entry.stop
+                    #chr_stop = entry.stop
                     strand = entry.strand
                     score = entry.score
                     start = int(entry[6])
@@ -51,7 +51,7 @@ def CollectCov(coverageResult,cov):
                     chr_start = entry.start
                     start = int(entry[6])
                     stop = int(entry[6])
-                    
+                    strand = entry.strand
                 i += 1
                 continue
 # if the feature is the same AND the base is next one just remember it
@@ -73,6 +73,7 @@ def CollectCov(coverageResult,cov):
                 feature = entry.name
                 start = int(entry[6])
                 stop = int(entry[6])
+                strand = entry.strand
                 print "4c:\tline:",i,"\t",chrom,"\t",chr_start+start,"\t",chr_start+stop,"\t",feature,"\t",score,"\t",strand,"\t",chr_start+start,"\t",chr_start+stop,"\t",colors
 
             i += 1
