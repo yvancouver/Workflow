@@ -17,4 +17,4 @@ END {
 for (f = 1; f <= nf; f++)
 for (r = 1; r <= NR; r++)
 printf a[r, f] (r==NR ? RS : FS) 
-}'
+}' | awk '{sub(/\t{6}/,"\t");print}'
