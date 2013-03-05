@@ -1,0 +1,1262 @@
+Ensembl Gene ID
+ENSG00000148384
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='inositol polyphosphate-5-phosphatase, 72...'; StableId='ENSG00000148384'; Status='KNOWN'; Symbol='INPP5E')
+1
+Transcript ID ENST00000371712
+From csv	start		end
+		139323071 	139334274 
+From Transcript	start		End
+		139323070 	139334274
+Transcript(Species='Homo sapiens'; CoordName='9'; Start=139323070; End=139334274; length=11204; Strand='-')
+
+
+ENSG00000046651
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='oral-facial-digital syndrome 1...'; StableId='ENSG00000046651'; Status='KNOWN'; Symbol='OFD1')
+9
+Transcript ID ENST00000340096
+From csv	start		end
+		13752832 	13787480 
+From Transcript	start		End
+		13752863 	13787472
+Transcript(Species='Homo sapiens'; CoordName='X'; Start=13752863; End=13787472; length=34609; Strand='+')
+Transcript ID ENST00000380567
+From csv	start		end
+		13752832 	13787480 
+From Transcript	start		End
+		13752863 	13787472
+Transcript(Species='Homo sapiens'; CoordName='X'; Start=13752863; End=13787472; length=34609; Strand='+')
+Transcript ID ENST00000485052
+From csv	start		end
+		13752832 	13787480 
+From Transcript	start		End
+		13752875 	13754666
+Transcript(Species='Homo sapiens'; CoordName='X'; Start=13752875; End=13754666; length=1791; Strand='+')
+Transcript ID ENST00000490265
+From csv	start		end
+		13752832 	13787480 
+From Transcript	start		End
+		13752879 	13787472
+Transcript(Species='Homo sapiens'; CoordName='X'; Start=13752879; End=13787472; length=34593; Strand='+')
+Transcript ID ENST00000466534
+From csv	start		end
+		13752832 	13787480 
+From Transcript	start		End
+		13756812 	13757433
+Transcript(Species='Homo sapiens'; CoordName='X'; Start=13756812; End=13757433; length=621; Strand='+')
+Transcript ID ENST00000464463
+From csv	start		end
+		13752832 	13787480 
+From Transcript	start		End
+		13778758 	13787290
+Transcript(Species='Homo sapiens'; CoordName='X'; Start=13778758; End=13787290; length=8532; Strand='+')
+Transcript ID ENST00000474705
+From csv	start		end
+		13752832 	13787480 
+From Transcript	start		End
+		13786023 	13787292
+Transcript(Species='Homo sapiens'; CoordName='X'; Start=13786023; End=13787292; length=1269; Strand='+')
+Transcript ID ENST00000380550
+From csv	start		end
+		13752832 	13787480 
+From Transcript	start		End
+		13752831 	13787480
+Transcript(Species='Homo sapiens'; CoordName='X'; Start=13752831; End=13787480; length=34649; Strand='+')
+Transcript ID ENST00000398395
+From csv	start		end
+		13752832 	13787480 
+From Transcript	start		End
+		13752850 	13771024
+Transcript(Species='Homo sapiens'; CoordName='X'; Start=13752850; End=13771024; length=18174; Strand='+')
+
+
+ENSG00000144061
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='nephronophthisis 1 (juvenile)...'; StableId='ENSG00000144061'; Status='KNOWN'; Symbol='NPHP1')
+11
+Transcript ID ENST00000316534
+From csv	start		end
+		110879888 	110962643 
+From Transcript	start		End
+		110879887 	110962619
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=110879887; End=110962619; length=82732; Strand='-')
+Transcript ID ENST00000445609
+From csv	start		end
+		110879888 	110962643 
+From Transcript	start		End
+		110880912 	110962569
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=110880912; End=110962569; length=81657; Strand='-')
+Transcript ID ENST00000393272
+From csv	start		end
+		110879888 	110962643 
+From Transcript	start		End
+		110880912 	110962643
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=110880912; End=110962643; length=81731; Strand='-')
+Transcript ID ENST00000496524
+From csv	start		end
+		110879888 	110962643 
+From Transcript	start		End
+		110880924 	110962594
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=110880924; End=110962594; length=81670; Strand='-')
+Transcript ID ENST00000461707
+From csv	start		end
+		110879888 	110962643 
+From Transcript	start		End
+		110881164 	110962578
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=110881164; End=110962578; length=81414; Strand='-')
+Transcript ID ENST00000355301
+From csv	start		end
+		110879888 	110962643 
+From Transcript	start		End
+		110881284 	110962549
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=110881284; End=110962549; length=81265; Strand='-')
+Transcript ID ENST00000417665
+From csv	start		end
+		110879888 	110962643 
+From Transcript	start		End
+		110881284 	110962572
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=110881284; End=110962572; length=81288; Strand='-')
+Transcript ID ENST00000422492
+From csv	start		end
+		110879888 	110962643 
+From Transcript	start		End
+		110882975 	110886836
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=110882975; End=110886836; length=3861; Strand='-')
+Transcript ID ENST00000493051
+From csv	start		end
+		110879888 	110962643 
+From Transcript	start		End
+		110886528 	110902125
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=110886528; End=110902125; length=15597; Strand='-')
+Transcript ID ENST00000418527
+From csv	start		end
+		110879888 	110962643 
+From Transcript	start		End
+		110935617 	110962576
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=110935617; End=110962576; length=26959; Strand='-')
+Transcript ID ENST00000449600
+From csv	start		end
+		110879888 	110962643 
+From Transcript	start		End
+		110936330 	110962538
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=110936330; End=110962538; length=26208; Strand='-')
+
+
+ENSG00000155755
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='transmembrane protein 237...'; StableId='ENSG00000155755'; Status='KNOWN'; Symbol='TMEM237')
+12
+Transcript ID ENST00000409444
+From csv	start		end
+		202484907 	202508293 
+From Transcript	start		End
+		202484906 	202507667
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=202484906; End=202507667; length=22761; Strand='-')
+Transcript ID ENST00000409883
+From csv	start		end
+		202484907 	202508293 
+From Transcript	start		End
+		202484906 	202508240
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=202484906; End=202508240; length=23334; Strand='-')
+Transcript ID ENST00000495329
+From csv	start		end
+		202484907 	202508293 
+From Transcript	start		End
+		202484908 	202491046
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=202484908; End=202491046; length=6138; Strand='-')
+Transcript ID ENST00000286196
+From csv	start		end
+		202484907 	202508293 
+From Transcript	start		End
+		202488478 	202508207
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=202488478; End=202508207; length=19729; Strand='-')
+Transcript ID ENST00000471318
+From csv	start		end
+		202484907 	202508293 
+From Transcript	start		End
+		202488604 	202494143
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=202488604; End=202494143; length=5539; Strand='-')
+Transcript ID ENST00000466641
+From csv	start		end
+		202484907 	202508293 
+From Transcript	start		End
+		202492082 	202498126
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=202492082; End=202498126; length=6044; Strand='-')
+Transcript ID ENST00000466839
+From csv	start		end
+		202484907 	202508293 
+From Transcript	start		End
+		202492109 	202496098
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=202492109; End=202496098; length=3989; Strand='-')
+Transcript ID ENST00000432684
+From csv	start		end
+		202484907 	202508293 
+From Transcript	start		End
+		202494010 	202508293
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=202494010; End=202508293; length=14283; Strand='-')
+Transcript ID ENST00000444047
+From csv	start		end
+		202484907 	202508293 
+From Transcript	start		End
+		202494452 	202508125
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=202494452; End=202508125; length=13673; Strand='-')
+Transcript ID ENST00000489550
+From csv	start		end
+		202484907 	202508293 
+From Transcript	start		End
+		202496871 	202508141
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=202496871; End=202508141; length=11270; Strand='-')
+Transcript ID ENST00000480124
+From csv	start		end
+		202484907 	202508293 
+From Transcript	start		End
+		202500892 	202503754
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=202500892; End=202503754; length=2862; Strand='-')
+Transcript ID ENST00000463205
+From csv	start		end
+		202484907 	202508293 
+From Transcript	start		End
+		202503173 	202507376
+Transcript(Species='Homo sapiens'; CoordName='2'; Start=202503173; End=202507376; length=4203; Strand='-')
+
+
+ENSG00000166813
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='kinesin family member...'; StableId='ENSG00000166813'; Status='KNOWN'; Symbol='KIF7')
+3
+Transcript ID ENST00000558928
+From csv	start		end
+		90152020 	90198682 
+From Transcript	start		End
+		90152019 	90172011
+Transcript(Species='Homo sapiens'; CoordName='15'; Start=90152019; End=90172011; length=19992; Strand='-')
+Transcript ID ENST00000394412
+From csv	start		end
+		90152020 	90198682 
+From Transcript	start		End
+		90171207 	90198682
+Transcript(Species='Homo sapiens'; CoordName='15'; Start=90171207; End=90198682; length=27475; Strand='-')
+Transcript ID ENST00000445906
+From csv	start		end
+		90152020 	90198682 
+From Transcript	start		End
+		90191733 	90198682
+Transcript(Species='Homo sapiens'; CoordName='15'; Start=90191733; End=90198682; length=6949; Strand='-')
+
+
+ENSG00000169379
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='ADP-ribosylation factor-like 13B...'; StableId='ENSG00000169379'; Status='KNOWN'; Symbol='ARL13B')
+11
+Transcript ID ENST00000478400
+From csv	start		end
+		93698983 	93774512 
+From Transcript	start		End
+		93698985 	93715528
+Transcript(Species='Homo sapiens'; CoordName='3'; Start=93698985; End=93715528; length=16543; Strand='+')
+Transcript ID ENST00000303097
+From csv	start		end
+		93698983 	93774512 
+From Transcript	start		End
+		93698985 	93774123
+Transcript(Species='Homo sapiens'; CoordName='3'; Start=93698985; End=93774123; length=75138; Strand='+')
+Transcript ID ENST00000394222
+From csv	start		end
+		93698983 	93774512 
+From Transcript	start		End
+		93698992 	93772998
+Transcript(Species='Homo sapiens'; CoordName='3'; Start=93698992; End=93772998; length=74006; Strand='+')
+Transcript ID ENST00000471138
+From csv	start		end
+		93698983 	93774512 
+From Transcript	start		End
+		93698998 	93772913
+Transcript(Species='Homo sapiens'; CoordName='3'; Start=93698998; End=93772913; length=73915; Strand='+')
+Transcript ID ENST00000460371
+From csv	start		end
+		93698983 	93774512 
+From Transcript	start		End
+		93699013 	93774125
+Transcript(Species='Homo sapiens'; CoordName='3'; Start=93699013; End=93774125; length=75112; Strand='+')
+Transcript ID ENST00000335438
+From csv	start		end
+		93698983 	93774512 
+From Transcript	start		End
+		93699033 	93774123
+Transcript(Species='Homo sapiens'; CoordName='3'; Start=93699033; End=93774123; length=75090; Strand='+')
+Transcript ID ENST00000486562
+From csv	start		end
+		93698983 	93774512 
+From Transcript	start		End
+		93699057 	93758759
+Transcript(Species='Homo sapiens'; CoordName='3'; Start=93699057; End=93758759; length=59702; Strand='+')
+Transcript ID ENST00000475206
+From csv	start		end
+		93698983 	93774512 
+From Transcript	start		End
+		93699113 	93722746
+Transcript(Species='Homo sapiens'; CoordName='3'; Start=93699113; End=93722746; length=23633; Strand='+')
+Transcript ID ENST00000492165
+From csv	start		end
+		93698983 	93774512 
+From Transcript	start		End
+		93699131 	93722753
+Transcript(Species='Homo sapiens'; CoordName='3'; Start=93699131; End=93722753; length=23622; Strand='+')
+Transcript ID ENST00000535334
+From csv	start		end
+		93698983 	93774512 
+From Transcript	start		End
+		93698982 	93774512
+Transcript(Species='Homo sapiens'; CoordName='3'; Start=93698982; End=93774512; length=75530; Strand='+')
+Transcript ID ENST00000539730
+From csv	start		end
+		93698983 	93774512 
+From Transcript	start		End
+		93698998 	93772411
+Transcript(Species='Homo sapiens'; CoordName='3'; Start=93698998; End=93772411; length=73413; Strand='+')
+
+
+ENSG00000135541
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='Abelson helper integration...'; StableId='ENSG00000135541'; Status='KNOWN'; Symbol='AHI1')
+19
+Transcript ID ENST00000367800
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135604669 	135818883
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135604669; End=135818883; length=214214; Strand='-')
+Transcript ID ENST00000457866
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135605123 	135818903
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135605123; End=135818903; length=213780; Strand='-')
+Transcript ID ENST00000475846
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135606033 	135763823
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135606033; End=135763823; length=157790; Strand='-')
+Transcript ID ENST00000498558
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135606322 	135621971
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135606322; End=135621971; length=15649; Strand='-')
+Transcript ID ENST00000367799
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135606429 	135769552
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135606429; End=135769552; length=163123; Strand='-')
+Transcript ID ENST00000527681
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135606432 	135621670
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135606432; End=135621670; length=15238; Strand='-')
+Transcript ID ENST00000265602
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135606433 	135818914
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135606433; End=135818914; length=212481; Strand='-')
+Transcript ID ENST00000487135
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135606518 	135621791
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135606518; End=135621791; length=15273; Strand='-')
+Transcript ID ENST00000533029
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135623510 	135644517
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135623510; End=135644517; length=21007; Strand='-')
+Transcript ID ENST00000531788
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135639571 	135818878
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135639571; End=135818878; length=179307; Strand='-')
+Transcript ID ENST00000327035
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135708921 	135818883
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135708921; End=135818883; length=109962; Strand='-')
+Transcript ID ENST00000529865
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135715794 	135732646
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135715794; End=135732646; length=16852; Strand='-')
+Transcript ID ENST00000524469
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135784274 	135818875
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135784274; End=135818875; length=34601; Strand='-')
+Transcript ID ENST00000488690
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135811054 	135818787
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135811054; End=135818787; length=7733; Strand='-')
+Transcript ID ENST00000528103
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135811597 	135813516
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135811597; End=135813516; length=1919; Strand='-')
+Transcript ID ENST00000534469
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135811597 	135816778
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135811597; End=135816778; length=5181; Strand='-')
+Transcript ID ENST00000531527
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135813389 	135818878
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135813389; End=135818878; length=5489; Strand='-')
+Transcript ID ENST00000417892
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135606033 	135763823
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135606033; End=135763823; length=157790; Strand='-')
+Transcript ID ENST00000367798
+From csv	start		end
+		135604670 	135818914 
+From Transcript	start		End
+		135811333 	135818386
+Transcript(Species='Homo sapiens'; CoordName='6'; Start=135811333; End=135818386; length=7053; Strand='-')
+
+
+ENSG00000197603
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='chromosome 5 open...'; StableId='ENSG00000197603'; Status='KNOWN'; Symbol='C5orf42')
+17
+Transcript ID ENST00000508244
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37106329 	37247894
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37106329; End=37247894; length=141565; Strand='-')
+Transcript ID ENST00000509849
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37107079 	37213724
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37107079; End=37213724; length=106645; Strand='-')
+Transcript ID ENST00000514429
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37107079 	37213724
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37107079; End=37213724; length=106645; Strand='-')
+Transcript ID ENST00000512288
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37120363 	37142592
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37120363; End=37142592; length=22229; Strand='-')
+Transcript ID ENST00000509957
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37124972 	37158379
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37124972; End=37158379; length=33407; Strand='-')
+Transcript ID ENST00000504716
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37138787 	37139689
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37138787; End=37139689; length=902; Strand='-')
+Transcript ID ENST00000505121
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37138803 	37142743
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37138803; End=37142743; length=3940; Strand='-')
+Transcript ID ENST00000508405
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37138890 	37153946
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37138890; End=37153946; length=15056; Strand='-')
+Transcript ID ENST00000511824
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37153529 	37169197
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37153529; End=37169197; length=15668; Strand='-')
+Transcript ID ENST00000511210
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37153962 	37162601
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37153962; End=37162601; length=8639; Strand='-')
+Transcript ID ENST00000515380
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37154006 	37158034
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37154006; End=37158034; length=4028; Strand='-')
+Transcript ID ENST00000507718
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37154038 	37167206
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37154038; End=37167206; length=13168; Strand='-')
+Transcript ID ENST00000510830
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37157769 	37162756
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37157769; End=37162756; length=4987; Strand='-')
+Transcript ID ENST00000511781
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37169633 	37176201
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37169633; End=37176201; length=6568; Strand='-')
+Transcript ID ENST00000505431
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37205295 	37206484
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37205295; End=37206484; length=1189; Strand='-')
+Transcript ID ENST00000425232
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37106329 	37249530
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37106329; End=37249530; length=143201; Strand='-')
+Transcript ID ENST00000274258
+From csv	start		end
+		37106330 	37249530 
+From Transcript	start		End
+		37106329 	37249530
+Transcript(Species='Homo sapiens'; CoordName='5'; Start=37106329; End=37249530; length=143201; Strand='-')
+
+
+ENSG00000048342
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='coiled-coil and C2...'; StableId='ENSG00000048342'; Status='KNOWN'; Symbol='CC2D2A')
+17
+Transcript ID ENST00000511544
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15471514 	15483941
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15471514; End=15483941; length=12427; Strand='+')
+Transcript ID ENST00000512702
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15471514 	15538699
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15471514; End=15538699; length=67185; Strand='+')
+Transcript ID ENST00000513811
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15471519 	15545584
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15471519; End=15545584; length=74065; Strand='+')
+Transcript ID ENST00000507954
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15471526 	15482914
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15471526; End=15482914; length=11388; Strand='+')
+Transcript ID ENST00000515124
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15471535 	15483883
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15471535; End=15483883; length=12348; Strand='+')
+Transcript ID ENST00000514450
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15471544 	15513298
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15471544; End=15513298; length=41754; Strand='+')
+Transcript ID ENST00000503292
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15471553 	15603180
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15471553; End=15603180; length=131627; Strand='+')
+Transcript ID ENST00000503658
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15471636 	15483000
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15471636; End=15483000; length=11364; Strand='+')
+Transcript ID ENST00000389652
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15480846 	15603169
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15480846; End=15603169; length=122323; Strand='+')
+Transcript ID ENST00000510220
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15529241 	15535076
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15529241; End=15535076; length=5835; Strand='+')
+Transcript ID ENST00000506643
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15538607 	15603175
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15538607; End=15603175; length=64568; Strand='+')
+Transcript ID ENST00000512202
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15552360 	15558996
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15552360; End=15558996; length=6636; Strand='+')
+Transcript ID ENST00000514039
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15591249 	15602994
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15591249; End=15602994; length=11745; Strand='+')
+Transcript ID ENST00000513035
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15597494 	15599088
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15597494; End=15599088; length=1594; Strand='+')
+Transcript ID ENST00000424120
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15471488 	15603180
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15471488; End=15603180; length=131692; Strand='+')
+Transcript ID ENST00000413206
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15471488 	15603180
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15471488; End=15603180; length=131692; Strand='+')
+Transcript ID ENST00000438599
+From csv	start		end
+		15471489 	15603180 
+From Transcript	start		End
+		15471488 	15483886
+Transcript(Species='Homo sapiens'; CoordName='4'; Start=15471488; End=15483886; length=12398; Strand='+')
+
+
+ENSG00000125863
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='McKusick-Kaufman syndrome [Source:HGNC...'; StableId='ENSG00000125863'; Status='KNOWN'; Symbol='MKKS')
+2
+Transcript ID ENST00000399054
+From csv	start		end
+		10385832 	10414870 
+From Transcript	start		End
+		10385831 	10412570
+Transcript(Species='Homo sapiens'; CoordName='20'; Start=10385831; End=10412570; length=26739; Strand='-')
+Transcript ID ENST00000347364
+From csv	start		end
+		10385832 	10414870 
+From Transcript	start		End
+		10385831 	10414870
+Transcript(Species='Homo sapiens'; CoordName='20'; Start=10385831; End=10414870; length=29039; Strand='-')
+
+
+ENSG00000130638
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='ataxin 10 [Source:HGNC...'; StableId='ENSG00000130638'; Status='KNOWN'; Symbol='ATXN10')
+11
+Transcript ID ENST00000252934
+From csv	start		end
+		46067678 	46241187 
+From Transcript	start		End
+		46067678 	46241187
+Transcript(Species='Homo sapiens'; CoordName='22'; Start=46067678; End=46241187; length=173509; Strand='+')
+Transcript ID ENST00000498009
+From csv	start		end
+		46067678 	46241187 
+From Transcript	start		End
+		46068067 	46114344
+Transcript(Species='Homo sapiens'; CoordName='22'; Start=46068067; End=46114344; length=46277; Strand='+')
+Transcript ID ENST00000470722
+From csv	start		end
+		46067678 	46241187 
+From Transcript	start		End
+		46085345 	46096202
+Transcript(Species='Homo sapiens'; CoordName='22'; Start=46085345; End=46096202; length=10857; Strand='+')
+Transcript ID ENST00000476998
+From csv	start		end
+		46067678 	46241187 
+From Transcript	start		End
+		46099852 	46134719
+Transcript(Species='Homo sapiens'; CoordName='22'; Start=46099852; End=46134719; length=34867; Strand='+')
+Transcript ID ENST00000483549
+From csv	start		end
+		46067678 	46241187 
+From Transcript	start		End
+		46114302 	46136680
+Transcript(Species='Homo sapiens'; CoordName='22'; Start=46114302; End=46136680; length=22378; Strand='+')
+Transcript ID ENST00000435026
+From csv	start		end
+		46067678 	46241187 
+From Transcript	start		End
+		46125320 	46219157
+Transcript(Species='Homo sapiens'; CoordName='22'; Start=46125320; End=46219157; length=93837; Strand='+')
+Transcript ID ENST00000493643
+From csv	start		end
+		46067678 	46241187 
+From Transcript	start		End
+		46134353 	46239551
+Transcript(Species='Homo sapiens'; CoordName='22'; Start=46134353; End=46239551; length=105198; Strand='+')
+Transcript ID ENST00000451241
+From csv	start		end
+		46067678 	46241187 
+From Transcript	start		End
+		46134618 	46207674
+Transcript(Species='Homo sapiens'; CoordName='22'; Start=46134618; End=46207674; length=73056; Strand='+')
+Transcript ID ENST00000464482
+From csv	start		end
+		46067678 	46241187 
+From Transcript	start		End
+		46136389 	46140697
+Transcript(Species='Homo sapiens'; CoordName='22'; Start=46136389; End=46140697; length=4308; Strand='+')
+Transcript ID ENST00000402380
+From csv	start		end
+		46067678 	46241187 
+From Transcript	start		End
+		46189475 	46239677
+Transcript(Species='Homo sapiens'; CoordName='22'; Start=46189475; End=46239677; length=50202; Strand='+')
+Transcript ID ENST00000381061
+From csv	start		end
+		46067678 	46241187 
+From Transcript	start		End
+		46067677 	46241184
+Transcript(Species='Homo sapiens'; CoordName='22'; Start=46067677; End=46241184; length=173507; Strand='+')
+
+
+ENSG00000168778
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='tectonic family member...'; StableId='ENSG00000168778'; Status='KNOWN'; Symbol='TCTN2')
+4
+Transcript ID ENST00000541523
+From csv	start		end
+		124155660 	124192948 
+From Transcript	start		End
+		124155659 	124158296
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=124155659; End=124158296; length=2637; Strand='+')
+Transcript ID ENST00000426174
+From csv	start		end
+		124155660 	124192948 
+From Transcript	start		End
+		124155659 	124192554
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=124155659; End=124192554; length=36895; Strand='+')
+Transcript ID ENST00000303372
+From csv	start		end
+		124155660 	124192948 
+From Transcript	start		End
+		124155659 	124192948
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=124155659; End=124192948; length=37289; Strand='+')
+Transcript ID ENST00000543998
+From csv	start		end
+		124155660 	124192948 
+From Transcript	start		End
+		124179586 	124191782
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=124179586; End=124191782; length=12196; Strand='+')
+
+
+ENSG00000164953
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='transmembrane protein 67...'; StableId='ENSG00000164953'; Status='KNOWN'; Symbol='TMEM67')
+22
+Transcript ID ENST00000452276
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767071 	94800159
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767071; End=94800159; length=33088; Strand='+')
+Transcript ID ENST00000453321
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767084 	94830285
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767084; End=94830285; length=63201; Strand='+')
+Transcript ID ENST00000498673
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767092 	94776161
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767092; End=94776161; length=9069; Strand='+')
+Transcript ID ENST00000518319
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767092 	94777819
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767092; End=94777819; length=10727; Strand='+')
+Transcript ID ENST00000409623
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767114 	94828988
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767114; End=94828988; length=61874; Strand='+')
+Transcript ID ENST00000453906
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767122 	94800082
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767122; End=94800082; length=32960; Strand='+')
+Transcript ID ENST00000474944
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767122 	94822199
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767122; End=94822199; length=55077; Strand='+')
+Transcript ID ENST00000475305
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767133 	94771708
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767133; End=94771708; length=4575; Strand='+')
+Transcript ID ENST00000521222
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767133 	94777686
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767133; End=94777686; length=10553; Strand='+')
+Transcript ID ENST00000455946
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767136 	94777844
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767136; End=94777844; length=10708; Strand='+')
+Transcript ID ENST00000481620
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767139 	94769358
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767139; End=94769358; length=2219; Strand='+')
+Transcript ID ENST00000521065
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767147 	94777809
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767147; End=94777809; length=10662; Strand='+')
+Transcript ID ENST00000521517
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767150 	94777819
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767150; End=94777819; length=10669; Strand='+')
+Transcript ID ENST00000323130
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94767154 	94831462
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94767154; End=94831462; length=64308; Strand='+')
+Transcript ID ENST00000496213
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94777758 	94793198
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94777758; End=94793198; length=15440; Strand='+')
+Transcript ID ENST00000425545
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94781746 	94794678
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94781746; End=94794678; length=12932; Strand='+')
+Transcript ID ENST00000520634
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94797449 	94798040
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94797449; End=94798040; length=591; Strand='+')
+Transcript ID ENST00000520680
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94797496 	94807732
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94797496; End=94807732; length=10236; Strand='+')
+Transcript ID ENST00000523230
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94803437 	94809631
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94803437; End=94809631; length=6194; Strand='+')
+Transcript ID ENST00000519845
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94807043 	94828924
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94807043; End=94828924; length=21881; Strand='+')
+Transcript ID ENST00000518896
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94823509 	94828988
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94823509; End=94828988; length=5479; Strand='+')
+Transcript ID ENST00000463467
+From csv	start		end
+		94767072 	94831462 
+From Transcript	start		End
+		94828635 	94830284
+Transcript(Species='Homo sapiens'; CoordName='8'; Start=94828635; End=94830284; length=1649; Strand='+')
+
+
+ENSG00000187049
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='transmembrane protein 216...'; StableId='ENSG00000187049'; Status='KNOWN'; Symbol='TMEM216')
+5
+Transcript ID ENST00000515837
+From csv	start		end
+		61159159 	61166335 
+From Transcript	start		End
+		61159158 	61166320
+Transcript(Species='Homo sapiens'; CoordName='11'; Start=61159158; End=61166320; length=7162; Strand='+')
+Transcript ID ENST00000398979
+From csv	start		end
+		61159159 	61166335 
+From Transcript	start		End
+		61159864 	61165965
+Transcript(Species='Homo sapiens'; CoordName='11'; Start=61159864; End=61165965; length=6101; Strand='+')
+Transcript ID ENST00000544795
+From csv	start		end
+		61159159 	61166335 
+From Transcript	start		End
+		61160101 	61165447
+Transcript(Species='Homo sapiens'; CoordName='11'; Start=61160101; End=61165447; length=5346; Strand='+')
+Transcript ID ENST00000541473
+From csv	start		end
+		61159159 	61166335 
+From Transcript	start		End
+		61160103 	61161773
+Transcript(Species='Homo sapiens'; CoordName='11'; Start=61160103; End=61161773; length=1670; Strand='+')
+Transcript ID ENST00000334888
+From csv	start		end
+		61159159 	61166335 
+From Transcript	start		End
+		61159831 	61166335
+Transcript(Species='Homo sapiens'; CoordName='11'; Start=61159831; End=61166335; length=6504; Strand='+')
+
+
+ENSG00000198707
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='centrosomal protein 290kDa...'; StableId='ENSG00000198707'; Status='KNOWN'; Symbol='CEP290')
+8
+Transcript ID ENST00000547691
+From csv	start		end
+		88442794 	88535993 
+From Transcript	start		End
+		88442793 	88497965
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=88442793; End=88497965; length=55172; Strand='-')
+Transcript ID ENST00000552810
+From csv	start		end
+		88442794 	88535993 
+From Transcript	start		End
+		88442796 	88535993
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=88442796; End=88535993; length=93197; Strand='-')
+Transcript ID ENST00000547926
+From csv	start		end
+		88442794 	88535993 
+From Transcript	start		End
+		88504968 	88534810
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=88504968; End=88534810; length=29842; Strand='-')
+Transcript ID ENST00000548323
+From csv	start		end
+		88442794 	88535993 
+From Transcript	start		End
+		88504977 	88535993
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=88504977; End=88535993; length=31016; Strand='-')
+Transcript ID ENST00000550962
+From csv	start		end
+		88442794 	88535993 
+From Transcript	start		End
+		88524167 	88535854
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=88524167; End=88535854; length=11687; Strand='-')
+Transcript ID ENST00000552770
+From csv	start		end
+		88442794 	88535993 
+From Transcript	start		End
+		88529534 	88534771
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=88529534; End=88534771; length=5237; Strand='-')
+Transcript ID ENST00000309041
+From csv	start		end
+		88442794 	88535993 
+From Transcript	start		End
+		88442960 	88535747
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=88442960; End=88535747; length=92787; Strand='-')
+Transcript ID ENST00000397838
+From csv	start		end
+		88442794 	88535993 
+From Transcript	start		End
+		88442960 	88523488
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=88442960; End=88523488; length=80528; Strand='-')
+
+
+ENSG00000103494
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='RPGRIP1-like [Source:HGNC Symbol;Acc:29168]'; StableId='ENSG00000103494'; Status='KNOWN'; Symbol='RPGRIP1L')
+11
+Transcript ID ENST00000262135
+From csv	start		end
+		53631595 	53737850 
+From Transcript	start		End
+		53631594 	53737801
+Transcript(Species='Homo sapiens'; CoordName='16'; Start=53631594; End=53737801; length=106207; Strand='-')
+Transcript ID ENST00000379925
+From csv	start		end
+		53631595 	53737850 
+From Transcript	start		End
+		53634689 	53737758
+Transcript(Species='Homo sapiens'; CoordName='16'; Start=53634689; End=53737758; length=103069; Strand='-')
+Transcript ID ENST00000563746
+From csv	start		end
+		53631595 	53737850 
+From Transcript	start		End
+		53635692 	53737759
+Transcript(Species='Homo sapiens'; CoordName='16'; Start=53635692; End=53737759; length=102067; Strand='-')
+Transcript ID ENST00000564374
+From csv	start		end
+		53631595 	53737850 
+From Transcript	start		End
+		53639306 	53737801
+Transcript(Species='Homo sapiens'; CoordName='16'; Start=53639306; End=53737801; length=98495; Strand='-')
+Transcript ID ENST00000568009
+From csv	start		end
+		53631595 	53737850 
+From Transcript	start		End
+		53669352 	53672286
+Transcript(Species='Homo sapiens'; CoordName='16'; Start=53669352; End=53672286; length=2934; Strand='-')
+Transcript ID ENST00000565343
+From csv	start		end
+		53631595 	53737850 
+From Transcript	start		End
+		53687362 	53693805
+Transcript(Species='Homo sapiens'; CoordName='16'; Start=53687362; End=53693805; length=6443; Strand='-')
+Transcript ID ENST00000562230
+From csv	start		end
+		53631595 	53737850 
+From Transcript	start		End
+		53705462 	53737756
+Transcript(Species='Homo sapiens'; CoordName='16'; Start=53705462; End=53737756; length=32294; Strand='-')
+Transcript ID ENST00000562588
+From csv	start		end
+		53631595 	53737850 
+From Transcript	start		End
+		53726138 	53737742
+Transcript(Species='Homo sapiens'; CoordName='16'; Start=53726138; End=53737742; length=11604; Strand='-')
+Transcript ID ENST00000568653
+From csv	start		end
+		53631595 	53737850 
+From Transcript	start		End
+		53727223 	53737759
+Transcript(Species='Homo sapiens'; CoordName='16'; Start=53727223; End=53737759; length=10536; Strand='-')
+Transcript ID ENST00000566096
+From csv	start		end
+		53631595 	53737850 
+From Transcript	start		End
+		53729542 	53737850
+Transcript(Species='Homo sapiens'; CoordName='16'; Start=53729542; End=53737850; length=8308; Strand='-')
+Transcript ID ENST00000569716
+From csv	start		end
+		53631595 	53737850 
+From Transcript	start		End
+		53730124 	53737722
+Transcript(Species='Homo sapiens'; CoordName='16'; Start=53730124; End=53737722; length=7598; Strand='-')
+
+
+ENSG00000204852
+Gene(Species='Homo sapiens'; BioType='protein_coding'; Description='tectonic family member...'; StableId='ENSG00000204852'; Status='KNOWN'; Symbol='TCTN1')
+33
+Transcript ID ENST00000550703
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051831 	111066941
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051831; End=111066941; length=15110; Strand='+')
+Transcript ID ENST00000551590
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051831 	111087235
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051831; End=111087235; length=35404; Strand='+')
+Transcript ID ENST00000552318
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051867 	111066723
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051867; End=111066723; length=14856; Strand='+')
+Transcript ID ENST00000498072
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051906 	111057728
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051906; End=111057728; length=5822; Strand='+')
+Transcript ID ENST00000490514
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051906 	111086931
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051906; End=111086931; length=35025; Strand='+')
+Transcript ID ENST00000397656
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051910 	111086930
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051910; End=111086930; length=35020; Strand='+')
+Transcript ID ENST00000495659
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051911 	111086933
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051911; End=111086933; length=35022; Strand='+')
+Transcript ID ENST00000481720
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051917 	111064187
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051917; End=111064187; length=12270; Strand='+')
+Transcript ID ENST00000397655
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051917 	111086933
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051917; End=111086933; length=35016; Strand='+')
+Transcript ID ENST00000546643
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051928 	111067087
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051928; End=111067087; length=15159; Strand='+')
+Transcript ID ENST00000471804
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051930 	111065923
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051930; End=111065923; length=13993; Strand='+')
+Transcript ID ENST00000478122
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051930 	111067900
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051930; End=111067900; length=15970; Strand='+')
+Transcript ID ENST00000549834
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051943 	111057720
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051943; End=111057720; length=5777; Strand='+')
+Transcript ID ENST00000547868
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051943 	111070392
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051943; End=111070392; length=18449; Strand='+')
+Transcript ID ENST00000548095
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051958 	111078325
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051958; End=111078325; length=26367; Strand='+')
+Transcript ID ENST00000465802
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051958 	111086890
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051958; End=111086890; length=34932; Strand='+')
+Transcript ID ENST00000489258
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051958 	111086890
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051958; End=111086890; length=34932; Strand='+')
+Transcript ID ENST00000397659
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051968 	111086933
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051968; End=111086933; length=34965; Strand='+')
+Transcript ID ENST00000464809
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051969 	111086931
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051969; End=111086931; length=34962; Strand='+')
+Transcript ID ENST00000480648
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051972 	111086890
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051972; End=111086890; length=34918; Strand='+')
+Transcript ID ENST00000552762
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111057640 	111066631
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111057640; End=111066631; length=8991; Strand='+')
+Transcript ID ENST00000551555
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111057640 	111078308
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111057640; End=111078308; length=20668; Strand='+')
+Transcript ID ENST00000483006
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111064159 	111071467
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111064159; End=111071467; length=7308; Strand='+')
+Transcript ID ENST00000482281
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111073471 	111079391
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111073471; End=111079391; length=5920; Strand='+')
+Transcript ID ENST00000463313
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111074174 	111085067
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111074174; End=111085067; length=10893; Strand='+')
+Transcript ID ENST00000547461
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111078250 	111085142
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111078250; End=111085142; length=6892; Strand='+')
+Transcript ID ENST00000549123
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111078853 	111086933
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111078853; End=111086933; length=8080; Strand='+')
+Transcript ID ENST00000552038
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111079756 	111086935
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111079756; End=111086935; length=7179; Strand='+')
+Transcript ID ENST00000460357
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111081160 	111086930
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111081160; End=111086930; length=5770; Strand='+')
+Transcript ID ENST00000485445
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111082460 	111085613
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111082460; End=111085613; length=3153; Strand='+')
+Transcript ID ENST00000491068
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111082512 	111086931
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111082512; End=111086931; length=4419; Strand='+')
+Transcript ID ENST00000481093
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111085097 	111086931
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111085097; End=111086931; length=1834; Strand='+')
+Transcript ID ENST00000377654
+From csv	start		end
+		111051832 	111087235 
+From Transcript	start		End
+		111051941 	111086930
+Transcript(Species='Homo sapiens'; CoordName='12'; Start=111051941; End=111086930; length=34989; Strand='+')
+
+
