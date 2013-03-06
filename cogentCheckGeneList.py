@@ -30,7 +30,11 @@ import os
 
 from cogent.db.ensembl import HostAccount, Species, Genome
 import sqlalchemy as sql
-from sqlalchemy.engine import result
+#from sqlalchemy.engine import result
+def getExons(gene):
+    print gene
+    #for ex in gene.Transcripts.Exons:
+    #    print ex
 
 def CheckRefSeq(ENSG,ENST,RefSeq,start,end):
     # gene fetch
@@ -57,13 +61,21 @@ def CheckRefSeq(ENSG,ENST,RefSeq,start,end):
     
     results = query.execute().fetchall()
     print len(results)
-    for result in results:
-        print dir(result)
-        print "row\t",result._row[0]
-        print result.keys
-        print result.values
-        print result.items
-    
+    for res in results:
+        #print dir(res)
+        #print "row\t",type(res._row[8])
+        #print result.keys
+        #print result.values
+        #print "\titems\t", res.items
+        if str(RefSeq) != res._row[8]:
+            #print RefSeq, " = ", res._row[8]
+            print "NEXT"
+            next
+        else:
+            print RefSeq, " = ", res._row[8]
+            print "SAME\n Need to get exons"
+            getExons(res)
+            exit
 #Define the Ensembl connections details
 Release = 70
 
@@ -73,7 +85,9 @@ if 'ENSEMBL_ACCOUNT' in os.environ:
 else:
     account = None
 
-human = Genome(Species='human', Release=Release, account=account)
+human = Genome(Species='human',Release=Release, account=account)
+print human.Release
+print human.GeneralRelease
 
 # Get the csv lines
 ## Watch out for norwegian characters and empty space
