@@ -1,0 +1,35 @@
+How to install pygocent
+
+URLs:
+https://pycogent.wordpress.com/2012/09/15/pycogent-1-5-3-released/
+http://sourceforge.net/projects/mysql-python/?source=dlp
+
+installation
+pycogent
+	http://pycogent.org/install.html
+
+matplotlib
+	http://sourceforge.net/projects/pycogent/forums/forum/651121/topic/5635916
+
+
+Files:
+/Users/yvans/Home/bin/cogent-requirements.txt
+
+commands:
+Need to  install MySQL for Python via command line
+mysql-python
+	cd MySQL-python-1.2.4b4
+	python setup.py build
+	python setup.py install
+	sudo python setup.py install
+matplotlib
+http://sourceforge.net/projects/pycogent/forums/forum/651121/topic/5635916
+
+	DONT_USE_PYREX=1 sudo pip install -r cogent-requirements.txt 
+
+Troubleshoot:
+	mysql-python problems:
+		http://blog.infoentropy.com/MySQL-python_EnvironmentError_mysql_config_not_found
+	edit this file:
+		/Users/yvans/Home/bin/MySQL-python-1.2.4b4/site.cfg
+	
