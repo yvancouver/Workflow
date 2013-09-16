@@ -1,7 +1,7 @@
 ## Specifying a Host and Account
 
 import os
-Release = 70
+Release = 71
 from cogent.db.ensembl import HostAccount
 if 'ENSEMBL_ACCOUNT' in os.environ:
      host, username, password = os.environ['ENSEMBL_ACCOUNT'].split()
