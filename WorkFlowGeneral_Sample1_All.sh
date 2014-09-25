@@ -31,7 +31,7 @@ export OMNI=/Users/yvans//Home/bin/GATK_resource_bundle_from_Ying_17_01_2012/1.2
 export DIR=/Users/yvans/Home/Analysis/BRCA_analysis_07.05.2012/Sample_Diag-HaloBRCA1A-test-1/
 export WORKINGDIR=/Users/yvans/Home/Analysis/BRCA_analysis_07.05.2012/Sample_Diag-HaloBRCA1A-test-1/Analysis_All
 
-# Are the reads from the default location or not? Should I passe dit by absolute path??
+# Are the reads from the default location or not? Should I passed it by absolute path??
 export READS1=/Users/yvans/Home/Analysis/BRCA_analysis_07.05.2012/Sample_Diag-HaloBRCA1A-test-1/Diag-HaloBRCA1A-test-1_ATCACG_L004_R1_001.pf.fastq.gz*
 export READS2=/Users/yvans/Home/Analysis/BRCA_analysis_07.05.2012/Sample_Diag-HaloBRCA1A-test-1/Diag-HaloBRCA1A-test-1_ATCACG_L004_R2_001.pf.fastq.gz*
 
